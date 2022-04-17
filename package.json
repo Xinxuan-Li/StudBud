@@ -1,0 +1,19 @@
+{
+  "name": "studbud",
+  "version": "1.0.0",
+  "description": "Deco2017 Assessment 3 StudBud",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xinxuan-Li/StudBud.git"
+  },
+  "author": "Xinxuan Li",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xinxuan-Li/StudBud/issues"
+  },
+  "homepage": "https://github.com/Xinxuan-Li/StudBud#readme"
+}

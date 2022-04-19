@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'poppins';
+    src: url('../font/poppins/Poppins-Regular.ttf');
+}
+
+/* nav bar css */
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+.logo {
+    margin-right: auto;
+    cursor: pointer;
+    width: 130px;
+}
+
+.navlinks {
+    font: inherit;
+    font-family: poppins;
+    list-style: none;
+    font-size: 17px;
+    padding: 0px 30px;
+}
+
+.navlinks li {
+    display: inline-block;
+    padding: 0px 30px;
+}
+
+.navlinks li a {
+    text-decoration: none;
+    color: #27271E;
+}
+
+/* grid the container for project display  */
+.container {
+    padding: 70px 120px;
+    margin-right: auto;
+}
+
+#add-project {
+    width: 200px;
+    height: 290px;
+}

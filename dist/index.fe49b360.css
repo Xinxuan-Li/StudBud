@@ -57,7 +57,7 @@ header {
   padding: 70px 120px;
 }
 
-#add-project {
+.container #add-project {
   width: 200px;
   height: 290px;
   cursor: pointer;
@@ -67,7 +67,7 @@ header {
   font-size: 80px;
 }
 
-#add-project:hover {
+.container #add-project:hover {
   border-width: 3px;
   transition: all .1s ease-in-out;
   box-shadow: 6px 6px #b7b8934d;
@@ -79,16 +79,38 @@ header {
 }
 
 .newProjectPopUp {
-  width: 55%;
+  width: 50%;
+  height: 60%;
   background-color: #fff;
   border: 2px solid #9f9f9f;
   border-radius: 4px;
   padding: 30px 40px;
   font-family: poppins;
   position: absolute;
-  top: 20%;
+  top: 30%;
   left: 50%;
-  transform: translate(-50%, -20%);
+  transform: translate(-50%, -30%);
+}
+
+.newProjectPopUp #cancel {
+  border: 2px solid #6e703d;
+  border-radius: 100px;
+  padding: 10px 30px;
+  font-size: 20px;
+}
+
+.newProjectPopUp #done {
+  color: #fffcf9;
+  background-color: #6e703d;
+  border: 2px solid #6e703d;
+  border-radius: 100px;
+  padding: 10px 30px;
+  font-size: 20px;
+}
+
+.newProjectPopUp #done:hover, .newProjectPopUp #cancel:hover {
+  padding: 12px 32px;
+  transition: all .2s ease-in;
 }
 
 .fa-times {

@@ -3,6 +3,10 @@
   src: url("Poppins-Regular.8bdbd54d.ttf");
 }
 
+* {
+  background-color: #fffcf9;
+}
+
 header {
   justify-content: flex-end;
   align-items: center;
@@ -18,9 +22,9 @@ header {
 
 .navlinks {
   font: inherit;
-  padding: 0 30px;
+  padding: 0 10px;
   font-family: poppins;
-  font-size: 17px;
+  font-size: 15px;
   list-style: none;
 }
 
@@ -42,6 +46,17 @@ header {
 #add-project {
   width: 200px;
   height: 290px;
+  cursor: pointer;
+  color: #6e703d;
+  box-shadow: #6e703d;
+  border-color: #27271e;
+  border-radius: 8px;
+  font-size: 80px;
+}
+
+.container p {
+  color: #9f9f9f;
+  font-family: poppins;
 }
 
 /*# sourceMappingURL=index.fe49b360.css.map */

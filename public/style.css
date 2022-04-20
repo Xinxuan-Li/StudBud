@@ -3,6 +3,10 @@
     src: url('../font/poppins/Poppins-Regular.ttf');
 }
 
+* {
+    background-color: #FFFCF9;
+}
+
 /* nav bar css */
 header {
     display: flex;
@@ -21,8 +25,8 @@ header {
     font: inherit;
     font-family: poppins;
     list-style: none;
-    font-size: 17px;
-    padding: 0px 30px;
+    font-size: 15px;
+    padding: 0px 10px;
 }
 
 .navlinks li {
@@ -44,4 +48,18 @@ header {
 #add-project {
     width: 200px;
     height: 290px;
+}
+
+#add-project {
+    cursor: pointer;
+    border-color: #27271E;
+    border-radius: 8px;
+    font-size: 80px;
+    color: #6E703D;
+    box-shadow: #6E703D;
+}
+
+.container p {
+    font-family: poppins;
+    color: #9F9F9F;
 }

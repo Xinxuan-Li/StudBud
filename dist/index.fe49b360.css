@@ -38,6 +38,20 @@ header {
   text-decoration: none;
 }
 
+.navlinks li:after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #6e703d;
+  margin: auto;
+  transition: all .2s;
+  display: block;
+}
+
+.navlinks li:hover:after {
+  width: 100%;
+}
+
 .container {
   margin-right: auto;
   padding: 70px 120px;
@@ -48,15 +62,42 @@ header {
   height: 290px;
   cursor: pointer;
   color: #6e703d;
-  box-shadow: #6e703d;
   border-color: #27271e;
   border-radius: 8px;
   font-size: 80px;
 }
 
+#add-project:hover {
+  border-width: 3px;
+  transition: all .1s ease-in-out;
+  box-shadow: 6px 6px #b7b8934d;
+}
+
 .container p {
   color: #9f9f9f;
   font-family: poppins;
+}
+
+.newProjectPopUp {
+  width: 55%;
+  background-color: #fff;
+  border: 2px solid #9f9f9f;
+  border-radius: 4px;
+  padding: 30px 40px;
+  font-family: poppins;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+}
+
+.fa-times {
+  color: #6e703d;
+  text-align: right;
+  background-color: #0000;
+  margin: 0 0 20px auto;
+  font-size: 25px;
+  display: block;
 }
 
 /*# sourceMappingURL=index.fe49b360.css.map */

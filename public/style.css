@@ -39,6 +39,21 @@ header {
     color: #27271E;
 }
 
+/* hover effect for the nav links */
+.navlinks li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #6E703D;
+    display: block;
+    margin: auto;
+    transition: 0.2s;
+}
+
+.navlinks li:hover::after {
+    width: 100%;
+}
+
 /* grid the container for project display  */
 .container {
     padding: 70px 120px;
@@ -56,10 +71,41 @@ header {
     border-radius: 8px;
     font-size: 80px;
     color: #6E703D;
-    box-shadow: #6E703D;
+}
+
+#add-project:hover {
+    box-shadow: 6px 6px rgb(183, 184, 147, 0.3);
+    border-width: 3px;
+    transition: 0.1s ease-in-out;
 }
 
 .container p {
     font-family: poppins;
     color: #9F9F9F;
+}
+
+/* Create new project pop up window asking for basic information input */
+.newProjectPopUp {
+    border-style: solid;
+    border-radius: 4px;
+    border-color: #9F9F9F;
+    border-width: 2px;
+    background-color: #FFF;
+    width: 55%;
+    padding: 30px 40px;
+    position: absolute;
+    font-family: poppins;
+    transform: translate(-50%, -20%);
+    left: 50%;
+    top: 20%;
+    /* display: none; */
+}
+
+.fa-times {
+    display: block;
+    margin: 0 0 20px auto;
+    background-color: transparent;
+    font-size: 25px;
+    color: #6E703D;
+    text-align: right;
 }

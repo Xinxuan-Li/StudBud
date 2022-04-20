@@ -1,0 +1,47 @@
+@font-face {
+  font-family: poppins;
+  src: url("Poppins-Regular.8bdbd54d.ttf");
+}
+
+header {
+  justify-content: flex-end;
+  align-items: center;
+  padding: 30px 10%;
+  display: flex;
+}
+
+.logo {
+  cursor: pointer;
+  width: 130px;
+  margin-right: auto;
+}
+
+.navlinks {
+  font: inherit;
+  padding: 0 30px;
+  font-family: poppins;
+  font-size: 17px;
+  list-style: none;
+}
+
+.navlinks li {
+  padding: 0 30px;
+  display: inline-block;
+}
+
+.navlinks li a {
+  color: #27271e;
+  text-decoration: none;
+}
+
+.container {
+  margin-right: auto;
+  padding: 70px 120px;
+}
+
+#add-project {
+  width: 200px;
+  height: 290px;
+}
+
+/*# sourceMappingURL=index.fe49b360.css.map */

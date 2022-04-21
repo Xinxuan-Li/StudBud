@@ -79,8 +79,8 @@ header {
 }
 
 .newProjectPopUp {
-  width: 50%;
-  height: 60%;
+  width: 30%;
+  height: 65%;
   background-color: #fff;
   border: 2px solid #9f9f9f;
   border-radius: 4px;
@@ -89,13 +89,13 @@ header {
   position: absolute;
   top: 30%;
   left: 50%;
-  transform: translate(-50%, -30%);
+  transform: translate(-50%, -20%);
 }
 
 .newProjectPopUp #cancel {
   border: 2px solid #6e703d;
   border-radius: 100px;
-  padding: 10px 30px;
+  padding: 7px 30px;
   font-size: 20px;
 }
 
@@ -104,13 +104,55 @@ header {
   background-color: #6e703d;
   border: 2px solid #6e703d;
   border-radius: 100px;
-  padding: 10px 30px;
+  margin-left: 150px;
+  padding: 7px 30px;
   font-size: 20px;
 }
 
-.newProjectPopUp #done:hover, .newProjectPopUp #cancel:hover {
-  padding: 12px 32px;
-  transition: all .2s ease-in;
+.newProjectPopUp button {
+  margin-top: 40px;
+}
+
+.newProjectPopUp h1, #newProjectForm {
+  background-color: #0000;
+}
+
+#newProjectForm label {
+  background-color: #0000;
+  display: block;
+}
+
+#newProjectForm ul {
+  background-color: #0000;
+  padding: 0;
+  font-size: 20px;
+}
+
+#newProjectForm ul li {
+  background-color: #0000;
+  list-style: none;
+}
+
+#newProjectForm li + li {
+  margin-top: 20px;
+}
+
+#newProjectForm input {
+  width: 200px;
+  background-color: #0000;
+  border: 2px solid #27271e;
+  border-radius: 8px;
+  margin-top: 10px;
+  padding: 10px 20px;
+}
+
+#newProjectForm select {
+  width: 150px;
+  background-color: #0000;
+  border: 2px solid #27271e;
+  border-radius: 8px;
+  margin-top: 10px;
+  padding: 10px 20px;
 }
 
 .fa-times {

@@ -32,6 +32,26 @@
     <!-- Create a project pop up window -->
     <div class="newProjectPopUp">
         <i class="fa fa-times" onclick="hide()"></i>
+        <h1>Create new project</h1>
+        <form id="newProjectForm">
+            <ul>
+                <li>
+                    <label for="projectname">Project name: </label>
+                    <input type="text" name="projectname" id="projectName">
+                </li>
+                <li>
+                    <label for="duedate">Due date: </label>
+                    <input type="date" name="duedate" id="dueDate">
+                </li>
+                <li>
+                    <label for="statuses">Status of project: </label>
+                    <select name="statuses" id="status">
+                        <option value="in-progress">In progress</option>
+                        <option value="complete">Complete</option>
+                    </select>
+                </li>
+            </ul>
+        </form>
         <button id="cancel">Cancel</button>
         <button id="done">Done</button>
     </div>

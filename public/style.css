@@ -60,12 +60,12 @@ header {
     margin-right: auto;
 }
 
-.container #add-project {
+.container #addProject {
     width: 200px;
     height: 290px;
 }
 
-.container #add-project {
+.container #addProject {
     cursor: pointer;
     border-color: #27271E;
     border-radius: 8px;
@@ -73,7 +73,7 @@ header {
     color: #6E703D;
 }
 
-.container #add-project:hover {
+.container #addProject:hover {
     box-shadow: 6px 6px rgb(183, 184, 147, 0.3);
     border-width: 3px;
     transition: 0.1s ease-in-out;
@@ -86,6 +86,7 @@ header {
 
 /* Create new project pop up window asking for basic information input */
 .newProjectPopUp {
+    /* display: none; */
     border-style: solid;
     border-radius: 4px;
     border-color: #9F9F9F;
@@ -99,7 +100,6 @@ header {
     transform: translate(-50%, -20%);
     left: 50%;
     top: 30%;
-    /* display: none; */
 }
 
 .newProjectPopUp #cancel {
@@ -107,16 +107,31 @@ header {
     padding: 7px 30px;
     border: 2px solid #6E703D;
     border-radius: 100px;
+    position: absolute;
+}
+
+#cancel:hover {
+    box-shadow: 4px 4px rgb(183, 184, 147, 0.3);
+    border-width: 3px;
+    transition: 0.1s ease-in-out;
 }
 
 .newProjectPopUp #done {
     font-size: 20px;
     padding: 7px 30px;
-    margin-left: 150px;
+    margin-left: 300px;
+    position: absolute;
     color: #FFFCF9;
     background-color: #6E703D;
     border: 2px solid #6E703D;
     border-radius: 100px;
+}
+
+#done:hover {
+    border: 2px solid #52541e;
+    box-shadow: 4px 4px rgba(175, 177, 117, 0.3);
+    border-width: 3px;
+    transition: 0.1s ease-in-out;
 }
 
 .newProjectPopUp button {
@@ -127,6 +142,7 @@ header {
     background-color: transparent;
 }
 
+/* Create new project by entering properties form */
 #newProjectForm {
     background-color: transparent;
 }
@@ -152,7 +168,7 @@ header {
 }
 
 #newProjectForm input {
-    width: 200px;
+    width: 85%;
     background-color: transparent;
     margin-top: 10px;
     padding: 10px 20px;
@@ -161,7 +177,7 @@ header {
 }
 
 #newProjectForm select {
-    width: 150px;
+    width: 50%;
     background-color: transparent;
     margin-top: 10px;
     padding: 10px 20px;
@@ -177,3 +193,22 @@ header {
     color: #6E703D;
     text-align: right;
 }
+
+/* Music player pop up window */
+.music {
+    /* display: none; */
+    width: 40%;
+    height: 30%;
+    top: 12%;
+    right: 22.5%;
+    position: absolute;
+    background-color: #FFF;
+    border: 2px solid #27271E;
+    border-radius: 8px;
+}
+
+/* .fa-times {
+    transform: translate(-100px, -400px);
+} */
+
+/* Pomodoro Timer */

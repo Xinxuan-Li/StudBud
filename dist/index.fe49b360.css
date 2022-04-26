@@ -57,7 +57,7 @@ header {
   padding: 70px 120px;
 }
 
-.container #add-project {
+.container #addProject {
   width: 200px;
   height: 290px;
   cursor: pointer;
@@ -67,7 +67,7 @@ header {
   font-size: 80px;
 }
 
-.container #add-project:hover {
+.container #addProject:hover {
   border-width: 3px;
   transition: all .1s ease-in-out;
   box-shadow: 6px 6px #b7b8934d;
@@ -97,6 +97,13 @@ header {
   border-radius: 100px;
   padding: 7px 30px;
   font-size: 20px;
+  position: absolute;
+}
+
+#cancel:hover {
+  border-width: 3px;
+  transition: all .1s ease-in-out;
+  box-shadow: 4px 4px #b7b8934d;
 }
 
 .newProjectPopUp #done {
@@ -104,9 +111,16 @@ header {
   background-color: #6e703d;
   border: 2px solid #6e703d;
   border-radius: 100px;
-  margin-left: 150px;
+  margin-left: 300px;
   padding: 7px 30px;
   font-size: 20px;
+  position: absolute;
+}
+
+#done:hover {
+  border: 3px solid #52541e;
+  transition: all .1s ease-in-out;
+  box-shadow: 4px 4px #afb1754d;
 }
 
 .newProjectPopUp button {
@@ -138,7 +152,7 @@ header {
 }
 
 #newProjectForm input {
-  width: 200px;
+  width: 85%;
   background-color: #0000;
   border: 2px solid #27271e;
   border-radius: 8px;
@@ -147,7 +161,7 @@ header {
 }
 
 #newProjectForm select {
-  width: 150px;
+  width: 50%;
   background-color: #0000;
   border: 2px solid #27271e;
   border-radius: 8px;
@@ -162,6 +176,17 @@ header {
   margin: 0 0 20px auto;
   font-size: 25px;
   display: block;
+}
+
+.music {
+  width: 40%;
+  height: 30%;
+  background-color: #fff;
+  border: 2px solid #27271e;
+  border-radius: 8px;
+  position: absolute;
+  top: 12%;
+  right: 22.5%;
 }
 
 /*# sourceMappingURL=index.fe49b360.css.map */

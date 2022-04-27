@@ -32,11 +32,13 @@ header {
 .navlinks li {
     display: inline-block;
     padding: 0px 30px;
+    cursor: pointer;
 }
 
-.navlinks li a {
+.navlinks a {
     text-decoration: none;
     color: #27271E;
+    cursor: pointer;
 }
 
 /* hover effect for the nav links */
@@ -88,8 +90,8 @@ header {
 .newProjectPopUp {
     /* display: none; */
     border-style: solid;
-    border-radius: 4px;
-    border-color: #9F9F9F;
+    border-radius: 8px;
+    border-color: #27271E;
     border-width: 2px;
     background-color: #FFF;
     width: 30%;
@@ -195,20 +197,37 @@ header {
 }
 
 /* Music player pop up window */
-.music {
+#music {
     /* display: none; */
-    width: 40%;
-    height: 30%;
-    top: 12%;
-    right: 22.5%;
+    width: 30%;
+    height: auto;
+    transform: translateX(-80%);
+    margin-top: 20px;
     position: absolute;
     background-color: #FFF;
     border: 2px solid #27271E;
     border-radius: 8px;
+    z-index: 1;
 }
 
-/* .fa-times {
-    transform: translate(-100px, -400px);
-} */
+#music .fa-times {
+    margin: 10px 20px;
+}
 
 /* Pomodoro Timer */
+#pomodoro {
+    /* visibility: hidden; */
+    width: 30%;
+    height: auto;
+    transform: translateX(-40%);
+    margin-top: 20px;
+    position: absolute;
+    background-color: #FFF;
+    border: 2px solid #27271E;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+#pomodoro .fa-times {
+    margin: 10px 20px;
+}

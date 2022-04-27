@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 
 <body>
@@ -16,8 +17,18 @@
         <img class="logo" src="../img/StudBud-logo.png" alt="logo">
         <nav>
             <ul class="navlinks">
-                <li><a href="#">Pomodoro</a></li>
-                <li><a href="#">Music player</a></li>
+                <li onclick="show()">Pomodoro
+                </li>
+                <!-- pomodoro pop up window  -->
+                <div id="pomodoro">
+                    <i class="fa fa-times" onclick="hide()"></i>
+                </div>
+                <li onclick="show()">Music player
+                </li>
+                <!-- music pop up window -->
+                <div id="music">
+                    <i class="fa fa-times" onclick="hide()"></i>
+                </div>
                 <li><a href="resource.html">Resource</a></li>
             </ul>
         </nav>
@@ -25,12 +36,12 @@
 
     <!-- body that includes contents - projects display -->
     <section class="container">
-        <button onclick="addProjPop()" id="addProject">+</button>
+        <button id="addProject">+</button>
         <p>New Project</p>
 
         <!-- Create a project pop up window -->
         <div class="newProjectPopUp">
-            <i class="fa fa-times" onclick="hide()"></i>
+            <i class="fa fa-times"></i>
             <h1>Create new project</h1>
             <form id="newProjectForm">
                 <ul>
@@ -53,16 +64,6 @@
             </form>
             <button id="cancel">Cancel</button>
             <button id="done">Done</button>
-        </div>
-
-        <!-- pomodoro pop up window -->
-        <div class="pomodoro">
-            <i class="fa fa-times" onclick="hide()"></i>
-        </div>
-
-        <!-- music player pop up window -->
-        <div class="music">
-
         </div>
     </section>
 </body>

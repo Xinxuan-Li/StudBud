@@ -1,109 +1,37 @@
-@font-face {
-    font-family: 'poppins';
-    src: url('../font/poppins/Poppins-Regular.ttf');
-}
-
-* {
-    background-color: #FFFCF9;
-    font-family: poppins;
-}
-
-/* ====== nav bar css ====== */
-header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 30px 10%;
-}
-
-.logo {
+/* grid the container for project display  */
+.container {
+    padding: 70px 120px;
     margin-right: auto;
+}
+
+.container #addProject {
+    width: 200px;
+    height: 290px;
+}
+
+.container #addProject {
     cursor: pointer;
-    width: 130px;
-}
-
-.navlinks {
-    font: inherit;
-    font-family: poppins;
-    list-style: none;
-    font-size: 15px;
-    padding: 0px 10px;
-}
-
-.navlinks li {
-    display: inline-block;
-    padding: 0px 30px;
-    cursor: pointer;
-}
-
-.navlinks a {
-    text-decoration: none;
-    color: #27271E;
-    cursor: pointer;
-}
-
-/* ====== hover effect for the nav links ====== */
-.navlinks li::after {
-    content: '';
-    width: 0%;
-    height: 2px;
-    background: #6E703D;
-    display: block;
-    margin: auto;
-    transition: 0.2s;
-}
-
-.navlinks li:hover::after {
-    width: 100%;
-}
-
-/* ====== Styles for the add new project button ====== */
-.projectList {
-    margin: 30px 100px;
-    display: flex;
-    flex-flow: row wrap;
-}
-
-#addProject {
-    transform: translateY(30%);
-    background: transparent;
+    border-color: #27271E;
+    border-radius: 8px;
     font-size: 80px;
-    border: none;
     color: #6E703D;
 }
 
-.projectCol {
-    text-align: center;
-    width: 180px;
-    height: 240px;
-    cursor: pointer;
-    border: 2px solid #27271E;
-    border-radius: 8px;
-    margin: 30px 30px;
-    padding-top: 20px;
+.container #addProject:hover {
+    transform: translateY(-2px);
+    box-shadow: 6px 6px rgb(183, 184, 147, 0.3);
+    border-width: 3px;
+    transition: 0.1s ease-in-out;
 }
 
-.projectCol:hover {
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.281);
-    transform: translateY(-1px);
+.container p {
+    font-family: poppins;
+    color: #9F9F9F;
 }
 
-.projectColInner {
-    width: 80px;
-    height: 100px;
-    background-color: bisque;
-}
-
-.projectCol p {
-    vertical-align: bottom;
-    text-align: left;
-    font-size: 13px;
-    padding: 0px 5px;
-}
-
-/* ====== Create new project pop up window asking for basic information input ====== */
+/* Create new project pop up window asking for basic information input */
 .newProjectPopUp {
-    display: none;
+    /* display: none; */
     border-style: solid;
     border-radius: 8px;
     border-color: #27271E;
@@ -130,7 +58,7 @@ header {
 .newProjectPopUp #done {
     font-size: 20px;
     padding: 7px 30px;
-    margin-left: 65%;
+    margin-left: 300px;
     position: absolute;
     color: #FFFCF9;
     background-color: #6E703D;
@@ -203,7 +131,7 @@ header {
     text-align: right;
 }
 
-/* ====== Pomodoro timer pop up window ====== */
+/* Pomodoro timer pop up window */
 #timer {
     display: none;
     width: 30%;
@@ -221,7 +149,7 @@ header {
     margin: 10px 20px;
 }
 
-/* ====== Music player ======*/
+/* Music player */
 #music {
     display: none;
     width: 30%;
@@ -238,5 +166,3 @@ header {
 #music .fa-times {
     margin: 10px 20px;
 }
-
-/* ====== Styles for project list on the homepage ======*/

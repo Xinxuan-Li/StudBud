@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <title>StudBud</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <!-- <link href="scss/main.scss" rel="stylesheet" type="text/css"> -->
+    <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -17,17 +18,17 @@
         <img class="logo" src="../img/StudBud-logo.png" alt="logo">
         <nav>
             <ul class="navlinks">
-                <li onclick="show()">Pomodoro
+                <li onclick="showTimer()">Timer
                 </li>
                 <!-- pomodoro pop up window  -->
-                <div id="pomodoro">
-                    <i class="fa fa-times" onclick="hide()"></i>
+                <div id="timer">
+                    <i class="fa fa-times" onclick="hideTimer()"></i>
                 </div>
-                <li onclick="show()">Music player
+                <li onclick="showMusicPlayer()">Music player
                 </li>
                 <!-- music pop up window -->
                 <div id="music">
-                    <i class="fa fa-times" onclick="hide()"></i>
+                    <i class="fa fa-times" onclick="hideMusicPlayer()"></i>
                 </div>
                 <li><a href="resource.html">Resource</a></li>
             </ul>
@@ -35,37 +36,53 @@
     </header>
 
     <!-- body that includes contents - projects display -->
-    <section class="container">
-        <button id="addProject">+</button>
-        <p>New Project</p>
+    <section class="projectList">
+        <!-- <div class="projectList"> -->
+        <div class="projectCol">
+            <button id="addProject" onclick="addNewProject()">+</button>
+        </div>
+        <!-- === TESTING STARTS === -->
+        <div class="projectCol">
+            <div class="projectColInner"></div>
+            <p>Project 1</p>
+            <p>10/10/20</p>
+        </div>
+        <div class="projectCol">
+            <div class="projectColInner"></div>
+            <p>10/10/20</p>
+            <p>Project 2</p>
+        </div>
+        <!-- === TESTING ENDS === -->
+        <!-- </div> -->
 
         <!-- Create a project pop up window -->
-        <div class="newProjectPopUp">
-            <i class="fa fa-times"></i>
-            <h1>Create new project</h1>
-            <form id="newProjectForm">
-                <ul>
-                    <li>
-                        <label for="projectname">Project name: </label>
-                        <input type="text" name="projectname" id="projectName">
-                    </li>
-                    <li>
-                        <label for="duedate">Due date: </label>
-                        <input type="date" name="duedate" id="dueDate">
-                    </li>
-                    <li>
-                        <label for="statuses">Status of project: </label>
-                        <select name="statuses" id="status">
-                            <option value="in-progress">In progress</option>
-                            <option value="complete">Complete</option>
-                        </select>
-                    </li>
-                </ul>
-            </form>
-            <button id="cancel">Cancel</button>
-            <button id="done">Done</button>
-        </div>
     </section>
+
+    <div class="newProjectPopUp">
+        <i class="fa fa-times" onclick="cancelCreateNew()"></i>
+        <h1>Create new project</h1>
+        <form id="newProjectForm">
+            <ul>
+                <li>
+                    <label for="projectname">Project name: </label>
+                    <input type="text" name="projectname" id="projectName">
+                </li>
+                <li>
+                    <label for="duedate">Due date: </label>
+                    <input type="date" name="duedate" id="dueDate">
+                </li>
+                <li>
+                    <label for="statuses">Status of project: </label>
+                    <select name="statuses" id="status">
+                        <option value="in-progress">In progress</option>
+                        <option value="complete">Complete</option>
+                    </select>
+                </li>
+            </ul>
+            <button id="done" type="submit">Done</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>

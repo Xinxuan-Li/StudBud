@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <title>Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link href="scss/main.scss" rel="stylesheet" type="text/css"> -->
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!-- nav bar on the top -->
+    <header>
+        <img class="logo" src="../img/StudBud-logo.png" alt="logo">
+        <nav>
+            <ul class="navlinks">
+                <li onclick="showTimer()">Timer
+                </li>
+                <!-- pomodoro pop up window  -->
+                <div id="timer">
+                    <i class="fa fa-times" onclick="hideTimer()"></i>
+                </div>
+                <li onclick="showMusicPlayer()">Music player
+                </li>
+                <!-- music pop up window -->
+                <div id="music">
+                    <i class="fa fa-times" onclick="hideMusicPlayer()"></i>
+                </div>
+                <li><a href="resource.html">Resource</a></li>
+            </ul>
+        </nav>
+    </header>
+
+</body>
+
+</html>

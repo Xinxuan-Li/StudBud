@@ -1,6 +1,6 @@
 @font-face {
   font-family: poppins;
-  src: url("Poppins-Regular.8bdbd54d.ttf");
+  src: url("Poppins-Regular.34e3f7e3.ttf");
 }
 
 * {
@@ -60,26 +60,48 @@ header {
   padding: 70px 120px;
 }
 
-.container #addProject {
+.container p {
+  color: #9f9f9f;
+  font-family: poppins;
+}
+
+.porjectList {
+  flex-wrap: wrap;
+  display: flex;
+}
+
+#addProject {
+  color: #6e703d;
+  background: none;
+  border: none;
+  font-size: 80px;
+  transform: translateY(60%);
+}
+
+.projectColInner {
+  text-align: center;
   width: 200px;
   height: 290px;
   cursor: pointer;
-  color: #6e703d;
-  border-color: #27271e;
+  border: 2px solid #27271e;
   border-radius: 8px;
-  font-size: 80px;
+  position: relative;
 }
 
-.container #addProject:hover {
+.projectColInner:hover {
   border-width: 3px;
   transition: all .1s ease-in-out;
   transform: translateY(-2px);
   box-shadow: 6px 6px #b7b8934d;
 }
 
-.container p {
-  color: #9f9f9f;
-  font-family: poppins;
+.projectCol {
+  margin: 0 30px;
+  padding-top: 20px;
+}
+
+.projectCol p {
+  position: absolute;
 }
 
 .newProjectPopUp {
@@ -90,6 +112,7 @@ header {
   border-radius: 8px;
   padding: 30px 40px;
   font-family: poppins;
+  display: none;
   position: absolute;
   top: 30%;
   left: 50%;
@@ -109,11 +132,10 @@ header {
   background-color: #6e703d;
   border: 2px solid #6e703d;
   border-radius: 100px;
-  margin-left: 300px;
+  margin-left: 65%;
   padding: 7px 30px;
   font-size: 20px;
   position: absolute;
-  transform: translateX(60px);
 }
 
 .newProjectPopUp button:hover {
@@ -210,4 +232,4 @@ header {
   margin: 10px 20px;
 }
 
-/*# sourceMappingURL=index.fe49b360.css.map */
+/*# sourceMappingURL=index.83d9161e.css.map */

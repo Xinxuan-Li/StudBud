@@ -1,0 +1,48 @@
+/* nav bar css */
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+.logo {
+    margin-right: auto;
+    cursor: pointer;
+    width: 130px;
+}
+
+.navlinks {
+    font: inherit;
+    font-family: poppins;
+    list-style: none;
+    font-size: 15px;
+    padding: 0px 10px;
+}
+
+.navlinks li {
+    display: inline-block;
+    padding: 0px 30px;
+    cursor: pointer;
+}
+
+.navlinks a {
+    text-decoration: none;
+    color: #27271E;
+    cursor: pointer;
+}
+
+/* hover effect for the nav links */
+.navlinks li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #6E703D;
+    display: block;
+    margin: auto;
+    transition: 0.2s;
+}
+
+.navlinks li:hover::after {
+    width: 100%;
+}

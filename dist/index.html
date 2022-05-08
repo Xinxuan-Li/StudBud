@@ -5,29 +5,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-control" content="no-cache">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/index.fe49b360.css">
-    <script src="/index.d0a6c712.js"></script>
+    <!-- <link href="scss/main.scss" rel="stylesheet" type="text/css"> -->
+    <link href="/index.83d9161e.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <!-- nav bar on the top -->
     <header>
-        <img class="logo" src="/StudBud-logo.0e752be1.png" alt="logo">
+        <img class="logo" src="/StudBud-logo.cba7d7ad.png" alt="logo">
         <nav>
             <ul class="navlinks">
-                <li onclick="show()">Pomodoro
+                <li onclick="showTimer()">Timer
                 </li>
                 <!-- pomodoro pop up window  -->
-                <div id="pomodoro">
-                    <i class="fa fa-times" onclick="hide()"></i>
+                <div id="timer">
+                    <i class="fa fa-times" onclick="hideTimer()"></i>
                 </div>
-                <li onclick="show()">Music player
+                <li onclick="showMusicPlayer()">Music player
                 </li>
                 <!-- music pop up window -->
                 <div id="music">
-                    <i class="fa fa-times" onclick="hide()"></i>
+                    <i class="fa fa-times" onclick="hideMusicPlayer()"></i>
                 </div>
                 <li><a href="/resource.html">Resource</a></li>
             </ul>
@@ -36,12 +37,32 @@
 
     <!-- body that includes contents - projects display -->
     <section class="container">
-        <button id="addProject">+</button>
-        <p>New Project</p>
+        <div class="projectList">
+            <div class="projectCol">
+                <div class="projectColInner">
+                    <button id="addProject" onclick="addNewProject()">+</button>
+                </div>
+                <p>New Project</p>
+            </div>
+            <!-- === TESTING STARTS === -->
+            <!-- <div class="projectCol">
+                <div class="projectColInner">
+                    <p>preview goes here</p>
+                </div>
+                <p>Project 1</p>
+            </div>
+            <div class="projectCol">
+                <div class="projectColInner">
+                    <p>preview goes here</p>
+                </div>
+                <p>Project 2</p>
+            </div> -->
+            <!-- === TESTING ENDS === -->
+        </div>
 
         <!-- Create a project pop up window -->
         <div class="newProjectPopUp">
-            <i class="fa fa-times"></i>
+            <i class="fa fa-times" onclick="cancelCreateNew()"></i>
             <h1>Create new project</h1>
             <form id="newProjectForm">
                 <ul>
@@ -63,9 +84,10 @@
                 </ul>
             </form>
             <button id="cancel">Cancel</button>
-            <button id="done">Done</button>
+            <button id="done" onclick="addNewProject()">Done</button>
         </div>
     </section>
+    <script src="/index.f3bd186e.js"></script>
 </body>
 
 </html>

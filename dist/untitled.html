@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <title>Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link href="scss/main.scss" rel="stylesheet" type="text/css"> -->
+    <link href="/index.83d9161e.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!-- nav bar on the top -->
+    <header>
+        <img class="logo" src="/StudBud-logo.cba7d7ad.png" alt="logo">
+        <nav>
+            <ul class="navlinks">
+                <li onclick="showTimer()">Timer
+                </li>
+                <!-- pomodoro pop up window  -->
+                <div id="timer">
+                    <i class="fa fa-times" onclick="hideTimer()"></i>
+                </div>
+                <li onclick="showMusicPlayer()">Music player
+                </li>
+                <!-- music pop up window -->
+                <div id="music">
+                    <i class="fa fa-times" onclick="hideMusicPlayer()"></i>
+                </div>
+                <li><a href="/resource.html">Resource</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="projectTemplate">
+        <div class="projectTitle">
+            <h1>Untitled Project</h1>
+            <button id="markDoneBtn" onclick="markasdone()">Mark as Done</button>
+        </div>
+
+        <div class="projectBody">
+            <h2>Project Deliverable</h2>
+            <label for="pdeliverable"></label>
+            <textarea type="text" name="pdeliverable" id="pDeliverable"></textarea>
+        </div>
+
+        <div class="projectRoadmap">
+            <h2>Project Roadmap</h2>
+            <div class="statusBar">
+                <div id="notStart">
+                    <p>To-Do</p>
+                    <div id="statusCircleRed"></div>
+                </div>
+                <div id="inProgress">
+                    <p>In Progress</p>
+                    <div id="statusCircleYel"></div>
+                </div>
+                <div id="completed">
+                    <p>Completed</p>
+                    <div id="statusCircleGrn"></div>
+                </div>
+            </div>
+            <div class="stage">
+                <div class="stageContent">
+                    <div class="titleBar">
+                        <h3>Untitled Stage</h3>
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                    </div>
+
+                    <!-- <label for="stagegoal"></label>
+                    <textarea type="text" name="stagegoal" id="stageGoal"></textarea> -->
+
+                    <!-- Implement add and drag task here -->
+                    <div class="innerStageBoxes">
+                        <div class="innerStageBox">
+                        </div>
+                        <div class="innerStageBox">
+                        </div>
+                        <div class="innerStageBox">
+                        </div>
+                        <div id="wholeTaskBtn">
+                            <button class="newTaskBtn">+</button>
+                            <p>new task</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stageContent">
+                    <div class="titleBar">
+                        <h3>Untitled Stage</h3>
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                    </div>
+
+                    <!-- <label for="stagegoal"></label>
+                    <textarea type="text" name="stagegoal" id="stageGoal"></textarea> -->
+
+                    <!-- Implement add and drag task here TESTING -->
+                    <div class="innerStageBoxes">
+                        <div class="innerStageBox">
+                            <!-- draggable starts -->
+                            <!-- <div class="task" draggable="true">
+                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                <h4>Task title1</h4>
+                                <button id="tagBtn">I am a tag1</button>
+                                <p>Due date</p>
+                            </div>
+                            <div class="task" draggable="true">
+                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                <h4>Task title2</h4>
+                                <button id="tagBtn">I am a tag2</button>
+                                <p>Due date</p>
+                            </div> -->
+                            <!-- draggable ends -->
+                        </div>
+
+                        <div class="innerStageBox">
+                        </div>
+
+                        <div class="innerStageBox">
+                        </div>
+                        <div id="wholeTaskBtn">
+                            <button class="newTaskBtn">+</button>
+                            <p>new task</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="newTaskFormPopUp">
+            <i class="fa fa-times" onclick="hideTaskForm()"></i>
+            <form id="newTaskForm">
+                <ul>
+                    <li>
+                        <label for="taskname">Task name: </label>
+                        <input type="text" name="taskname" id="taskName">
+                    </li>
+                    <li>
+                        <label for="priorities">Priority: </label>
+                        <select name="priorities" id="priority">
+                            <option vlaue="high">high</option>
+                            <option value="medium">medium</option>
+                            <option value="low">low</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="estcomptime">Estimate completion Time: </label>
+                        <input name="estcomptime" type="time" id="estCompTime">
+                    </li>
+                    <li>
+                        <label for="taskduedate">Due date: </label>
+                        <input type="date" name="taskduedate" id="taskDueDate">
+                    </li>
+                    <li>
+                        <label for="keywords">Keyword: </label>
+                        <input type="text" name="keywords" id="keyword">
+                    </li>
+                </ul>
+                <button id="taskDoneBtn" type="submit">create task</button>
+            </form>
+        </div>
+    </section>
+    <!-- <script src="./components/dragNdrop.js"></script> -->
+    <script src="/untitled.f3bd186e.js"></script>
+</body>
+
+</html>

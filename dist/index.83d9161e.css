@@ -5,7 +5,18 @@
 
 * {
   background-color: #fffcf9;
+  margin: 0;
   font-family: poppins;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 2px 4px 10px #00000048;
+}
+
+h2, h3 {
+  background-color: #0000;
+  margin: 10px 0;
 }
 
 header {
@@ -55,18 +66,9 @@ header {
   width: 100%;
 }
 
-.container {
-  margin-right: auto;
-  padding: 70px 120px;
-}
-
-.container p {
-  color: #9f9f9f;
-  font-family: poppins;
-}
-
-.porjectList {
-  flex-wrap: wrap;
+.projectList {
+  flex-flow: wrap;
+  margin: 30px 10%;
   display: flex;
 }
 
@@ -74,34 +76,37 @@ header {
   color: #6e703d;
   background: none;
   border: none;
-  font-size: 80px;
-  transform: translateY(60%);
-}
-
-.projectColInner {
-  text-align: center;
-  width: 200px;
-  height: 290px;
-  cursor: pointer;
-  border: 2px solid #27271e;
-  border-radius: 8px;
-  position: relative;
-}
-
-.projectColInner:hover {
-  border-width: 3px;
-  transition: all .1s ease-in-out;
-  transform: translateY(-2px);
-  box-shadow: 6px 6px #b7b8934d;
+  font-size: 100px;
+  transform: translateY(23%);
 }
 
 .projectCol {
-  margin: 0 30px;
+  text-align: center;
+  width: 180px;
+  height: 240px;
+  cursor: pointer;
+  border: 2px solid #27271e;
+  border-radius: 8px;
+  margin: 30px;
   padding-top: 20px;
 }
 
+.projectCol:hover {
+  transform: translateY(-1px);
+  box-shadow: 2px 4px 10px #00000048;
+}
+
+.projectColInner {
+  width: 80px;
+  height: 100px;
+  background-color: bisque;
+}
+
 .projectCol p {
-  position: absolute;
+  vertical-align: bottom;
+  text-align: left;
+  padding: 0 5px;
+  font-size: 13px;
 }
 
 .newProjectPopUp {
@@ -119,28 +124,14 @@ header {
   transform: translate(-50%, -20%);
 }
 
-.newProjectPopUp #cancel {
-  border: 2px solid #6e703d;
-  border-radius: 100px;
-  padding: 7px 30px;
-  font-size: 20px;
-  position: absolute;
-}
-
 .newProjectPopUp #done {
   color: #fffcf9;
   background-color: #6e703d;
   border: 2px solid #6e703d;
   border-radius: 100px;
-  margin-left: 65%;
   padding: 7px 30px;
   font-size: 20px;
   position: absolute;
-}
-
-.newProjectPopUp button:hover {
-  transform: translateY(-1px);
-  box-shadow: 2px 4px 10px #00000048;
 }
 
 .newProjectPopUp button {
@@ -182,6 +173,7 @@ header {
 
 #newProjectForm select {
   width: 50%;
+  height: auto;
   background-color: #0000;
   border: 2px solid #27271e;
   border-radius: 8px;
@@ -230,6 +222,222 @@ header {
 
 #music .fa-times {
   margin: 10px 20px;
+}
+
+.projectTemplate {
+  margin: 30px 10%;
+}
+
+.projectTitle {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  display: flex;
+}
+
+#markDoneBtn {
+  color: #fffcf9;
+  background-color: #b3a496;
+  border: none;
+  border-radius: 100px;
+  padding: 2px 20px;
+  font-size: 20px;
+}
+
+.projectBody textarea {
+  width: 98%;
+  height: 50px;
+  resize: none;
+  border: .5px solid #9f9f9f;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+textarea:focus {
+  border-color: #6e703d;
+}
+
+.titleBar {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.statusBar {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+  position: relative;
+}
+
+.statusBar > * {
+  width: 32.2%;
+  border: 1px solid #9f9f9f;
+  border-radius: 6px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  font-size: 20px;
+  display: flex;
+  position: relative;
+}
+
+#statusCircleRed {
+  width: 25px;
+  height: 25px;
+  background-color: #cc6565;
+  border-radius: 100%;
+}
+
+#statusCircleYel {
+  width: 25px;
+  height: 25px;
+  background-color: #d4b956;
+  border-radius: 100%;
+}
+
+#statusCircleGrn {
+  width: 25px;
+  height: 25px;
+  background-color: #1b9d18;
+  border-radius: 100%;
+}
+
+textarea {
+  background-color: #fff;
+}
+
+.stage textarea {
+  width: 98%;
+  height: 20px;
+  resize: none;
+  border: .5px solid #9f9f9f;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.innerStageBoxes {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+}
+
+.innerStageBox {
+  height: 100%;
+  min-height: 150px;
+  width: 32.1%;
+  height: auto;
+  border: 1px solid #9f9f9f;
+  border-radius: 6px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 5px;
+  font-size: 20px;
+  display: flex;
+  position: relative;
+}
+
+.newTaskBtn {
+  width: 25px;
+  height: 25px;
+  vertical-align: bottom;
+  border: .5px solid #525252;
+  border-radius: 4px;
+  margin: 10px;
+  font-size: 16px;
+}
+
+#wholeTaskBtn {
+  flex-wrap: wrap;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+#wholeTaskBtn p {
+  color: #9f9f9f;
+  margin-left: 10px;
+  font-size: 17px;
+}
+
+.task {
+  width: 350px;
+  height: 130px;
+  background-color: #fff;
+  border: 1px solid #9f9f9f;
+  border-radius: 8px;
+  margin: 10px;
+  padding-bottom: 15px;
+}
+
+.task h4 {
+  background-color: #0000;
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.task p {
+  background-color: #0000;
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.fa-ellipsis-h {
+  text-align: right;
+  background-color: #0000;
+  margin: 10px 12px 0;
+  display: block;
+}
+
+.bottomContent {
+  background-color: #0000;
+}
+
+#tagBtn {
+  color: #fffcf9;
+  background-color: #6e703d;
+  border: none;
+  border-radius: 100px;
+  margin: 10px;
+  padding: 2px 15px;
+  font-size: 13px;
+}
+
+.newTaskFormPopUp {
+  width: 30%;
+  height: 60%;
+  border: 1px solid #27271e;
+  border-radius: 10px;
+  padding: 30px 50px;
+  display: none;
+  position: fixed;
+  top: 100px;
+  left: 30%;
+}
+
+#newTaskForm ul li {
+  padding: 10px 0;
+  list-style: none;
+}
+
+#newTaskForm input, select {
+  width: 80%;
+  height: 30px;
+  border: 1px solid #27271e;
+  border-radius: 5px;
+  display: block;
+}
+
+#taskDoneBtn {
+  color: #fff;
+  background-color: #6e703d;
+  border: none;
+  border-radius: 100px;
+  margin: 10px 40px;
+  padding: 5px 20px;
 }
 
 /*# sourceMappingURL=index.83d9161e.css.map */

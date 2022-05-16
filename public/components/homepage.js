@@ -1,14 +1,8 @@
-var timer = document.getElementById('timer');
-var music = document.getElementById('music');
-// addProject is a button
-// var addProject = document.getElementById('addProject');
-// var createProjectDone = document.getElementById('done');
-
 var newPopUp = document.querySelector('.newProjectPopUp');
 var projectList = document.querySelector('.projectList');
 var newProjectPopUp = document.querySelector('.newProjectPopUp');
 
-const newProjectForm = document.getElementById('newProjectForm');
+var newProjectForm = document.getElementById('newProjectForm');
 
 var projectListArray = [];
 
@@ -18,26 +12,6 @@ var statusInput = document.getElementById('status');
 var duedateInput = document.getElementById('dueDate');
 
 // -------------------------------------------- //
-
-function showTimer() {
-    timer.style.display = 'block';
-    music.style.display = 'none';
-}
-
-function hideTimer() {
-    timer.style.display = 'none';
-}
-
-function showMusicPlayer() {
-    music.style.display = 'block';
-    timer.style.display = 'none';
-    console.log('clicked!');
-}
-
-function hideMusicPlayer() {
-    music.style.display = 'none';
-}
-
 function addNewProject() {
     newPopUp.style.display = 'block';
 }
@@ -46,40 +20,85 @@ function cancelCreateNew() {
     newPopUp.style.display = 'none';
 }
 
-// --------------------------------- //
+// -------------------------------------------- //
+retrieveData();
 
-// DEMO TESTING HERE
 
+// DEMO TESTING BLOCK HERE STARTS //
+
+
+
+// DEMO TESTING BLOCK HERE ENDS //
+
+
+
+// Create new project;
 class ProjectObj {
-    constructor(title, duedate, status) {
+    constructor(title, duedate, status, temp) {
         this.title = title;
         this.duedate = duedate;
         this.status = status;
     }
 }
 
-// add an event listener first
-newProjectForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    let projectName = projectNameInput.value;
-    let projectDueDate = duedateInput.value;
-    let projectStatus = statusInput.options[statusInput.selectedIndex].value;
+// add an event listener first for the new project creation form;
+if (newProjectForm) {
+    newProjectForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let projectName = projectNameInput.value;
+        let projectDueDate = duedateInput.value;
+        let projectStatus = statusInput.options[statusInput.selectedIndex].value;
 
-    submitProjForm(projectName, projectDueDate, projectStatus);
-});
+        submitProjForm(projectName, projectDueDate, projectStatus);
+    });
+}
+
+
 
 // add project to the project list.
-function submitProjForm(projectName, projectDueDate, projectStatus) {
-    let project = new ProjectObj(projectName, projectDueDate, projectStatus);
+function submitProjForm(projectName, projectDueDate, projectStatus, temp) {
+
+    let project = new ProjectObj(projectName, projectDueDate, projectStatus, temp);
 
     // storing the newly created project to the project list;
     projectListArray.push(project);
     renderProject(project);
 }
 
+function updateProjects() {
+    if (localStorage.getItem('projects') == null) {
+        return;
+    }
+
+    let projects = localStorage.getItem('projects');
+    projects = JSON.parse(projects);
+
+    for (i = 0; i < projects.length; i++) {
+        let key = projects[i].title;
+        let value = projects[i].temp;
+    }
+}
+
+
+let projects = [];
 
 // display the project on screen.
 function renderProject(project) {
+    if (localStorage.getItem('projects') == null) {
+        projects = [];
+    } else {
+        projects = localStorage.getItem('projects');
+        projects = JSON.parse(projects);
+    }
+
+    projects.push(project);
+    let projectJSON = JSON.stringify(projects);
+    localStorage.setItem('projects', projectJSON);
+    updateProjects();
+
+
+    let template = document.createElement('a');
+    template.setAttribute('href', 'untitled.html');
 
     //create a div element for projects;
     let projectCol = document.createElement('div');
@@ -94,11 +113,52 @@ function renderProject(project) {
     let projectStatus = document.createElement("p");
     projectStatus.innerHTML = project.status;
 
+    template.appendChild(projectCol);
+
     projectCol.appendChild(projectName);
     projectCol.appendChild(projectDueDate);
     projectCol.appendChild(projectStatus);
 
-    projectList.appendChild(projectCol);
+    projectList.appendChild(template);
 
     newProjectPopUp.style.display = 'none';
+}
+
+function retrieveData() {
+    let projectList = document.querySelectorAll('.projectCol');
+    let ls = document.querySelector('.projectList');
+    if (projectList.length == 1) {
+        if (localStorage.getItem('projects') != null) {
+
+            let localProjs = localStorage.getItem('projects');
+            localProjs = JSON.parse(localProjs);
+
+            for (i = 0; i < localProjs.length; i++) {
+                let template = document.createElement('a');
+                template.setAttribute('href', 'untitled.html');
+
+                //create a div element for projects;
+                let projectCol = document.createElement('div');
+                projectCol.setAttribute('class', 'projectCol');
+
+                let projectName = document.createElement("p");
+                projectName.innerHTML = localProjs[i].title;
+
+                let projectDueDate = document.createElement("p");
+                projectDueDate.innerHTML = "Due date: " + localProjs[i].duedate;
+
+                let projectStatus = document.createElement("p");
+                projectStatus.innerHTML = localProjs[i].status;
+
+                template.appendChild(projectCol);
+
+                projectCol.appendChild(projectName);
+                projectCol.appendChild(projectDueDate);
+                projectCol.appendChild(projectStatus);
+
+                ls.appendChild(template);
+            }
+
+        }
+    }
 }

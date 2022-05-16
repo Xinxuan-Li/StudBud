@@ -21,44 +21,100 @@
                 <li onclick="showTimer()">Timer
                 </li>
                 <!-- pomodoro pop up window  -->
-                <div id="timer">
+                <div class="timer">
                     <i class="fa fa-times" onclick="hideTimer()"></i>
+                    <form id="setTime">
+                        <div class="timeInput">
+                            <input type="number" placeholder="25" id="mins">
+                            <span>:</span>
+                            <input type="number" placeholder="00" id="secs">
+                        </div>
+                        <div id="countDisplay"></div>
+                        <div class="pomoInput">
+                            <label for="pomo">Pomodoros</label>
+                            <input name="pomo" type="number" id="pomodoro" placeholder="3">
+                        </div>
+                        <div class="breakInput">
+                            <label for="break">Short break time</label>
+                            <input name="break" type="number" id="breakTime" placeholder="5:00">
+                        </div>
+                        <div class="controlTimer">
+                            <button id="startTimer" type="submit">Start</button>
+                            <button id="resetTimer">Clear</button>
+                        </div>
+                    </form>
                 </div>
                 <li onclick="showMusicPlayer()">Music player
                 </li>
                 <!-- music pop up window -->
-                <div id="music">
+                <div class="music">
                     <i class="fa fa-times" onclick="hideMusicPlayer()"></i>
+                    <div class="wrapper">
+                        <div class="details">
+                            <div class="trackProfile"></div>
+                            <div class="trackName">Track Name</div>
+                            <div class="trackArtist">Artist</div>
+                        </div>
+                        <div class="sliderContainer">
+                            <div class="currentTime">00:00</div>
+                            <input type="range" min="1" max="100" value="0" class="trackSlider" onchange="skipTo()">
+                            <div class="totalDuration">00:00</div>
+                        </div>
+                        <!-- <div class="sliderContainer">
+                            <i class="fa fa-volume-down"></i>
+                            <input type="range" min="1" max="100" value="0" class="volumeControl"
+                                onchange="setVolume()">
+                            <i class="fa fa-volume-up"></i>
+                        </div> -->
+                        <div class="musicControlPanel">
+                            <div class="randomTrack" onclick="playRandomTrack()">
+                                <i class="fa fa-random"></i>
+                            </div>
+                            <div class="prevTrack" onclick="playPrevTrack()">
+                                <i class="fa fa-backward" aria-hidden="true"></i>
+                            </div>
+                            <div class="pauseTrack" onclick="pauseThisTrack()">
+                                <i class="fa fa-pause" aria-hidden="true"></i>
+                            </div>
+                            <div class="nextTrack" onclick="playNextTrack()">
+                                <i class="fa fa-forward" aria-hidden="true"></i>
+                            </div>
+                            <div class="repeatTrack" onclick="repeatThisTrack()">
+                                <i class="fa fa-repeat"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <li><a href="resource.html">Resource</a></li>
-                <li><a href="untitled.html">template</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- body that includes contents - projects display -->
     <section class="projectList">
-        <!-- <div class="projectList"> -->
         <div class="projectCol">
             <div id="addProject" onclick="addNewProject()">+</div>
         </div>
         <!-- === TESTING STARTS === -->
-        <!-- <div class="projectCol">
-            <div class="projectColInner"></div>
-            <p>Project 1</p>
-            <p>10/10/20</p>
-        </div>
-        <div class="projectCol">
-            <div class="projectColInner"></div>
-            <p>10/10/20</p>
-            <p>Project 2</p> -->
-        </div>
-        <!-- === TESTING ENDS === -->
-        <!-- </div> -->
+        <!-- <a href="untitled.html">
+            <div class="projectCol">
+                <div class="projectColInner"></div>
+                <p>Project 1</p>
+                <p>10/10/20</p>
+            </div>
+        </a>
 
-        <!-- Create a project pop up window -->
+        <a href="untitled.html">
+            <div class="projectCol">
+                <div class="projectColInner"></div>
+                <p>Project 1</p>
+                <p>10/10/20</p>
+            </div>
+        </a> -->
+        <!-- === TESTING ENDS === -->
     </section>
 
+    <!-- Create a project pop up window -->
     <div class="newProjectPopUp">
         <i class="fa fa-times" onclick="cancelCreateNew()"></i>
         <h1>Create new project</h1>
@@ -84,6 +140,7 @@
         </form>
     </div>
     <script src="script.js"></script>
+    <script src="./components/homepage.js"></script>
 </body>
 
 </html>

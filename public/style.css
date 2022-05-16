@@ -23,18 +23,28 @@ h3 {
 /* ====== nav bar css ====== */
 header {
     display: flex;
-    justify-content: flex-end;
+    flex-flow: wrap;
+    justify-content: space-between;
     align-items: center;
     padding: 30px 10%;
     /* background-color: #cecfa9; */
+}
+
+a {
+    text-decoration: none;
+    color: #27271E;
 }
 
 /* header * {
     background-color: #cecfa9;
 } */
 
+.logolink {
+    position: relative;
+    display: block;
+}
+
 .logo {
-    margin-right: auto;
     cursor: pointer;
     width: 130px;
 }
@@ -208,39 +218,228 @@ header {
 }
 
 /* ====== Pomodoro timer pop up window ====== */
-#timer {
-    display: none;
+.timer {
+    /* display: none; */
     width: 30%;
     height: auto;
     transform: translateX(-80%);
     margin-top: 20px;
     position: absolute;
-    background-color: #FFF;
+    background-color: #FFFCF9;
     border: 2px solid #27271E;
     border-radius: 8px;
     z-index: 1;
 }
 
-#timer .fa-times {
+.timer .fa-times {
     margin: 10px 20px;
 }
 
+.timer form {
+    background-color: transparent;
+}
+
+.timeInput {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0px 20%;
+}
+
+.timeInput input {
+    margin-bottom: 20px;
+    background-color: transparent;
+    width: 100px;
+    font-size: 65px;
+    border: none;
+    height: auto;
+    text-align: center;
+}
+
+.timeInput span {
+    background-color: transparent;
+    font-size: 50px;
+}
+
+.pomoInput input,
+.breakInput input {
+    display: block;
+    border: 1px solid #27271E;
+    border-radius: 6px;
+    font-size: 20px;
+    width: 150px;
+    height: 25px;
+    padding: 8px 14px;
+    text-align: center;
+    background-color: #FFF;
+}
+
+.pomoInput,
+.breakInput {
+    display: block;
+    margin: 0px 20% 20px 20%;
+    position: relative;
+    font-size: 20px;
+}
+
+#timeInput span {
+    font-size: 60px;
+    background-color: transparent;
+}
+
+#timeInput {
+    position: relative;
+    background-color: transparent;
+    margin-left: 10%;
+}
+
+#timer form>* {
+    background-color: transparent;
+}
+
+#timer label {
+    background-color: transparent;
+}
+
+.controlTimer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 20%;
+}
+
+.controlTimer button {
+    font-size: 20px;
+}
+
+#startTimer {
+    border: none;
+    background-color: #6E703D;
+    color: #FFFCF9;
+    border-radius: 100px;
+    padding: 3px 20px;
+}
+
+#resetTimer {
+    border: none;
+    background-color: transparent;
+    color: #6E703D;
+}
+
+#resetTimer:hover {
+    box-shadow: none;
+    transform: none;
+    color: #27271E;
+}
+
+#countDisplay {
+    display: block;
+    font-size: 80px;
+    margin: 0px 25%;
+}
+
 /* ====== Music player ======*/
-#music {
+.music {
     display: none;
     width: 30%;
     height: auto;
     transform: translateX(-40%);
     margin-top: 20px;
     position: absolute;
-    background-color: #FFF;
     border: 2px solid #27271E;
     border-radius: 8px;
     z-index: 1;
+    padding-bottom: 20px;
 }
 
-#music .fa-times {
-    margin: 10px 20px;
+.music .fa-times {
+    margin: 15px 20px;
+}
+
+.wrapper {
+    padding: 20px 40px;
+}
+
+.musicControlPanel {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: space-between;
+    font-size: 25px;
+    background-color: transparent;
+    margin: 30px 10px;
+}
+
+.musicControlPanel i {
+    color: #27271E;
+}
+
+.details {
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    align-items: center;
+}
+
+.trackProfile {
+    margin: 15px;
+    height: 250px;
+    width: 250px;
+    border: 2px solid #fff;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    box-shadow: 0px 6px 5px #ccc;
+    box-shadow: 0px;
+}
+
+.trackName {
+    font-size: 20px;
+}
+
+.sliderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trackSlider {
+    appearance: none;
+    height: 5px;
+    background: #6E703D;
+    transition: opacity .2s;
+    width: 70%;
+    border-radius: 100px;
+}
+
+.trackSlider::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border: 3px solid #6E703D;
+    cursor: move;
+    border-radius: 100%;
+}
+
+.currentTime,
+.totalDuration {
+    padding: 15px
+}
+
+.rotate {
+    animation: rotation 8s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+        transition: rotate(0deg);
+    }
+
+    to {
+        transition: 359deg;
+    }
 }
 
 /* ====== Template for project sheet ======*/

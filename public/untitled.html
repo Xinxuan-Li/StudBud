@@ -15,7 +15,10 @@
 <body>
     <!-- nav bar on the top -->
     <header>
-        <img class="logo" src="../img/StudBud-logo.png" alt="logo">
+        <a class="logolink" href="index.html">
+            <img class="logo" src="../img/StudBud-logo.png" alt="logo">
+        </a>
+
         <nav>
             <ul class="navlinks">
                 <li onclick="showTimer()">Timer
@@ -89,7 +92,7 @@
                         </div>
                         <div class="innerStageBox">
                         </div>
-                        <button class="newTaskBtn">+ new task</button>
+                        <button class="newTaskBtn" type="submit">+ new task</button>
                     </div>
                 </div>
 
@@ -129,11 +132,11 @@
 
                         <div class="innerStageBox">
                         </div>
-                        <button class="newTaskBtn">+ new task</button>
+                        <button class="newTaskBtn" type="submit">+ new task</button>
                     </div>
                 </div>
-                <button id="newStageBtn">+ new stage stage</button>
             </div>
+            <button id="newStageBtn">+ new stage stage</button>
         </div>
 
         <div class="newTaskFormPopUp">
@@ -169,8 +172,8 @@
             </form>
         </div>
     </section>
-    <!-- <script src="./components/dragNdrop.js"></script> -->
     <script src="script.js"></script>
+    <script src="./components/template.js"></script>
 </body>
 
 </html>

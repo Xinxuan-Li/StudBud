@@ -220,8 +220,8 @@ a {
 /* ====== Pomodoro timer pop up window ====== */
 .timer {
     /* display: none; */
-    width: 30%;
-    height: auto;
+    width: 23%;
+    height: 55%;
     transform: translateX(-80%);
     margin-top: 20px;
     position: absolute;
@@ -236,13 +236,15 @@ a {
 }
 
 .timer form {
+    visibility: visible;
     background-color: transparent;
 }
 
 .timeInput {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: left;
+    align-items: center;
     margin: 0px 20%;
 }
 
@@ -256,9 +258,8 @@ a {
     text-align: center;
 }
 
-.timeInput span {
-    background-color: transparent;
-    font-size: 50px;
+.mintxt {
+    font-size: 20px;
 }
 
 .pomoInput input,
@@ -267,7 +268,7 @@ a {
     border: 1px solid #27271E;
     border-radius: 6px;
     font-size: 20px;
-    width: 150px;
+    width: 100px;
     height: 25px;
     padding: 8px 14px;
     text-align: center;
@@ -335,7 +336,7 @@ a {
 
 #countDisplay {
     display: block;
-    font-size: 80px;
+    font-size: 60px;
     margin: 0px 25%;
 }
 

@@ -24,95 +24,192 @@ let timeInputSector = document.querySelector('.timeInput');
 let cycles = document.getElementById('pomodoro');
 let resetTimerTbn = document.getElementById('resetTimer');
 
-const startBtn = document.getElementById('#startTimer');
-const resetTimer = document.getElementById('#resetTimer');
+const startBtn = document.getElementById('startTimer');
+const resetTimer = document.getElementById('resetTimer');
 const countDisplay = document.getElementById('countDisplay');
 
 let setTimeForm = document.getElementById('setTime');
 let minInput = document.getElementById('mins');
-let secInput = document.getElementById('secs');
-
-const defaultTime = 25;
-let defaultInTotalSecs = defaultTime * 60;
-
-function myDefaultTimer() {
-    const defaultM = Math.floor(defaultInTotalSecs / 60);
-    let defaultS = defaultInTotalSecs % 60;
-
-    defaultS = defaultS < 10 ? '0' + defaultS : defaultS;
-
-    countDisplay.innerHTML = `${defaultM}:${defaultS}`;
-    defaultInTotalSecs--;
-}
+let breakMinInput = document.getElementById('breakTime');
 
 setTimeForm.addEventListener('submit', function (e) {
     e.preventDefault();
     inputChecker();
 });
 
-// A NOTE FOR ADDING CYCLES 
-// for loop, take cycle inputs first, then nest two loops, one for break one for work. work time finishes, load break time. Remeber to set a end time, so the timer doesnt go beyong 00:00
 
+function myDefaultTimer() {
+    // default time;
+    const defaultTime = 25;
+    let defaultInTotalSecs = defaultTime * 60;
+
+    setInterval(runDefaultTimer, 1000);
+
+    let valid = true;
+    let breakValid = true;
+
+    function runDefaultTimer() {
+        if (defaultInTotalSecs >= 0) {
+            valid = true;
+        } else {
+            valid = false;
+        }
+
+        if (valid) {
+            const defaultM = Math.floor(defaultInTotalSecs / 60);
+            let defaultS = defaultInTotalSecs % 60;
+
+            defaultS = defaultS < 10 ? '0' + defaultS : defaultS;
+
+            countDisplay.innerHTML = `${defaultM}:${defaultS}`;
+            defaultInTotalSecs--;
+        } else {
+            if (breakValid == true) {
+                defaultBreakTimer();
+                breakValid = false;
+            }
+        }
+    }
+}
+
+// default break time;
+function defaultBreakTimer() {
+    // default break time;
+    const minValDefault = 5;
+    let totalBreakDefault = minValDefault * 60;
+
+    setInterval(runDefaultBreak, 1000);
+
+    let valid = true;
+
+    function runDefaultBreak() {
+        if (valid) {
+            const minutes = Math.floor(totalBreakDefault / 60);
+            let seconds = minutes * 60;
+
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            countDisplay.innerHTML = `${minutes}:${seconds}`;
+            totalBreakDefault--;
+        }
+    }
+}
+
+// custome pomodoro timer;
 function customTimer() {
+
     const minVal = minInput.value;
-    let secVal = secInput.value;
-    let totalTime = minVal * 60 + secVal;
+    let totalTimeConst = minVal * 60;
+    let totalTime = totalTimeConst;
 
-    if (minVal == '') {
-        setInterval(minUndefined, 1000);
-    } else if (secVal == '') {
-        setInterval(secUndefined, 1000);
+    setInterval(executeTimer, 1000);
+
+    let valid = true;
+    let breakValid = true;
+    let count = 0;
+    let cyclesVal = 0;
+
+    if (cycles.value == '') {
+        cyclesVal = 3;
     } else {
-        setInterval(normalCase, 1000);
+        cyclesVal = cycles.value;
     }
 
-    function secUndefined() {
-        const minutes = Math.floor(totalTime / 60);
-        let seconds = totalTime % 60;
+    console.log(cyclesVal);
 
-        seconds = seconds < 10 ? '0' + seconds : seconds;
+    function executeTimer() {
 
-        countDisplay.innerHTML = `${minutes}:${seconds}`;
-        totalTime--;
+        if (totalTime >= 0) {
+            valid = true;
+        } else {
+            valid = false;
+        }
+
+        if (valid) {
+            // console.log(count);
+            const minutes = Math.floor(totalTime / 60);
+            let seconds = totalTime % 60;
+
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            countDisplay.innerHTML = `${minutes}:${seconds}`;
+            totalTime -= 20;
+
+        } else {
+            if (breakValid == true) {
+                breakTimer();
+                breakValid = false;
+                count++;
+            } else {
+                if (count < cyclesVal) {
+                    breakValid = true;
+                }
+            }
+
+            if (count < cyclesVal) {
+                totalTime = totalTimeConst;
+            }
+        }
     }
+}
 
-    function minUndefined() {
-        const minutes = Math.floor(totalTime / 60);
-        let seconds = totalTime % 60;
+// custome break timer;
+function breakTimer() {
+    const minVal = breakMinInput.value;
+    let totalBreak = minVal * 60;
 
-        countDisplay.innerHTML = `${minutes}:${seconds}`;
-        totalTime--;
+    setInterval(executeBreak, 1000);
+
+    let valid = true;
+
+    function executeBreak() {
+        if (totalBreak >= 0) {
+            valid = true;
+        } else {
+            valid = false;
+        }
+
+        if (valid) {
+            const minutes = Math.floor(totalBreak / 60);
+            let seconds = totalBreak % 60;
+
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            countDisplay.innerHTML = `${minutes}:${seconds}`;
+            totalBreak -= 30;
+        }
     }
-
-    function normalCase() {
-        const minutes = Math.floor(totalTime / 60);
-        let seconds = totalTime % 60;
-
-        countDisplay.innerHTML = `${minutes}:${seconds}`;
-        totalTime--;
-    }
-
-    // resetTimerTbn.addEventListener('click', function (e) {
-    //     clearInterval(minUndefined);
-    //     clearInterval(secUndefined);
-    //     clearInterval(normalCase);
-    // });
 }
 
 function inputChecker() {
-    // if both input fields are null;
-    if (document.getElementById('mins').value == '' && document.getElementById('secs').value == '') {
-        setInterval(myDefaultTimer, 1000);
-        timeInputSector.style.display = 'none';
+    let num;
+    if (cycles.value == '') {
+        num = 3;
     } else {
-        customTimer();
-        timeInputSector.style.display = 'none';
+        num = cycles.value;
     }
+
+    // if (document.getElementById('mins').value == '') {
+    //     myDefaultTimer();
+    //     timeInputSector.style.display = 'none';
+    // } else {
+    //     for (i = 0; i < num; i++) {
+    //         customTimer();
+    //         timeInputSector.style.display = 'none';
+    //     }
+    // }
+
+    customTimer();
+    customTimer();
+    timeInputSector.style.display = 'none';
+}
+
+function clearTimer() {
+    countDisplay.style.display = 'none';
+    timeInputSector.style.display = 'block';
 }
 
 // MUSIC PLAYER SCRIPT HERE
-function setVolume() { }
-
 function playRandomTrack() { }
 
 function playPrevTrack() { }

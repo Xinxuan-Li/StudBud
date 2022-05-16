@@ -1,26 +1,5 @@
-// import './components/createNewProject';
-// import './components/projectObj';
-// import './components/musicPlayerScript';
-// import './components/timerScript';
-// import './components/resourceScript';
-// import './components/homepage';
-// import './components/projectpage';
-var timer = document.getElementById('timer');
-var music = document.getElementById('music');
-// addProject is a button
-// var addProject = document.getElementById('addProject');
-// var createProjectDone = document.getElementById('done');
-var newPopUp = document.querySelector('.newProjectPopUp');
-var projectList = document.querySelector('.projectList');
-var newProjectPopUp = document.querySelector('.newProjectPopUp');
-const newProjectForm = document.getElementById('newProjectForm');
-// const button = document.querySelector("#newProjectForm > button");
-var projectListArray = [];
-//collecting inputs to create a new project.
-var projectNameInput = document.getElementById('projectName');
-var statusInput = document.getElementById('status');
-var duedateInput = document.getElementById('dueDate');
-// -------------------------------------------- //
+var timer = document.querySelector('.timer');
+var music = document.querySelector('.music');
 function showTimer() {
     timer.style.display = 'block';
     music.style.display = 'none';
@@ -31,162 +10,140 @@ function hideTimer() {
 function showMusicPlayer() {
     music.style.display = 'block';
     timer.style.display = 'none';
-    console.log('clicked!');
 }
 function hideMusicPlayer() {
     music.style.display = 'none';
 }
-function addNewProject() {
-    newPopUp.style.display = 'block';
-}
-function cancelCreateNew() {
-    newPopUp.style.display = 'none';
-}
-// --------------------------------- //
-// DEMO TESTING HERE
-class ProjectObj {
-    constructor(title, duedate, status){
-        this.title = title;
-        this.duedate = duedate;
-        this.status = status;
-    }
-}
-// add an event listener first
-newProjectForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-    let projectName = projectNameInput.value;
-    let projectDueDate = duedateInput.value;
-    let projectStatus = statusInput.options[statusInput.selectedIndex].value;
-    submitProjForm(projectName, projectDueDate, projectStatus);
+// TIMER SCRIPT HERE
+let timeInputSector = document.querySelector('.timeInput');
+let cycles = document.getElementById('pomodoro');
+let resetTimerTbn = document.getElementById('resetTimer');
+const startBtn = document.getElementById('startTimer');
+const resetTimer = document.getElementById('resetTimer');
+const countDisplay = document.getElementById('countDisplay');
+let setTimeForm = document.getElementById('setTime');
+let minInput = document.getElementById('mins');
+let breakMinInput = document.getElementById('breakTime');
+setTimeForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    inputChecker();
 });
-// add project to the project list.
-function submitProjForm(projectName, projectDueDate, projectStatus) {
-    let project = new ProjectObj(projectName, projectDueDate, projectStatus);
-    // storing the newly created project to the project list;
-    projectListArray.push(project);
-    renderProject(project);
-}
-// display the project on screen.
-function renderProject(project) {
-    //create a div element for projects;
-    let projectCol = document.createElement('div');
-    projectCol.setAttribute('class', 'projectCol');
-    let projectName = document.createElement("p");
-    projectName.innerHTML = project.title;
-    let projectDueDate = document.createElement("p");
-    projectDueDate.innerHTML = "Due date: " + project.duedate;
-    let projectStatus = document.createElement("p");
-    projectStatus.innerHTML = project.status;
-    projectCol.appendChild(projectName);
-    projectCol.appendChild(projectDueDate);
-    projectCol.appendChild(projectStatus);
-    projectList.appendChild(projectCol);
-    newProjectPopUp.style.display = 'none';
-}
-// Add task script here
-var newTaskBtn = document.querySelector('#newTaskBtn');
-var newTaskFormPopUp = document.querySelector('.newTaskFormPopUp');
-var newTaskForm = document.getElementById('newTaskForm');
-var lists = document.querySelectorAll('.innerStageBoxes');
-var innerList = document.querySelector('.innerStageBox');
-// a list of existing tasks;
-var task = document.querySelector('.task');
-var tasklist = [];
-var taskNameInput = document.getElementById('taskName');
-var taskDueDateInput = document.getElementById('taskDueDate');
-var priorityInput = document.getElementById('priority');
-var estCompTimeInput = document.getElementById('estCompTime');
-var keywordInput = document.getElementById('keyword');
-// ******** Dragging event script ****** //
-var tasks = document.querySelectorAll('.task');
-var list = document.querySelectorAll('.innerStageBox');
-// console.log(tasks);
-var newTaskBtns = document.getElementsByClassName('newTaskBtn');
-let draggedItem = null;
-class Task {
-    constructor(taskName, taskDueDate, priority, estCompTime){
-        this.taskName = taskName;
-        this.taskDueDate = taskDueDate;
-        this.priority = priority;
-        // this.keyword = keyword;
-        this.estCompTime = estCompTime;
-    }
-}
-function hideTaskForm() {
-    newTaskFormPopUp.style.display = 'none';
-}
-for(i = 0; i < newTaskBtns.length; i++)newTaskBtns[i].addEventListener("click", function() {
-    newTaskFormPopUp.style.display = 'block';
-});
-newTaskForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-    let taskName = taskNameInput.value;
-    let taskDueDate = taskDueDateInput.value;
-    let priority = priorityInput.options[priorityInput.selectedIndex].value;
-    // let keyword = keywordInput.value;
-    let estCompTime = estCompTimeInput.value;
-    submitTaskFrom(taskName, taskDueDate, priority, estCompTime);
-    console.log('here');
-});
-function submitTaskFrom(taskName, taskDueDate, priority, estCompTime) {
-    let taskAppend = new Task(taskName, taskDueDate, priority, estCompTime);
-    tasklist.push(taskAppend);
-    renderTask(taskAppend);
-    console.log(tasklist);
-}
-function renderTask(taskAppend) {
-    let task1 = document.createElement('div');
-    task1.setAttribute('class', 'task');
-    task1.draggable = "true";
-    let menuEllipses = document.createElement('i');
-    menuEllipses.setAttribute('class', 'fa fa-ellipsis-h');
-    menuEllipses.ariaHidden = "true";
-    //task title;
-    let taskTitle = document.createElement('h4');
-    taskTitle.innerHTML = taskAppend.taskName;
-    //task priority tag;
-    let tagBtn = document.createElement('button');
-    tagBtn.setAttribute('id', 'tagBtn');
-    tagBtn.innerHTML = taskAppend.priority;
-    //task due date;
-    let taskDueDate = document.createElement('p');
-    taskDueDate.innerHTML = taskAppend.taskDueDate;
-    task1.appendChild(menuEllipses);
-    task1.appendChild(taskTitle);
-    task1.appendChild(tagBtn);
-    task1.appendChild(taskDueDate);
-    innerList.append(task1);
-    tasks = document.querySelectorAll('.task');
-    console.log(tasks);
-    newTaskFormPopUp.style.display = 'none';
-    for(let i = 0; i < tasks.length; i++){
-        const item = tasks[i];
-        item.addEventListener('dragstart', function() {
-            draggedItem = item;
-            setTimeout(function() {
-                draggedItem.style.display = 'none';
-            }, 0);
-        });
-        item.addEventListener('dragend', function() {
-            setTimeout(function() {
-                // draggedItem.style.display = 'block';
-                draggedItem = null;
-            }, 0);
-        });
-        for(let j = 0; j < list.length; j++){
-            const ls = list[j];
-            ls.addEventListener('dragover', function(event) {
-                event.preventDefault();
-            });
-            ls.addEventListener('dragenter', function(event) {
-                event.preventDefault();
-            });
-            ls.addEventListener('drop', function(event) {
-                this.append(draggedItem);
-            });
+function myDefaultTimer() {
+    // default time;
+    const defaultTime = 25;
+    let defaultInTotalSecs = defaultTime * 60;
+    setInterval(runDefaultTimer, 1000);
+    let valid = true;
+    let breakValid = true;
+    function runDefaultTimer() {
+        if (defaultInTotalSecs >= 0) valid = true;
+        else valid = false;
+        if (valid) {
+            const defaultM = Math.floor(defaultInTotalSecs / 60);
+            let defaultS = defaultInTotalSecs % 60;
+            defaultS = defaultS < 10 ? '0' + defaultS : defaultS;
+            countDisplay.innerHTML = `${defaultM}:${defaultS}`;
+            defaultInTotalSecs--;
+        } else if (breakValid == true) {
+            defaultBreakTimer();
+            breakValid = false;
         }
     }
-// ******** Dragging event script ends **** //
 }
+// default break time;
+function defaultBreakTimer() {
+    // default break time;
+    const minValDefault = 5;
+    let totalBreakDefault = minValDefault * 60;
+    setInterval(runDefaultBreak, 1000);
+    let valid = true;
+    function runDefaultBreak() {
+        if (valid) {
+            const minutes = Math.floor(totalBreakDefault / 60);
+            let seconds = minutes * 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            countDisplay.innerHTML = `${minutes}:${seconds}`;
+            totalBreakDefault--;
+        }
+    }
+}
+// custome pomodoro timer;
+function customTimer() {
+    const minVal = minInput.value;
+    let totalTimeConst = minVal * 60;
+    let totalTime = totalTimeConst;
+    setInterval(executeTimer, 1000);
+    let valid = true;
+    let breakValid = true;
+    let count = 0;
+    let cyclesVal = 0;
+    if (cycles.value == '') cyclesVal = 3;
+    else cyclesVal = cycles.value;
+    console.log(cyclesVal);
+    function executeTimer() {
+        if (totalTime >= 0) valid = true;
+        else valid = false;
+        if (valid) {
+            // console.log(count);
+            const minutes = Math.floor(totalTime / 60);
+            let seconds = totalTime % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            countDisplay.innerHTML = `${minutes}:${seconds}`;
+            totalTime -= 20;
+        } else {
+            if (breakValid == true) {
+                breakTimer();
+                breakValid = false;
+                count++;
+            } else if (count < cyclesVal) breakValid = true;
+            if (count < cyclesVal) totalTime = totalTimeConst;
+        }
+    }
+}
+// custome break timer;
+function breakTimer() {
+    const minVal = breakMinInput.value;
+    let totalBreak = minVal * 60;
+    setInterval(executeBreak, 1000);
+    let valid = true;
+    function executeBreak() {
+        if (totalBreak >= 0) valid = true;
+        else valid = false;
+        if (valid) {
+            const minutes = Math.floor(totalBreak / 60);
+            let seconds = totalBreak % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            countDisplay.innerHTML = `${minutes}:${seconds}`;
+            totalBreak -= 30;
+        }
+    }
+}
+function inputChecker() {
+    let num;
+    if (cycles.value == '') num = 3;
+    else num = cycles.value;
+    // if (document.getElementById('mins').value == '') {
+    //     myDefaultTimer();
+    //     timeInputSector.style.display = 'none';
+    // } else {
+    //     for (i = 0; i < num; i++) {
+    //         customTimer();
+    //         timeInputSector.style.display = 'none';
+    //     }
+    // }
+    customTimer();
+    customTimer();
+    timeInputSector.style.display = 'none';
+}
+function clearTimer() {
+    countDisplay.style.display = 'none';
+    timeInputSector.style.display = 'block';
+}
+// MUSIC PLAYER SCRIPT HERE
+function playRandomTrack() {}
+function playPrevTrack() {}
+function pauseThisTrack() {}
+function playNextTrack() {}
+function repeatThisTrack() {}
 
 //# sourceMappingURL=index.f3bd186e.js.map

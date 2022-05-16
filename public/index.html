@@ -25,9 +25,8 @@
                     <i class="fa fa-times" onclick="hideTimer()"></i>
                     <form id="setTime">
                         <div class="timeInput">
-                            <input type="number" placeholder="25" id="mins">
-                            <span>:</span>
-                            <input type="number" placeholder="00" id="secs">
+                            <input type="number" placeholder="25" name="minInput" id="mins">
+                            <div class="mintxt">mins</div>
                         </div>
                         <div id="countDisplay"></div>
                         <div class="pomoInput">
@@ -35,12 +34,12 @@
                             <input name="pomo" type="number" id="pomodoro" placeholder="3">
                         </div>
                         <div class="breakInput">
-                            <label for="break">Short break time</label>
-                            <input name="break" type="number" id="breakTime" placeholder="5:00">
+                            <label for="break">Break time</label>
+                            <input name="break" type="number" id="breakTime" placeholder="5 mins">
                         </div>
                         <div class="controlTimer">
                             <button id="startTimer" type="submit">Start</button>
-                            <button id="resetTimer">Clear</button>
+                            <button id="resetTimer" onclick="clearTimer()">Clear</button>
                         </div>
                     </form>
                 </div>

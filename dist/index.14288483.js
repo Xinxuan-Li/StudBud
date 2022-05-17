@@ -7,6 +7,13 @@ var projectListArray = [];
 var projectNameInput = document.getElementById('projectName');
 var statusInput = document.getElementById('status');
 var duedateInput = document.getElementById('dueDate');
+let templateHTML = document.querySelectorAll('.templateHTML');
+// local storage items;
+let countProj = 1;
+let allLocalProj = localStorage.getItem('projects');
+allLocalProj = JSON.parse(allLocalProj);
+let projects = [];
+let projEnteredNum = 1;
 // -------------------------------------------- //
 function addNewProject() {
     newPopUp.style.display = 'block';
@@ -16,14 +23,17 @@ function cancelCreateNew() {
 }
 // -------------------------------------------- //
 retrieveData();
+findProjClicked();
+// localStorage.getItem('projEnteredNum').replace(projEnteredNum);
 // DEMO TESTING BLOCK HERE STARTS //
 // DEMO TESTING BLOCK HERE ENDS //
 // Create new project;
 class ProjectObj {
-    constructor(title, duedate, status, temp){
+    constructor(title, duedate, status, sequenceNum){
         this.title = title;
         this.duedate = duedate;
         this.status = status;
+        this.sequenceNum = sequenceNum;
     }
 }
 // add an event listener first for the new project creation form;
@@ -32,11 +42,12 @@ if (newProjectForm) newProjectForm.addEventListener("submit", function(event) {
     let projectName = projectNameInput.value;
     let projectDueDate = duedateInput.value;
     let projectStatus = statusInput.options[statusInput.selectedIndex].value;
-    submitProjForm(projectName, projectDueDate, projectStatus);
+    countProj++;
+    submitProjForm(projectName, projectDueDate, projectStatus, countProj);
 });
 // add project to the project list.
-function submitProjForm(projectName, projectDueDate, projectStatus, temp) {
-    let project = new ProjectObj(projectName, projectDueDate, projectStatus, temp);
+function submitProjForm(projectName, projectDueDate, projectStatus, sequenceNum) {
+    let project = new ProjectObj(projectName, projectDueDate, projectStatus, countProj);
     // storing the newly created project to the project list;
     projectListArray.push(project);
     renderProject(project);
@@ -50,7 +61,6 @@ function updateProjects() {
         let value = projects1[i].temp;
     }
 }
-let projects = [];
 // display the project on screen.
 function renderProject(project) {
     if (localStorage.getItem('projects') == null) projects = [];
@@ -62,6 +72,7 @@ function renderProject(project) {
     let projectJSON = JSON.stringify(projects);
     localStorage.setItem('projects', projectJSON);
     updateProjects();
+    // project.sequenceNum = projects.findIndex();
     let template = document.createElement('a');
     template.setAttribute('href', 'untitled.html');
     //create a div element for projects;
@@ -90,6 +101,7 @@ function retrieveData() {
             for(i = 0; i < localProjs.length; i++){
                 let template = document.createElement('a');
                 template.setAttribute('href', 'untitled.html');
+                template.setAttribute('class', 'templateHTML');
                 //create a div element for projects;
                 let projectCol = document.createElement('div');
                 projectCol.setAttribute('class', 'projectCol');
@@ -107,6 +119,13 @@ function retrieveData() {
             }
         }
     }
+}
+function findProjClicked() {
+    templateHTML = document.querySelectorAll('.templateHTML');
+    for(var i1 = 0; i1 < templateHTML.length; i1++)templateHTML[i1].addEventListener('click', (function(i) {
+        projEnteredNum = i + 1;
+        localStorage.setItem('projEnteredNum', projEnteredNum);
+    }).bind(null, i1));
 }
 
 //# sourceMappingURL=index.14288483.js.map

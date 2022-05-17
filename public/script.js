@@ -32,21 +32,25 @@ let setTimeForm = document.getElementById('setTime');
 let minInput = document.getElementById('mins');
 let breakMinInput = document.getElementById('breakTime');
 
-setTimeForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    inputChecker();
-});
-
+// let timer;
+if (setTimeForm) {
+    setTimeForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        inputChecker();
+    });
+}
 
 function myDefaultTimer() {
     // default time;
     const defaultTime = 25;
-    let defaultInTotalSecs = defaultTime * 60;
+    let totalTimeConst = defaultTime * 60;
+    let defaultInTotalSecs = totalTimeConst;
 
     setInterval(runDefaultTimer, 1000);
 
     let valid = true;
     let breakValid = true;
+    let count = 0;
 
     function runDefaultTimer() {
         if (defaultInTotalSecs >= 0) {
@@ -67,6 +71,15 @@ function myDefaultTimer() {
             if (breakValid == true) {
                 defaultBreakTimer();
                 breakValid = false;
+                count++;
+            } else {
+                if (count < 3) {
+                    breakValid = true;
+                }
+            }
+
+            if (count < 3) {
+                defaultInTotalSecs = totalTimeConst;
             }
         }
     }
@@ -83,9 +96,15 @@ function defaultBreakTimer() {
     let valid = true;
 
     function runDefaultBreak() {
+        if (totalBreakDefault >= 0) {
+            valid = true;
+        } else {
+            valid = false;
+        }
+
         if (valid) {
             const minutes = Math.floor(totalBreakDefault / 60);
-            let seconds = minutes * 60;
+            let seconds = totalBreakDefault % 60;
 
             seconds = seconds < 10 ? '0' + seconds : seconds;
 
@@ -115,8 +134,6 @@ function customTimer() {
         cyclesVal = cycles.value;
     }
 
-    console.log(cyclesVal);
-
     function executeTimer() {
 
         if (totalTime >= 0) {
@@ -126,14 +143,13 @@ function customTimer() {
         }
 
         if (valid) {
-            // console.log(count);
             const minutes = Math.floor(totalTime / 60);
             let seconds = totalTime % 60;
 
             seconds = seconds < 10 ? '0' + seconds : seconds;
 
             countDisplay.innerHTML = `${minutes}:${seconds}`;
-            totalTime -= 20;
+            totalTime--;
 
         } else {
             if (breakValid == true) {
@@ -158,6 +174,10 @@ function breakTimer() {
     const minVal = breakMinInput.value;
     let totalBreak = minVal * 60;
 
+    if (minVal == '') {
+        totalBreak = 5 * 60;
+    }
+
     setInterval(executeBreak, 1000);
 
     let valid = true;
@@ -176,32 +196,21 @@ function breakTimer() {
             seconds = seconds < 10 ? '0' + seconds : seconds;
 
             countDisplay.innerHTML = `${minutes}:${seconds}`;
-            totalBreak -= 30;
+            totalBreak--;
         }
     }
 }
 
 function inputChecker() {
-    let num;
-    if (cycles.value == '') {
-        num = 3;
+    if (minInput.value == '') {
+        myDefaultTimer();
+        timeInputSector.style.visibility = 'hidden';
+        timeInputSector.style.display = 'none';
     } else {
-        num = cycles.value;
+        customTimer();
+        timeInputSector.style.visibility = 'hidden';
+        timeInputSector.style.display = 'none';
     }
-
-    // if (document.getElementById('mins').value == '') {
-    //     myDefaultTimer();
-    //     timeInputSector.style.display = 'none';
-    // } else {
-    //     for (i = 0; i < num; i++) {
-    //         customTimer();
-    //         timeInputSector.style.display = 'none';
-    //     }
-    // }
-
-    customTimer();
-    customTimer();
-    timeInputSector.style.display = 'none';
 }
 
 function clearTimer() {

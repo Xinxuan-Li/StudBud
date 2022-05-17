@@ -10,6 +10,14 @@ var projectListArray = [];
 var projectNameInput = document.getElementById('projectName');
 var statusInput = document.getElementById('status');
 var duedateInput = document.getElementById('dueDate');
+let templateHTML = document.querySelectorAll('.templateHTML');
+
+// local storage items;
+let countProj = 1;
+let allLocalProj = localStorage.getItem('projects');
+allLocalProj = JSON.parse(allLocalProj);
+let projects = [];
+let projEnteredNum = 1;
 
 // -------------------------------------------- //
 function addNewProject() {
@@ -22,7 +30,8 @@ function cancelCreateNew() {
 
 // -------------------------------------------- //
 retrieveData();
-
+findProjClicked();
+// localStorage.getItem('projEnteredNum').replace(projEnteredNum);
 
 // DEMO TESTING BLOCK HERE STARTS //
 
@@ -34,10 +43,11 @@ retrieveData();
 
 // Create new project;
 class ProjectObj {
-    constructor(title, duedate, status, temp) {
+    constructor(title, duedate, status, sequenceNum) {
         this.title = title;
         this.duedate = duedate;
         this.status = status;
+        this.sequenceNum = sequenceNum;
     }
 }
 
@@ -48,17 +58,18 @@ if (newProjectForm) {
         let projectName = projectNameInput.value;
         let projectDueDate = duedateInput.value;
         let projectStatus = statusInput.options[statusInput.selectedIndex].value;
+        countProj++;
 
-        submitProjForm(projectName, projectDueDate, projectStatus);
+        submitProjForm(projectName, projectDueDate, projectStatus, countProj);
     });
 }
 
 
 
 // add project to the project list.
-function submitProjForm(projectName, projectDueDate, projectStatus, temp) {
+function submitProjForm(projectName, projectDueDate, projectStatus, sequenceNum) {
 
-    let project = new ProjectObj(projectName, projectDueDate, projectStatus, temp);
+    let project = new ProjectObj(projectName, projectDueDate, projectStatus, countProj);
 
     // storing the newly created project to the project list;
     projectListArray.push(project);
@@ -79,9 +90,6 @@ function updateProjects() {
     }
 }
 
-
-let projects = [];
-
 // display the project on screen.
 function renderProject(project) {
     if (localStorage.getItem('projects') == null) {
@@ -92,10 +100,12 @@ function renderProject(project) {
     }
 
     projects.push(project);
+
     let projectJSON = JSON.stringify(projects);
     localStorage.setItem('projects', projectJSON);
     updateProjects();
 
+    // project.sequenceNum = projects.findIndex();
 
     let template = document.createElement('a');
     template.setAttribute('href', 'untitled.html');
@@ -136,6 +146,7 @@ function retrieveData() {
             for (i = 0; i < localProjs.length; i++) {
                 let template = document.createElement('a');
                 template.setAttribute('href', 'untitled.html');
+                template.setAttribute('class', 'templateHTML');
 
                 //create a div element for projects;
                 let projectCol = document.createElement('div');
@@ -158,7 +169,16 @@ function retrieveData() {
 
                 ls.appendChild(template);
             }
-
         }
+    }
+}
+
+function findProjClicked() {
+    templateHTML = document.querySelectorAll('.templateHTML');
+    for (var i = 0; i < templateHTML.length; i++) {
+        templateHTML[i].addEventListener('click', function (i) {
+            projEnteredNum = i + 1;
+            localStorage.setItem('projEnteredNum', projEnteredNum);
+        }.bind(null, i));
     }
 }

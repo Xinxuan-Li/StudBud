@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'poppins';
+    src: url('../../font/poppins/Poppins-Regular.ttf');
+}
+
+* {
+    margin: 0;
+    background-color: #FFFCF9;
+    font-family: poppins;
+}
+
+button:hover {
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.281);
+    transform: translateY(-1px);
+}
+
+h2,
+h3 {
+    background-color: transparent;
+    margin: 10px 0px;
+}
+
+/* ====== nav bar css ====== */
+header {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    /* background-color: #cecfa9; */
+}
+
+a {
+    text-decoration: none;
+    color: #27271E;
+}
+
+/* header * {
+    background-color: #cecfa9;
+} */
+
+.logolink {
+    position: relative;
+    display: block;
+}
+
+.logo {
+    cursor: pointer;
+    width: 130px;
+}
+
+.navlinks {
+    font: inherit;
+    font-family: poppins;
+    list-style: none;
+    font-size: 15px;
+    padding: 0px 10px;
+}
+
+.navlinks li {
+    display: inline-block;
+    padding: 0px 30px;
+    cursor: pointer;
+}
+
+.navlinks a {
+    text-decoration: none;
+    color: #27271E;
+    cursor: pointer;
+}
+
+/* ====== hover effect for the nav links ====== */
+.navlinks li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #6E703D;
+    display: block;
+    margin: auto;
+    transition: 0.2s;
+}
+
+.navlinks li:hover::after {
+    width: 100%;
+}

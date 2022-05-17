@@ -24,17 +24,20 @@ const countDisplay = document.getElementById('countDisplay');
 let setTimeForm = document.getElementById('setTime');
 let minInput = document.getElementById('mins');
 let breakMinInput = document.getElementById('breakTime');
-setTimeForm.addEventListener('submit', function(e) {
+// let timer;
+if (setTimeForm) setTimeForm.addEventListener('submit', function(e) {
     e.preventDefault();
     inputChecker();
 });
 function myDefaultTimer() {
     // default time;
     const defaultTime = 25;
-    let defaultInTotalSecs = defaultTime * 60;
+    let totalTimeConst = defaultTime * 60;
+    let defaultInTotalSecs = totalTimeConst;
     setInterval(runDefaultTimer, 1000);
     let valid = true;
     let breakValid = true;
+    let count = 0;
     function runDefaultTimer() {
         if (defaultInTotalSecs >= 0) valid = true;
         else valid = false;
@@ -44,9 +47,13 @@ function myDefaultTimer() {
             defaultS = defaultS < 10 ? '0' + defaultS : defaultS;
             countDisplay.innerHTML = `${defaultM}:${defaultS}`;
             defaultInTotalSecs--;
-        } else if (breakValid == true) {
-            defaultBreakTimer();
-            breakValid = false;
+        } else {
+            if (breakValid == true) {
+                defaultBreakTimer();
+                breakValid = false;
+                count++;
+            } else if (count < 3) breakValid = true;
+            if (count < 3) defaultInTotalSecs = totalTimeConst;
         }
     }
 }
@@ -58,9 +65,11 @@ function defaultBreakTimer() {
     setInterval(runDefaultBreak, 1000);
     let valid = true;
     function runDefaultBreak() {
+        if (totalBreakDefault >= 0) valid = true;
+        else valid = false;
         if (valid) {
             const minutes = Math.floor(totalBreakDefault / 60);
-            let seconds = minutes * 60;
+            let seconds = totalBreakDefault % 60;
             seconds = seconds < 10 ? '0' + seconds : seconds;
             countDisplay.innerHTML = `${minutes}:${seconds}`;
             totalBreakDefault--;
@@ -79,17 +88,15 @@ function customTimer() {
     let cyclesVal = 0;
     if (cycles.value == '') cyclesVal = 3;
     else cyclesVal = cycles.value;
-    console.log(cyclesVal);
     function executeTimer() {
         if (totalTime >= 0) valid = true;
         else valid = false;
         if (valid) {
-            // console.log(count);
             const minutes = Math.floor(totalTime / 60);
             let seconds = totalTime % 60;
             seconds = seconds < 10 ? '0' + seconds : seconds;
             countDisplay.innerHTML = `${minutes}:${seconds}`;
-            totalTime -= 20;
+            totalTime--;
         } else {
             if (breakValid == true) {
                 breakTimer();
@@ -104,6 +111,7 @@ function customTimer() {
 function breakTimer() {
     const minVal = breakMinInput.value;
     let totalBreak = minVal * 60;
+    if (minVal == '') totalBreak = 300;
     setInterval(executeBreak, 1000);
     let valid = true;
     function executeBreak() {
@@ -114,26 +122,20 @@ function breakTimer() {
             let seconds = totalBreak % 60;
             seconds = seconds < 10 ? '0' + seconds : seconds;
             countDisplay.innerHTML = `${minutes}:${seconds}`;
-            totalBreak -= 30;
+            totalBreak--;
         }
     }
 }
 function inputChecker() {
-    let num;
-    if (cycles.value == '') num = 3;
-    else num = cycles.value;
-    // if (document.getElementById('mins').value == '') {
-    //     myDefaultTimer();
-    //     timeInputSector.style.display = 'none';
-    // } else {
-    //     for (i = 0; i < num; i++) {
-    //         customTimer();
-    //         timeInputSector.style.display = 'none';
-    //     }
-    // }
-    customTimer();
-    customTimer();
-    timeInputSector.style.display = 'none';
+    if (minInput.value == '') {
+        myDefaultTimer();
+        timeInputSector.style.visibility = 'hidden';
+        timeInputSector.style.display = 'none';
+    } else {
+        customTimer();
+        timeInputSector.style.visibility = 'hidden';
+        timeInputSector.style.display = 'none';
+    }
 }
 function clearTimer() {
     countDisplay.style.display = 'none';

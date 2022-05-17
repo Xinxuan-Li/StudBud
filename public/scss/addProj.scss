@@ -1,0 +1,132 @@
+/* ====== Styles for the add new project button ====== */
+.projectList {
+    margin: 30px 10%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#addProject {
+    transform: translateY(23%);
+    background: transparent;
+    font-size: 100px;
+    border: none;
+    color: #6E703D;
+}
+
+.projectCol {
+    text-align: center;
+    width: 180px;
+    height: 240px;
+    cursor: pointer;
+    border: 2px solid #27271E;
+    border-radius: 8px;
+    margin: 30px 30px;
+    padding-top: 20px;
+}
+
+.projectCol:hover {
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.281);
+    transform: translateY(-1px);
+}
+
+.projectColInner {
+    width: 80px;
+    height: 100px;
+    background-color: bisque;
+}
+
+.projectCol p {
+    vertical-align: bottom;
+    text-align: left;
+    font-size: 13px;
+    padding: 0px 5px;
+}
+
+/* ====== Create new project pop up window asking for basic information input ====== */
+.newProjectPopUp {
+    display: none;
+    border-style: solid;
+    border-radius: 8px;
+    border-color: #27271E;
+    border-width: 2px;
+    background-color: #FFF;
+    width: 30%;
+    height: 65%;
+    padding: 30px 40px;
+    position: absolute;
+    font-family: poppins;
+    transform: translate(-50%, -20%);
+    left: 50%;
+    top: 30%;
+}
+
+.newProjectPopUp #done {
+    font-size: 20px;
+    padding: 7px 30px;
+    position: absolute;
+    color: #FFFCF9;
+    background-color: #6E703D;
+    border: 2px solid #6E703D;
+    border-radius: 100px;
+}
+
+.newProjectPopUp button {
+    margin-top: 40px;
+}
+
+.newProjectPopUp h1 {
+    background-color: transparent;
+}
+
+/* Create new project by entering properties form */
+#newProjectForm {
+    background-color: transparent;
+}
+
+#newProjectForm label {
+    background-color: transparent;
+    display: block;
+}
+
+#newProjectForm ul {
+    background-color: transparent;
+    font-size: 20px;
+    padding: 0;
+}
+
+#newProjectForm ul li {
+    list-style: none;
+    background-color: transparent;
+}
+
+#newProjectForm li+li {
+    margin-top: 20px;
+}
+
+#newProjectForm input {
+    width: 85%;
+    background-color: transparent;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #27271E;
+}
+
+#newProjectForm select {
+    width: 50%;
+    height: auto;
+    background-color: transparent;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #27271E;
+}
+
+.fa-times {
+    display: block;
+    margin: 0 0 20px auto;
+    background-color: transparent;
+    font-size: 25px;
+    color: #6E703D;
+    text-align: right;
+}

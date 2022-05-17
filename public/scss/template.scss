@@ -1,0 +1,239 @@
+/* ====== Template for project sheet ======*/
+.projectTemplate {
+    margin: 30px 10%;
+}
+
+.projectTitle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+#projTitle {
+    border: none;
+    font-size: 30px;
+}
+
+::placeholder {
+    color: #565652;
+}
+
+.stageInput {
+    margin: 15px 0;
+}
+
+#markDoneBtn {
+    font-size: 20px;
+    padding: 2px 20px;
+    border-radius: 100px;
+    background-color: #B3A496;
+    color: #FFFCF9;
+    border: none;
+}
+
+.projectBody textarea {
+    border-radius: 8px;
+    width: 98%;
+    height: 50px;
+    resize: none;
+    padding: 12px 12px;
+    border: 0.5px solid #9F9F9F;
+}
+
+textarea:focus {
+    border-color: #6E703D;
+}
+
+.titleBar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#stageTitle {
+    font-size: 20px;
+    border: none;
+}
+
+.statusBar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.statusBar>* {
+    width: 32.2%;
+    border: 1px solid #9F9F9F;
+    position: relative;
+    padding: 5px;
+    border-radius: 6px;
+    font-size: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#statusCircleRed {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background-color: #CC6565;
+}
+
+#statusCircleYel {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background-color: #D4B956;
+}
+
+#statusCircleGrn {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background-color: #1B9D18;
+}
+
+textarea {
+    background-color: #FFF;
+}
+
+.stageContent {
+    border-bottom: 1px solid #27271E;
+    padding-bottom: 10px;
+}
+
+.stage textarea {
+    border-radius: 8px;
+    width: 98%;
+    height: 20px;
+    resize: none;
+    padding: 12px 12px;
+    border: 0.5px solid #9F9F9F;
+}
+
+.innerStageBoxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.innerStageBox {
+    height: 100%;
+    min-height: 150px;
+    width: 32.1%;
+    border: 1px solid #9F9F9F;
+    position: relative;
+    height: auto;
+    padding: 5px;
+    border-radius: 6px;
+    font-size: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.newTaskBtn {
+    border-radius: 4px;
+    border: 0.5px solid #525252;
+    vertical-align: bottom;
+    font-size: 15px;
+    margin: 10px 0;
+    padding: 3px 15px;
+    color: #504f4f;
+}
+
+.task {
+    width: 100%;
+    height: 130px;
+    padding-bottom: 15px;
+    border-radius: 8px;
+    background-color: #FFF;
+    border: 1px solid #9F9F9F;
+    margin: 10px 20px;
+}
+
+.task h4 {
+    background-color: transparent;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.task p {
+    font-size: 15px;
+    background-color: transparent;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.fa-ellipsis-h {
+    display: block;
+    text-align: right;
+    margin: 10px 12px 0px 12px;
+    background-color: transparent;
+}
+
+.bottomContent {
+    background-color: transparent;
+}
+
+#tagBtn {
+    font-size: 13px;
+    padding: 2px 15px;
+    border-radius: 100px;
+    background-color: #6E703D;
+    color: #FFFCF9;
+    border: none;
+    margin: 10px;
+}
+
+#newStageBtn {
+    width: 33%;
+    margin: 20px 0;
+    padding: 5px 15px;
+    border: 1px solid #9F9F9F;
+    font-size: 15px;
+    border-radius: 5px;
+    color: #504f4f;
+}
+
+
+/* ======= Styles for task creation form ======= */
+.newTaskFormPopUp {
+    display: none;
+    position: fixed;
+    width: 30%;
+    height: 60%;
+    top: 100px;
+    left: 30%;
+    border: 1px solid #27271E;
+    border-radius: 10px;
+    padding: 30px 50px;
+}
+
+#newTaskForm ul li {
+    list-style: none;
+    padding: 10px 0px;
+}
+
+#newTaskForm input,
+select {
+    display: block;
+    border: 1px solid #27271E;
+    width: 80%;
+    height: 30px;
+    border-radius: 5px;
+}
+
+#taskDoneBtn {
+    margin: 10px 40px;
+    padding: 5px 20px;
+    border: none;
+    background-color: #6E703D;
+    color: #FFF;
+    border-radius: 100px;
+}

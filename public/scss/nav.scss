@@ -9,6 +9,10 @@
     font-family: poppins;
 }
 
+body {
+    margin-bottom: 100px;
+}
+
 button:hover {
     box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.281);
     transform: translateY(-1px);
@@ -35,9 +39,13 @@ a {
     color: #27271E;
 }
 
-/* header * {
-    background-color: #cecfa9;
-} */
+// header {
+//     background: linear-gradient(0deg, rgb(255, 254, 250) 0%, rgb(224, 225, 195) 100%);
+// }
+
+// header * {
+//     background-color: transparent;
+// }
 
 .logolink {
     position: relative;

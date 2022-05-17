@@ -25,7 +25,7 @@ let cycles = document.getElementById('pomodoro');
 let resetTimerTbn = document.getElementById('resetTimer');
 
 const startBtn = document.getElementById('startTimer');
-const resetTimer = document.getElementById('resetTimer');
+const resetBtn = document.getElementById('resetTimer');
 const countDisplay = document.getElementById('countDisplay');
 
 let setTimeForm = document.getElementById('setTime');
@@ -33,10 +33,30 @@ let minInput = document.getElementById('mins');
 let breakMinInput = document.getElementById('breakTime');
 
 // let timer;
-if (setTimeForm) {
-    setTimeForm.addEventListener('submit', function (e) {
+if (startBtn) {
+    startBtn.addEventListener('click', function (e) {
         e.preventDefault();
         inputChecker();
+    });
+}
+
+if (resetBtn) {
+    resetBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        countDisplay.style.display = 'none';
+        timeInputSector.style.visibility = 'visible';
+
+        // let newInput = document.createElement('input');
+        // newInput.setAttribute('type', 'number');
+        // newInput.setAttribute('placeholder', '25');
+
+        // let unit = document.createElement('div');
+        // unit.setAttribute('class', 'minTxt');
+        // unit.textContent = 'mins';
+
+        // timeInputSector.appendChild(newInput);
+        // timeInputSector.appendChild(unit);
     });
 }
 
@@ -109,6 +129,7 @@ function defaultBreakTimer() {
             seconds = seconds < 10 ? '0' + seconds : seconds;
 
             countDisplay.innerHTML = `${minutes}:${seconds}`;
+            countDisplay.style.color = '#6E703D';
             totalBreakDefault--;
         }
     }
@@ -149,6 +170,7 @@ function customTimer() {
             seconds = seconds < 10 ? '0' + seconds : seconds;
 
             countDisplay.innerHTML = `${minutes}:${seconds}`;
+            countDisplay.style.color = '##6E703D';
             totalTime--;
 
         } else {
@@ -213,18 +235,42 @@ function inputChecker() {
     }
 }
 
-function clearTimer() {
-    countDisplay.style.display = 'none';
-    timeInputSector.style.display = 'block';
+// MUSIC PLAYER SCRIPT HERE
+// let data = null;
+
+// const request = new XMLHttpRequest();
+// request.withCredentials = true;
+
+// request.addEventListener("readystatechange", function () {
+//     if (this.readyState === this.DONE) {
+//         console.log(this.responseText);
+//     }
+// });
+
+// // request.open("GET", "https://spotify23.p.rapidapi.com/playlist/?id=37i9dQZF1DX4Wsb4d7NKfP");
+// request.open("GET", "https://spotify23.p.rapidapi.com/tracks/?ids=4WNcduiCmDNfmTEz7JvmLv");
+// request.setRequestHeader("X-RapidAPI-Host", "spotify23.p.rapidapi.com");
+// request.setRequestHeader("X-RapidAPI-Key", "a35119e0demsh8943d3d49b7d436p1c5803jsn5cccaa13896c");
+
+// request.onload = function () {
+//     data = JSON.parse(this.response);
+//     console.log(data);
+// }
+
+// request.send();
+
+function playRandomTrack() {
+
 }
 
-// MUSIC PLAYER SCRIPT HERE
-function playRandomTrack() { }
+function playPrevTrack() {
 
-function playPrevTrack() { }
+}
 
-function pauseThisTrack() { }
+function pauseThisTrack() {
 
-function playNextTrack() { }
+}
 
-function repeatThisTrack() { }
+function playNextTrack() {
+
+}

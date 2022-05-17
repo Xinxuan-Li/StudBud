@@ -1,6 +1,15 @@
 /* ====== Styles for the add new project button ====== */
-.projectList {
+.body-container {
     margin: 30px 10%;
+}
+
+.body-container h1 {
+    margin: 10px 30px;
+    display: block;
+    color: #38382c;
+}
+
+.projectList {
     display: flex;
     flex-flow: row wrap;
 }

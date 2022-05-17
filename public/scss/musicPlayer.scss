@@ -1,19 +1,20 @@
 /* ====== Music player ======*/
 .music {
     display: none;
-    width: 30%;
+    width: 25%;
     height: auto;
     transform: translateX(-40%);
     margin-top: 20px;
     position: absolute;
-    border: 2px solid #27271E;
     border-radius: 8px;
     z-index: 1;
     padding-bottom: 20px;
+    background-color: #000;
 }
 
 .music .fa-times {
     margin: 15px 20px;
+    color: #fff;
 }
 
 .wrapper {
@@ -31,7 +32,7 @@
 }
 
 .musicControlPanel i {
-    color: #27271E;
+    color: #fff;
 }
 
 .details {

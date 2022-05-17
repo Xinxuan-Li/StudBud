@@ -85,7 +85,7 @@ function defaultBreakTimer() {
             let seconds = totalBreakDefault % 60;
             seconds = seconds < 10 ? '0' + seconds : seconds;
             countDisplay.innerHTML = `${minutes}:${seconds}`;
-            countDisplay.style.color = '##6E703D';
+            countDisplay.style.color = '#6E703D';
             totalBreakDefault--;
         }
     }
@@ -175,4 +175,4 @@ function playPrevTrack() {}
 function pauseThisTrack() {}
 function playNextTrack() {}
 
-//# sourceMappingURL=index.f3bd186e.js.map
+//# sourceMappingURL=resource.f3bd186e.js.map

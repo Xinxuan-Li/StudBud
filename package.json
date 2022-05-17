@@ -24,7 +24,8 @@
   "homepage": "https://github.com/Xinxuan-Li/StudBud#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "sass": "^1.32.11"
+    "sass": "^1.32.11",
+    "spotify-web-api-node": "5.0.2"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.0-beta.2",

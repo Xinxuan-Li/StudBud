@@ -5,6 +5,7 @@
 .body-container h1 {
   color: #38382c;
   margin: 10px 30px;
+  font-size: 30px;
   display: block;
 }
 
@@ -13,23 +14,31 @@
   display: flex;
 }
 
+.projectColWrapper {
+  margin: 30px;
+}
+
 #addProject {
   color: #6e703d;
   background: none;
   border: none;
-  font-size: 100px;
+  font-size: 80px;
   transform: translateY(23%);
 }
 
 .projectCol {
   text-align: center;
-  width: 180px;
-  height: 240px;
+  width: 150px;
+  height: 210px;
   cursor: pointer;
-  border: 2px solid #27271e;
+  border: 1.5px solid #27271e;
   border-radius: 8px;
-  margin: 30px;
   padding-top: 20px;
+}
+
+.templateHTML .projectCol {
+  background-image: url("prevTemp.501f6078.png");
+  background-size: contain;
 }
 
 .projectCol:hover {
@@ -37,17 +46,42 @@
   box-shadow: 2px 4px 10px #00000048;
 }
 
-.projectColInner {
-  width: 80px;
-  height: 100px;
-  background-color: bisque;
+.projectCol p {
+  text-align: left;
+  padding: 0 6px;
+  font-size: 11px;
+  display: block;
 }
 
-.projectCol p {
-  vertical-align: bottom;
-  text-align: left;
-  padding: 0 5px;
-  font-size: 13px;
+.projectCol i {
+  text-align: right;
+}
+
+.nameBar {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  display: flex;
+}
+
+.nameBar i:hover {
+  transform: translateY(-1px);
+  box-shadow: 2px 4px 10px #00000048;
+}
+
+.info {
+  background-color: #fff;
+  border-top: 1px solid #27271e;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding: 15px 0;
+  display: block;
+  transform: translateY(145px);
+}
+
+.info p {
+  background-color: #fff;
 }
 
 .newProjectPopUp {
@@ -591,6 +625,11 @@ textarea {
   src: url("Poppins-Regular.34e3f7e3.ttf");
 }
 
+@font-face {
+  font-family: arvo;
+  src: url("Arvo-Bold.d35a8444.ttf");
+}
+
 * {
   background-color: #fffcf9;
   margin: 0;
@@ -632,6 +671,8 @@ a {
 .logo {
   cursor: pointer;
   width: 130px;
+  color: #6e703d;
+  font-family: arvo;
 }
 
 .navlinks {

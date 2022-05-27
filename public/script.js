@@ -24,7 +24,7 @@ let timeInputSector = document.querySelector('.timeInput');
 let cycles = document.getElementById('pomodoro');
 let resetTimerTbn = document.getElementById('resetTimer');
 
-const startBtn = document.getElementById('startTimer');
+var startBtn = document.getElementById('startTimer');
 const resetBtn = document.getElementById('resetTimer');
 const countDisplay = document.getElementById('countDisplay');
 
@@ -32,13 +32,15 @@ let setTimeForm = document.getElementById('setTime');
 let minInput = document.getElementById('mins');
 let breakMinInput = document.getElementById('breakTime');
 
-// let timer;
-if (startBtn) {
-    startBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        inputChecker();
-    });
-}
+window.onload = function () {
+    if (startBtn) {
+        startBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            inputChecker();
+            startBtn.innerHTML = 'Pause';
+        });
+    }
+};
 
 if (resetBtn) {
     resetBtn.addEventListener('click', function (e) {
@@ -86,6 +88,7 @@ function myDefaultTimer() {
             defaultS = defaultS < 10 ? '0' + defaultS : defaultS;
 
             countDisplay.innerHTML = `${defaultM}:${defaultS}`;
+            countDisplay.style.color = '#6E703D';
             defaultInTotalSecs--;
         } else {
             if (breakValid == true) {
@@ -129,7 +132,6 @@ function defaultBreakTimer() {
             seconds = seconds < 10 ? '0' + seconds : seconds;
 
             countDisplay.innerHTML = `${minutes}:${seconds}`;
-            countDisplay.style.color = '#6E703D';
             totalBreakDefault--;
         }
     }
@@ -170,7 +172,7 @@ function customTimer() {
             seconds = seconds < 10 ? '0' + seconds : seconds;
 
             countDisplay.innerHTML = `${minutes}:${seconds}`;
-            countDisplay.style.color = '##6E703D';
+            countDisplay.style.color = '#6E703D';
             totalTime--;
 
         } else {
@@ -228,36 +230,24 @@ function inputChecker() {
         myDefaultTimer();
         timeInputSector.style.visibility = 'hidden';
         timeInputSector.style.display = 'none';
+
+        startBtn.addEventListener('click', function (e) {
+            clearInterval(myDefaultTimer);
+            startBtn.innerHTML = 'Start';
+        });
+
     } else {
         customTimer();
         timeInputSector.style.visibility = 'hidden';
         timeInputSector.style.display = 'none';
+
+        startBtn.addEventListener('click', function (e) {
+            clearInterval(customTimer);
+            startBtn.innerHTML = 'Start';
+        });
+
     }
 }
-
-// MUSIC PLAYER SCRIPT HERE
-// let data = null;
-
-// const request = new XMLHttpRequest();
-// request.withCredentials = true;
-
-// request.addEventListener("readystatechange", function () {
-//     if (this.readyState === this.DONE) {
-//         console.log(this.responseText);
-//     }
-// });
-
-// // request.open("GET", "https://spotify23.p.rapidapi.com/playlist/?id=37i9dQZF1DX4Wsb4d7NKfP");
-// request.open("GET", "https://spotify23.p.rapidapi.com/tracks/?ids=4WNcduiCmDNfmTEz7JvmLv");
-// request.setRequestHeader("X-RapidAPI-Host", "spotify23.p.rapidapi.com");
-// request.setRequestHeader("X-RapidAPI-Key", "a35119e0demsh8943d3d49b7d436p1c5803jsn5cccaa13896c");
-
-// request.onload = function () {
-//     data = JSON.parse(this.response);
-//     console.log(data);
-// }
-
-// request.send();
 
 function playRandomTrack() {
 

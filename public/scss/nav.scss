@@ -3,6 +3,11 @@
     src: url('../../font/poppins/Poppins-Regular.ttf');
 }
 
+@font-face {
+    font-family: 'arvo';
+    src: url('../../font/arvo/Arvo-Bold.ttf');
+}
+
 * {
     margin: 0;
     background-color: #FFFCF9;
@@ -55,6 +60,8 @@ a {
 .logo {
     cursor: pointer;
     width: 130px;
+    font-family: arvo;
+    color: #6E703D;
 }
 
 .navlinks {

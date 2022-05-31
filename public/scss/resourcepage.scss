@@ -2,10 +2,27 @@
     margin: 25px 10%;
 }
 
+.titleBarRe {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .resource-container h1 {
     margin: 10px 25px;
     display: block;
     color: #27271E;
+}
+
+.fa-save {
+    font-size: 25px;
+    color: #646464;
+}
+
+.fa-save:hover {
+    color: #27271E;
+    cursor: pointer;
 }
 
 .sub-headings {

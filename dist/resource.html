@@ -20,7 +20,9 @@
             <h1 class="logo">StudBud</h1>
         </a>
         <nav>
+            <i class="fa fa-bars" onclick="displayMenu()"></i>
             <ul class="navlinks">
+                <i class="fa fa-times" id="nav-times" onclick="hideMenu()"></i>
                 <li onclick="showTimer()">Timer
                 </li>
                 <!-- pomodoro pop up window  -->
@@ -64,7 +66,10 @@
     </header>
 
     <main class="resource-container">
-        <h1>Resource Links</h1>
+        <div class="titleBarRe">
+            <h1>Resource Links</h1>
+            <i class="fa fa-save"></i>
+        </div>
         <div class="sub-headings">
             <h2>All URL</h2>
             <h2>Summary</h2>

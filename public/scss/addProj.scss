@@ -173,3 +173,10 @@
     color: #6E703D;
     text-align: right;
 }
+
+@media (max-width: 700px) {
+    .newProjectPopUp {
+        width: 50%;
+        height: 70%;
+    }
+}

@@ -20,11 +20,14 @@
             <h1 class="logo">StudBud</h1>
         </a>
         <nav>
+            <i class="fa fa-bars" onclick="displayMenu()"></i>
             <ul class="navlinks">
+                <i class="fa fa-times" id="nav-times" onclick="hideMenu"></i>
                 <li onclick="showTimer()">Timer
                 </li>
                 <!-- pomodoro pop up window  -->
                 <div class="timer">
+                    <i class="fa fa-times" id="nav-times"></i>
                     <i class="fa fa-times" onclick="hideTimer()"></i>
                     <form id="setTime">
                         <div class="timeInput">
@@ -135,18 +138,6 @@
                     <div class="innerStageBoxes">
                         <div class="innerStageBox">
                             <!-- draggable starts -->
-                            <!-- <div class="task" draggable="true">
-                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                <h4>Task title1</h4>
-                                <button id="tagBtn">I am a tag1</button>
-                                <p>Due date</p>
-                            </div>
-                            <div class="task" draggable="true">
-                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                <h4>Task title2</h4>
-                                <button id="tagBtn">I am a tag2</button>
-                                <p>Due date</p>
-                            </div> -->
                             <!-- draggable ends -->
                         </div>
 

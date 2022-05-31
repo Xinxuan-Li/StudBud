@@ -20,7 +20,9 @@
             <h1 class="logo">StudBud</h1>
         </a>
         <nav>
+            <i class="fa fa-bars" onclick="displayMenu()"></i>
             <ul class="navlinks">
+                <i class="fa fa-times" id="nav-times" onclick="hideMenu()"></i>
                 <li onclick="showTimer()">Timer
                 </li>
                 <!-- pomodoro pop up window  -->
@@ -79,30 +81,6 @@
                 </div>
             </div>
             <!-- === TESTING STARTS === -->
-            <!-- <a href="untitled.html" class="templateHTML">
-            <div class="projectCol">
-                <div class="projectColInner"></div>
-                <p>Project 1</p>
-                <p>10/10/20</p>
-            </div>
-        </a>
-
-        <a href="untitled.html" class="templateHTML>
-            <div class="projectCol">
-                <div class="projectColInner"></div>
-                <p>Project 1</p>
-                <p>10/10/20</p>
-            </div>
-        </a> -->
-
-            <!-- <div class="projectCol">
-                <a href="untitled.html" class="templateHTML">
-                    <div class="projectColInner"></div>
-                </a>
-                <p>Project 1</p>
-                <p>10/10/20</p>
-                <i class="fa fa-trash-o"></i>
-            </div> -->
             <!-- === TESTING ENDS === -->
         </section>
 
@@ -133,7 +111,6 @@
         </div>
     </main>
     <script src="script.js"></script>
-    <!-- <script src="./components/template.js"></script> -->
     <script src="./components/homepage.js"></script>
 
 </body>

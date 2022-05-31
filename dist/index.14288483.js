@@ -22,7 +22,9 @@ function cancelCreateNew() {
     newPopUp.style.display = 'none';
 }
 // -------------------------------------------- //
+// Retreive data from storage to display projects saved;
 retrieveData();
+// Find the project clicked to enter the project page with customised settings;
 findProjClicked();
 // DEMO TESTING BLOCK HERE STARTS //
 // DEMO TESTING BLOCK HERE ENDS //
@@ -32,7 +34,6 @@ class ProjectObj {
         this.title = title;
         this.duedate = duedate;
         this.status = status;
-    // this.sequenceNum = sequenceNum;
     }
 }
 // add an event listener first for the new project creation form;
@@ -65,6 +66,7 @@ function renderProject(project) {
         projects = localStorage.getItem('projects');
         projects = JSON.parse(projects);
     }
+    // Append project object into the storage list;
     projects.push(project);
     let projectColWrapper = document.createElement('div');
     projectColWrapper.setAttribute('class', 'projectColWrapper');

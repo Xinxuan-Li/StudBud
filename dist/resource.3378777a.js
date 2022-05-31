@@ -2,10 +2,11 @@ var linkInput = document.getElementById('urlBox');
 var urlGetterForm = document.querySelector('.generate-pop-up');
 var resourceList = document.querySelector('.resource-list');
 var rows = document.querySelector('.row');
-var summaries = document.querySelector('.summaryField');
+var summaries = document.querySelector('#summaryField');
+var allSum = document.querySelectorAll('#summaryField');
+var saveSum = document.querySelector('.fa-save');
 var myLink = null;
 // storing in local storage variables;
-let resourceListArray = [];
 let resources = [];
 class ResourceObj {
     constructor(data, summary){
@@ -13,6 +14,7 @@ class ResourceObj {
         this.summary = summary;
     }
 }
+// Retrieve data of resources list;
 retreiveLocalRes();
 // get request if link input is not empty;
 var request = new XMLHttpRequest();
@@ -60,16 +62,14 @@ function generatePreview(data) {
     container.appendChild(desp);
     container.appendChild(link);
     linkInput.value = '';
-    let reObj = new ResourceObj(data, summaryField.value);
+    // store it in local storage;
+    let reObj = new ResourceObj(data, '');
     resources.push(reObj);
+    console.log(resources);
     let resourcesJSON = JSON.stringify(resources);
     localStorage.setItem('resources', resourcesJSON);
 }
-function updateResources() {
-// store 'data' obj into local storage 'resources' list;
-}
 function retreiveLocalRes() {
-    let allRes = document.querySelectorAll('.resource-list');
     if (localStorage.getItem('resources') != null) {
         let localRes = localStorage.getItem('resources');
         localRes = JSON.parse(localRes);
@@ -82,13 +82,14 @@ function retreiveLocalRes() {
             let summary = document.createElement('div');
             summary.setAttribute('class', 'summary');
             let summaryField = document.createElement('textarea');
-            summaryField.setAttribute('placeholder', 'Type your summary here...');
+            if (localRes[i].summary == "") summaryField.setAttribute('placeholder', 'Type your summary here...');
+            else summaryField.value = localRes[i].summary;
             summaryField.setAttribute('id', 'summaryField');
             summary.appendChild(summaryField);
             let img = document.createElement('img');
             img.setAttribute('src', localRes[i].data.image);
             let linkTitle = document.createElement('h2');
-            linkTitle.innerHTML = localRes[i].title;
+            linkTitle.innerHTML = localRes[i].data.title;
             let desp = document.createElement('p');
             desp.innerHTML = localRes[i].data.description;
             let link = document.createElement('p');
@@ -105,6 +106,22 @@ function retreiveLocalRes() {
             container.appendChild(link);
         }
     }
+}
+function updateResources() {
+// store 'data' obj into local storage 'resources' list;
+}
+saveSum.addEventListener('click', function(e) {
+    e.preventDefault();
+    saveSummary();
+});
+function saveSummary() {
+    allSum = document.querySelectorAll('#summaryField');
+    let resourceListArray = [];
+    let list = localStorage.getItem('resources');
+    list = JSON.parse(list);
+    resourceListArray = list;
+    for(let i = 0; i < list.length; i++)if (resourceListArray[i].summary == '') resourceListArray[i].summary = allSum[i].value;
+    localStorage.setItem('resources', JSON.stringify(resourceListArray));
 }
 
 //# sourceMappingURL=resource.3378777a.js.map

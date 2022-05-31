@@ -162,9 +162,15 @@ function inputChecker() {
         });
     }
 }
-function playRandomTrack() {}
-function playPrevTrack() {}
-function pauseThisTrack() {}
-function playNextTrack() {}
+var navbar = document.querySelector('.navlinks');
+function displayMenu() {
+    navbar.style.display = 'block';
+}
+function hideMenu() {
+    navbar.style.display = 'none';
+}
+window.addEventListener("resize", function() {
+    if (window.matchMedia("(min-width: 700px)").matches) navbar.style.display = 'block';
+});
 
 //# sourceMappingURL=resource.f3bd186e.js.map

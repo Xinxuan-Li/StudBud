@@ -27,7 +27,6 @@ let l = localStorage.getItem('projects');
 l = JSON.parse(l);
 function retrieveData() {
     c = localStorage.getItem('projEnteredNum') - 1;
-    console.log(c);
     projTitle.textContent = l[c].title;
 }
 retrieveData();

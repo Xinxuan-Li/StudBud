@@ -29,7 +29,9 @@ function cancelCreateNew() {
 }
 
 // -------------------------------------------- //
+// Retreive data from storage to display projects saved;
 retrieveData();
+// Find the project clicked to enter the project page with customised settings;
 findProjClicked();
 
 // DEMO TESTING BLOCK HERE STARTS //
@@ -46,7 +48,6 @@ class ProjectObj {
         this.title = title;
         this.duedate = duedate;
         this.status = status;
-        // this.sequenceNum = sequenceNum;
     }
 }
 
@@ -95,6 +96,7 @@ function renderProject(project) {
         projects = JSON.parse(projects);
     }
 
+    // Append project object into the storage list;
     projects.push(project);
 
     let projectColWrapper = document.createElement('div');

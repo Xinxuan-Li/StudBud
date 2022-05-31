@@ -31,12 +31,15 @@ var c = localStorage.getItem('projEnteredNum');
 let l = localStorage.getItem('projects');
 l = JSON.parse(l);
 
+// Reading from LocalStorage;
+retrieveData();
+// Find the stage add task button clicked to add task to the corresponding row;
+findBtnClicked();
+
 function retrieveData() {
     c = localStorage.getItem('projEnteredNum') - 1;
     projTitle.textContent = l[c].title;
 }
-
-retrieveData();
 
 // Create new task;
 function hideTaskForm() {
@@ -83,8 +86,6 @@ function findBtnClicked() {
         }.bind(null, i));
     }
 }
-
-findBtnClicked();
 
 // submit the request to create a task;
 function submitTaskFrom(taskName, taskDueDate, priority, estCompTime) {

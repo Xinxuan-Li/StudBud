@@ -10,10 +10,10 @@ var duedateInput = document.getElementById('dueDate');
 let templateHTML = document.querySelectorAll('.templateHTML');
 // local storage items;
 let countProj = 0;
-let allLocalProj = localStorage.getItem('projects');
-allLocalProj = JSON.parse(allLocalProj);
 let projects = [];
 let projEnteredNum = 0;
+let allLocalProj = localStorage.getItem('projects');
+let deleteProjBtns = document.querySelectorAll('#deleteProjBtn');
 // -------------------------------------------- //
 function addNewProject() {
     newPopUp.style.display = 'block';
@@ -26,6 +26,8 @@ function cancelCreateNew() {
 retrieveData();
 // Find the project clicked to enter the project page with customised settings;
 findProjClicked();
+// delete project when bin botton clicked;
+deleteProject();
 // DEMO TESTING BLOCK HERE STARTS //
 // DEMO TESTING BLOCK HERE ENDS //
 // Create new project;
@@ -93,6 +95,8 @@ function renderProject(project) {
     info.appendChild(projectStatus);
     let binIcon = document.createElement('i');
     binIcon.setAttribute('class', 'fa fa-trash-o');
+    binIcon.setAttribute('id', 'deleteProjBtn');
+    binIcon.setAttribute('onclick', 'window.location.reload()');
     nameBar.appendChild(projectName);
     nameBar.appendChild(binIcon);
     template.appendChild(projectCol);
@@ -101,6 +105,8 @@ function renderProject(project) {
     projectColWrapper.appendChild(nameBar);
     projectList.appendChild(projectColWrapper);
     newProjectPopUp.style.display = 'none';
+    deleteProjBtns = document.querySelectorAll('#deleteProjBtn');
+    deleteProject();
 }
 function retrieveData() {
     let projectList1 = document.querySelectorAll('.projectCol');
@@ -128,6 +134,8 @@ function retrieveData() {
                 projectName.innerHTML = localProjs[i].title;
                 let binIcon = document.createElement('i');
                 binIcon.setAttribute('class', 'fa fa-trash-o');
+                binIcon.setAttribute('id', 'deleteProjBtn');
+                binIcon.setAttribute('onclick', 'window.location.reload()');
                 let info = document.createElement('div');
                 info.setAttribute('class', 'info');
                 info.appendChild(projectDueDate);
@@ -150,6 +158,17 @@ function findProjClicked() {
         localStorage.setItem('projEnteredNum', projEnteredNum);
     }).bind(null, i1));
 }
-function deleteProject() {}
+function deleteProject() {
+    let cursorLs = [];
+    allLocalProj = localStorage.getItem('projects');
+    allLocalProj = JSON.parse(allLocalProj);
+    cursorLs = allLocalProj;
+    deleteProjBtns = document.querySelectorAll('#deleteProjBtn');
+    for(var i2 = 0; i2 < deleteProjBtns.length; i2++)deleteProjBtns[i2].addEventListener('click', (function(i) {
+        cursorLs.splice(i, 1);
+        console.log(cursorLs);
+        localStorage.setItem('projects', JSON.stringify(cursorLs));
+    }).bind(null, i2));
+}
 
 //# sourceMappingURL=index.14288483.js.map

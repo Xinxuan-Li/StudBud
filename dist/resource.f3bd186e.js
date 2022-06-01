@@ -35,14 +35,6 @@ if (resetBtn) resetBtn.addEventListener('click', function(e) {
     e.preventDefault();
     countDisplay.style.display = 'none';
     timeInputSector.style.visibility = 'visible';
-// let newInput = document.createElement('input');
-// newInput.setAttribute('type', 'number');
-// newInput.setAttribute('placeholder', '25');
-// let unit = document.createElement('div');
-// unit.setAttribute('class', 'minTxt');
-// unit.textContent = 'mins';
-// timeInputSector.appendChild(newInput);
-// timeInputSector.appendChild(unit);
 });
 function myDefaultTimer() {
     // default time;

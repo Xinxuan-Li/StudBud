@@ -107,9 +107,6 @@ function retreiveLocalRes() {
         }
     }
 }
-function updateResources() {
-// store 'data' obj into local storage 'resources' list;
-}
 saveSum.addEventListener('click', function(e) {
     e.preventDefault();
     saveSummary();
@@ -120,7 +117,7 @@ function saveSummary() {
     let list = localStorage.getItem('resources');
     list = JSON.parse(list);
     resourceListArray = list;
-    for(let i = 0; i < list.length; i++)if (resourceListArray[i].summary == '') resourceListArray[i].summary = allSum[i].value;
+    for(let i = 0; i < list.length; i++)resourceListArray[i].summary = allSum[i].value;
     localStorage.setItem('resources', JSON.stringify(resourceListArray));
 }
 

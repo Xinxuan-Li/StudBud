@@ -25,11 +25,28 @@ var projTitle = document.getElementById('projTitle');
 var c = localStorage.getItem('projEnteredNum');
 let l = localStorage.getItem('projects');
 l = JSON.parse(l);
+//Mark as done variables;
+var markdone = document.getElementById('markDoneBtn');
+// Reading from LocalStorage;
+retrieveData();
+// Find the stage add task button clicked to add task to the corresponding row;
+findBtnClicked();
+// pop up window for task creation;
+displayTaskPopUp();
+// Check project status and modify button display;
+checkProjectStatus();
+function checkProjectStatus() {
+    let ls = localStorage.getItem('projects');
+    ls = JSON.parse(ls);
+    if (ls[localStorage.getItem('projEnteredNum') - 1].status == "complete") {
+        markdone.innerHTML = 'Completed';
+        markdone.style.backgroundColor = '#6E703D';
+    }
+}
 function retrieveData() {
     c = localStorage.getItem('projEnteredNum') - 1;
     projTitle.textContent = l[c].title;
 }
-retrieveData();
 // Create new task;
 function hideTaskForm() {
     newTaskFormPopUp.style.display = 'none';
@@ -39,7 +56,7 @@ class Task {
         this.taskName = taskName;
         this.taskDueDate = taskDueDate;
         this.priority = priority;
-        // this.keyword = keyword;
+        this.keyword = keyword;
         this.estCompTime = estCompTime;
     }
 }
@@ -48,15 +65,14 @@ function displayTaskPopUp() {
         newTaskFormPopUp.style.display = 'block';
     });
 }
-displayTaskPopUp();
 if (newTaskForm) newTaskForm.addEventListener("submit", function(event) {
     event.preventDefault();
     let taskName = taskNameInput.value;
     let taskDueDate = taskDueDateInput.value;
     let priority = priorityInput.options[priorityInput.selectedIndex].value;
-    // let keyword = keywordInput.value;
+    let keyword = keywordInput.value;
     let estCompTime = estCompTimeInput.value;
-    submitTaskFrom(taskName, taskDueDate, priority, estCompTime);
+    submitTaskFrom(taskName, taskDueDate, priority, estCompTime, keyword);
 });
 function findBtnClicked() {
     newTaskBtns = document.querySelectorAll('.newTaskBtn');
@@ -65,10 +81,9 @@ function findBtnClicked() {
         console.log(num);
     }).bind(null, i1));
 }
-findBtnClicked();
 // submit the request to create a task;
-function submitTaskFrom(taskName, taskDueDate, priority, estCompTime) {
-    let taskAppend = new Task(taskName, taskDueDate, priority, estCompTime);
+function submitTaskFrom(taskName, taskDueDate, priority, estCompTime, keyword) {
+    let taskAppend = new Task(taskName, taskDueDate, priority, estCompTime, keyword);
     tasklist.push(taskAppend);
     renderTask(taskAppend);
 }
@@ -94,6 +109,14 @@ function renderTask(taskAppend) {
     task.appendChild(menuEllipses);
     task.appendChild(taskTitle);
     task.appendChild(tagBtn);
+    //assign a task keyword(attribute);
+    if (taskAppend.keyword != '') {
+        console.log(taskAppend.keyword.value);
+        let keywordBtn = document.createElement('button');
+        keywordBtn.setAttribute('id', 'keywordBtn');
+        keywordBtn.innerHTML = taskAppend.keyword.value;
+        task.appendChild(keywordBtn);
+    }
     task.appendChild(taskDueDate);
     // findBtnClicked();
     innerList = allStageBoxes[num].querySelector('.innerStageBox');
@@ -190,6 +213,19 @@ function dragNdrop() {
             });
         }
     }
+}
+markdone.addEventListener('click', function(e) {
+    e.preventDefault();
+    markAsDone();
+});
+function markAsDone() {
+    var projects = localStorage.getItem('projects');
+    projects = JSON.parse(projects);
+    markdone.innerHTML = 'Completed';
+    markdone.style.backgroundColor = '#6E703D';
+    var index = localStorage.getItem('projEnteredNum');
+    projects[index - 1].status = "complete";
+    localStorage.setItem('projects', JSON.stringify(projects));
 } // == TESTING BLOCK STARTS == //
  // == TESTING BLOCK ENDS == //
 

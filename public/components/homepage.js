@@ -14,10 +14,10 @@ let templateHTML = document.querySelectorAll('.templateHTML');
 
 // local storage items;
 let countProj = 0;
-let allLocalProj = localStorage.getItem('projects');
-allLocalProj = JSON.parse(allLocalProj);
 let projects = [];
 let projEnteredNum = 0;
+let allLocalProj = localStorage.getItem('projects');
+let deleteProjBtns = document.querySelectorAll('#deleteProjBtn');
 
 // -------------------------------------------- //
 function addNewProject() {
@@ -33,6 +33,8 @@ function cancelCreateNew() {
 retrieveData();
 // Find the project clicked to enter the project page with customised settings;
 findProjClicked();
+// delete project when bin botton clicked;
+deleteProject();
 
 // DEMO TESTING BLOCK HERE STARTS //
 
@@ -133,6 +135,8 @@ function renderProject(project) {
 
     let binIcon = document.createElement('i');
     binIcon.setAttribute('class', 'fa fa-trash-o');
+    binIcon.setAttribute('id', 'deleteProjBtn');
+    binIcon.setAttribute('onclick', 'window.location.reload()');
 
     nameBar.appendChild(projectName);
     nameBar.appendChild(binIcon);
@@ -146,6 +150,8 @@ function renderProject(project) {
     projectList.appendChild(projectColWrapper);
 
     newProjectPopUp.style.display = 'none';
+    deleteProjBtns = document.querySelectorAll('#deleteProjBtn');
+    deleteProject();
 }
 
 function retrieveData() {
@@ -185,6 +191,8 @@ function retrieveData() {
 
                 let binIcon = document.createElement('i');
                 binIcon.setAttribute('class', 'fa fa-trash-o');
+                binIcon.setAttribute('id', 'deleteProjBtn');
+                binIcon.setAttribute('onclick', 'window.location.reload()');
 
                 let info = document.createElement('div');
                 info.setAttribute('class', 'info');
@@ -216,6 +224,21 @@ function findProjClicked() {
     }
 }
 
-function deleteProject() {
 
+function deleteProject() {
+    let cursorLs = [];
+
+    allLocalProj = localStorage.getItem('projects');
+    allLocalProj = JSON.parse(allLocalProj);
+    cursorLs = allLocalProj;
+
+    deleteProjBtns = document.querySelectorAll('#deleteProjBtn');
+
+    for (var i = 0; i < deleteProjBtns.length; i++) {
+        deleteProjBtns[i].addEventListener('click', function (i) {
+            cursorLs.splice(i, 1);
+            console.log(cursorLs);
+            localStorage.setItem('projects', JSON.stringify(cursorLs));
+        }.bind(null, i));
+    }
 }

@@ -101,3 +101,11 @@
         transition: 359deg;
     }
 }
+
+@media (max-width: 700px) {
+    .music {
+        width: 300px;
+        height: 450px;
+        transform: translate(-200px, -40px);
+    }
+}

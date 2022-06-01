@@ -31,10 +31,27 @@ var c = localStorage.getItem('projEnteredNum');
 let l = localStorage.getItem('projects');
 l = JSON.parse(l);
 
+//Mark as done variables;
+var markdone = document.getElementById('markDoneBtn');
+
 // Reading from LocalStorage;
 retrieveData();
 // Find the stage add task button clicked to add task to the corresponding row;
 findBtnClicked();
+// pop up window for task creation;
+displayTaskPopUp();
+// Check project status and modify button display;
+checkProjectStatus();
+
+function checkProjectStatus() {
+    let ls = localStorage.getItem('projects');
+    ls = JSON.parse(ls);
+
+    if (ls[localStorage.getItem('projEnteredNum') - 1].status == "complete") {
+        markdone.innerHTML = 'Completed';
+        markdone.style.backgroundColor = '#6E703D';
+    }
+}
 
 function retrieveData() {
     c = localStorage.getItem('projEnteredNum') - 1;
@@ -51,7 +68,7 @@ class Task {
         this.taskName = taskName;
         this.taskDueDate = taskDueDate;
         this.priority = priority;
-        // this.keyword = keyword;
+        this.keyword = keyword;
         this.estCompTime = estCompTime;
     }
 }
@@ -63,7 +80,6 @@ function displayTaskPopUp() {
         });
     }
 }
-displayTaskPopUp();
 
 if (newTaskForm) {
     newTaskForm.addEventListener("submit", function (event) {
@@ -71,9 +87,9 @@ if (newTaskForm) {
         let taskName = taskNameInput.value;
         let taskDueDate = taskDueDateInput.value;
         let priority = priorityInput.options[priorityInput.selectedIndex].value;
-        // let keyword = keywordInput.value;
+        let keyword = keywordInput.value;
         let estCompTime = estCompTimeInput.value;
-        submitTaskFrom(taskName, taskDueDate, priority, estCompTime);
+        submitTaskFrom(taskName, taskDueDate, priority, estCompTime, keyword);
     });
 }
 
@@ -88,8 +104,8 @@ function findBtnClicked() {
 }
 
 // submit the request to create a task;
-function submitTaskFrom(taskName, taskDueDate, priority, estCompTime) {
-    let taskAppend = new Task(taskName, taskDueDate, priority, estCompTime);
+function submitTaskFrom(taskName, taskDueDate, priority, estCompTime, keyword) {
+    let taskAppend = new Task(taskName, taskDueDate, priority, estCompTime, keyword);
 
     tasklist.push(taskAppend);
     renderTask(taskAppend);
@@ -119,10 +135,21 @@ function renderTask(taskAppend) {
     let taskDueDate = document.createElement('p');
     taskDueDate.innerHTML = taskAppend.taskDueDate;
 
+
     // append all newly created elements into the corresponding place;
     task.appendChild(menuEllipses);
     task.appendChild(taskTitle);
     task.appendChild(tagBtn);
+
+    //assign a task keyword(attribute);
+    if (taskAppend.keyword != '') {
+        console.log(taskAppend.keyword.value);
+        let keywordBtn = document.createElement('button');
+        keywordBtn.setAttribute('id', 'keywordBtn');
+        keywordBtn.innerHTML = taskAppend.keyword.value;
+        task.appendChild(keywordBtn);
+    }
+
     task.appendChild(taskDueDate);
 
     // findBtnClicked();
@@ -252,7 +279,24 @@ function dragNdrop() {
     }
 }
 
+markdone.addEventListener('click', function (e) {
+    e.preventDefault();
+    markAsDone();
+});
 
+function markAsDone() {
+    var projects = localStorage.getItem('projects');
+    projects = JSON.parse(projects);
+
+    markdone.innerHTML = 'Completed';
+    markdone.style.backgroundColor = '#6E703D';
+
+    var index = localStorage.getItem('projEnteredNum');
+
+    projects[index - 1].status = "complete";
+
+    localStorage.setItem('projects', JSON.stringify(projects));
+}
 
 // == TESTING BLOCK STARTS == //
 

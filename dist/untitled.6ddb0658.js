@@ -27,6 +27,8 @@ let l = localStorage.getItem('projects');
 l = JSON.parse(l);
 //Mark as done variables;
 var markdone = document.getElementById('markDoneBtn');
+// content expandable variables;
+var expandContent = document.querySelectorAll(".titleBar");
 // Reading from LocalStorage;
 retrieveData();
 // Find the stage add task button clicked to add task to the corresponding row;
@@ -35,6 +37,8 @@ findBtnClicked();
 displayTaskPopUp();
 // Check project status and modify button display;
 checkProjectStatus();
+// Expandable rows;
+// toggleExpand();
 function checkProjectStatus() {
     let ls = localStorage.getItem('projects');
     ls = JSON.parse(ls);
@@ -86,6 +90,7 @@ function submitTaskFrom(taskName, taskDueDate, priority, estCompTime, keyword) {
     let taskAppend = new Task(taskName, taskDueDate, priority, estCompTime, keyword);
     tasklist.push(taskAppend);
     renderTask(taskAppend);
+    console.log(tasklist);
 }
 // render the task entered/created in the corresponding stage;
 function renderTask(taskAppend) {
@@ -111,7 +116,6 @@ function renderTask(taskAppend) {
     task.appendChild(tagBtn);
     //assign a task keyword(attribute);
     if (taskAppend.keyword != '') {
-        console.log(taskAppend.keyword.value);
         let keywordBtn = document.createElement('button');
         keywordBtn.setAttribute('id', 'keywordBtn');
         keywordBtn.innerHTML = taskAppend.keyword.value;
@@ -139,10 +143,6 @@ if (newStageBtn) newStageBtn.addEventListener('click', function(event) {
     let stageTitleInput = document.createElement('input');
     stageTitleInput.setAttribute('id', 'stageTitle');
     stageTitleInput.setAttribute('placeholder', 'Untitled Stage');
-    // menubar
-    let ellipsesBar = document.createElement('i');
-    ellipsesBar.setAttribute('class', 'fa fa-minus');
-    ellipsesBar.ariaHidden = "true";
     // all stages
     let stagecontent = document.createElement('div');
     stagecontent.setAttribute('class', 'stageContent');
@@ -164,14 +164,14 @@ if (newStageBtn) newStageBtn.addEventListener('click', function(event) {
     stageInput.appendChild(stageLabel);
     stageInput.appendChild(stageTitleInput);
     titleBar.appendChild(stageInput);
-    titleBar.appendChild(ellipsesBar);
     innerStageBoxes.appendChild(first);
     innerStageBoxes.appendChild(sec);
     innerStageBoxes.appendChild(third);
     innerStageBoxes.appendChild(newTaskBtn1);
-    stagecontent.appendChild(titleBar);
     stagecontent.appendChild(innerStageBoxes);
+    stages.appendChild(titleBar);
     stages.appendChild(stagecontent);
+    expandContent = document.querySelectorAll(".titleBar");
     // update all buttons;
     newTaskBtns = document.querySelectorAll('.newTaskBtn');
     allStageBoxes = document.querySelectorAll('.innerStageBoxes');
@@ -226,7 +226,21 @@ function markAsDone() {
     var index = localStorage.getItem('projEnteredNum');
     projects[index - 1].status = "complete";
     localStorage.setItem('projects', JSON.stringify(projects));
-} // == TESTING BLOCK STARTS == //
+} // function toggleExpand() {
+ //     expandContent = document.querySelectorAll(".titleBar");
+ //     for (var i = 0; i < expandContent.length; i++) {
+ //         expandContent[i].addEventListener("click", function () {
+ //             this.classList.toggle("expand");
+ //             var stageContent = this.nextElementSibling;
+ //             if (stageContent.style.display === "block") {
+ //                 stageContent.style.display = "none";
+ //             } else {
+ //                 stageContent.style.display = "block";
+ //             }
+ //         });
+ //     }
+ // }
+ // == TESTING BLOCK STARTS == //
  // == TESTING BLOCK ENDS == //
 
 //# sourceMappingURL=untitled.6ddb0658.js.map

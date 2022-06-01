@@ -1,23 +1,46 @@
 var timer = document.querySelector('.timer');
 var music = document.querySelector('.music');
+var navbar = document.querySelector('.navlinks');
+
 
 function showTimer() {
     timer.style.display = 'block';
     music.style.display = 'none';
 }
 
+
 function hideTimer() {
     timer.style.display = 'none';
 }
+
 
 function showMusicPlayer() {
     music.style.display = 'block';
     timer.style.display = 'none';
 }
 
+
 function hideMusicPlayer() {
     music.style.display = 'none';
 }
+
+
+function displayMenu() {
+    navbar.style.display = 'block';
+}
+
+
+function hideMenu() {
+    navbar.style.display = 'none';
+}
+
+
+window.addEventListener("resize", function () {
+    if (window.matchMedia("(min-width: 700px)").matches) {
+        navbar.style.display = 'block';
+    };
+});
+
 
 // TIMER SCRIPT HERE
 let timeInputSector = document.querySelector('.timeInput');
@@ -42,6 +65,7 @@ window.onload = function () {
     }
 };
 
+
 if (resetBtn) {
     resetBtn.addEventListener('click', function (e) {
         e.preventDefault();
@@ -50,6 +74,7 @@ if (resetBtn) {
         timeInputSector.style.visibility = 'visible';
     });
 }
+
 
 function myDefaultTimer() {
     // default time;
@@ -97,6 +122,7 @@ function myDefaultTimer() {
     }
 }
 
+
 // default break time;
 function defaultBreakTimer() {
     // default break time;
@@ -125,6 +151,7 @@ function defaultBreakTimer() {
         }
     }
 }
+
 
 // custome pomodoro timer;
 function customTimer() {
@@ -182,6 +209,7 @@ function customTimer() {
     }
 }
 
+
 // custome break timer;
 function breakTimer() {
     const minVal = breakMinInput.value;
@@ -214,6 +242,7 @@ function breakTimer() {
     }
 }
 
+
 function inputChecker() {
     if (minInput.value == '') {
         myDefaultTimer();
@@ -237,18 +266,3 @@ function inputChecker() {
 
     }
 }
-var navbar = document.querySelector('.navlinks');
-
-function displayMenu() {
-    navbar.style.display = 'block';
-}
-
-function hideMenu() {
-    navbar.style.display = 'none';
-}
-
-window.addEventListener("resize", function () {
-    if (window.matchMedia("(min-width: 700px)").matches) {
-        navbar.style.display = 'block';
-    };
-});

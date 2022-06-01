@@ -1,5 +1,6 @@
 var timer = document.querySelector('.timer');
 var music = document.querySelector('.music');
+var navbar = document.querySelector('.navlinks');
 function showTimer() {
     timer.style.display = 'block';
     music.style.display = 'none';
@@ -14,6 +15,15 @@ function showMusicPlayer() {
 function hideMusicPlayer() {
     music.style.display = 'none';
 }
+function displayMenu() {
+    navbar.style.display = 'block';
+}
+function hideMenu() {
+    navbar.style.display = 'none';
+}
+window.addEventListener("resize", function() {
+    if (window.matchMedia("(min-width: 700px)").matches) navbar.style.display = 'block';
+});
 // TIMER SCRIPT HERE
 let timeInputSector = document.querySelector('.timeInput');
 let cycles = document.getElementById('pomodoro');
@@ -154,15 +164,5 @@ function inputChecker() {
         });
     }
 }
-var navbar = document.querySelector('.navlinks');
-function displayMenu() {
-    navbar.style.display = 'block';
-}
-function hideMenu() {
-    navbar.style.display = 'none';
-}
-window.addEventListener("resize", function() {
-    if (window.matchMedia("(min-width: 700px)").matches) navbar.style.display = 'block';
-});
 
 //# sourceMappingURL=resource.f3bd186e.js.map

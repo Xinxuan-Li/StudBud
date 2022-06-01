@@ -10,6 +10,7 @@ var myLink = null;
 // storing in local storage variables;
 let resources = [];
 
+
 class ResourceObj {
     constructor(data, summary) {
         this.data = data;
@@ -23,6 +24,7 @@ retreiveLocalRes();
 
 // get request if link input is not empty;
 var request = new XMLHttpRequest();
+
 
 if (urlGetterForm) {
     urlGetterForm.addEventListener('submit', function (e) {
@@ -42,6 +44,7 @@ if (urlGetterForm) {
     });
 }
 
+
 // generate a preview of the url;
 function generatePreview(data) {
     let row = document.createElement('div');
@@ -57,6 +60,9 @@ function generatePreview(data) {
     summaryField.setAttribute('placeholder', 'Type your summary here...');
     summaryField.setAttribute('id', 'summaryField');
     summary.appendChild(summaryField);
+
+    let attributeBtn = document.createElement('button');
+    attributeBtn.setAttribute('id', 'attributeBtn');
 
     let img = document.createElement('img');
     img.setAttribute('src', data.image);
@@ -92,6 +98,7 @@ function generatePreview(data) {
     let resourcesJSON = JSON.stringify(resources);
     localStorage.setItem('resources', resourcesJSON);
 }
+
 
 function retreiveLocalRes() {
     if (localStorage.getItem('resources') != null) {
@@ -151,10 +158,12 @@ function retreiveLocalRes() {
 
 }
 
+
 saveSum.addEventListener('click', function (e) {
     e.preventDefault();
     saveSummary();
 });
+
 
 function saveSummary() {
     allSum = document.querySelectorAll('#summaryField');

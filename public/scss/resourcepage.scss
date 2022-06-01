@@ -129,3 +129,25 @@
     border-radius: 5px;
     border: 1px solid #27271E;
 }
+
+
+@media (max-width: 700px) {
+    #summaryField {
+        width: 100%;
+    }
+
+    .resource-content {
+        width: 220px;
+        height: auto;
+        padding-bottom: 10px;
+    }
+
+    .sub-headings h2 {
+        font-size: 20px;
+    }
+
+    .sub-headings {
+        width: 65%;
+        margin: 20px 3%;
+    }
+}

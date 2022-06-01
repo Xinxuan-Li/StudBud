@@ -13,7 +13,6 @@ var duedateInput = document.getElementById('dueDate');
 let templateHTML = document.querySelectorAll('.templateHTML');
 
 // local storage items;
-let countProj = 0;
 let projects = [];
 let projEnteredNum = 0;
 let allLocalProj = localStorage.getItem('projects');
@@ -29,6 +28,7 @@ function cancelCreateNew() {
 }
 
 // -------------------------------------------- //
+
 // Retreive data from storage to display projects saved;
 retrieveData();
 // Find the project clicked to enter the project page with customised settings;
@@ -38,18 +38,16 @@ deleteProject();
 
 // DEMO TESTING BLOCK HERE STARTS //
 
-
-
 // DEMO TESTING BLOCK HERE ENDS //
-
 
 
 // Create new project;
 class ProjectObj {
-    constructor(title, duedate, status) {
+    constructor(title, duedate, status, listOfTasks) {
         this.title = title;
         this.duedate = duedate;
         this.status = status;
+        this.listOfTasks = listOfTasks;
     }
 }
 
@@ -60,24 +58,24 @@ if (newProjectForm) {
         let projectName = projectNameInput.value;
         let projectDueDate = duedateInput.value;
         let projectStatus = statusInput.options[statusInput.selectedIndex].value;
-        countProj++;
+        let projectTasks = [];
 
-        submitProjForm(projectName, projectDueDate, projectStatus, countProj);
+        submitProjForm(projectName, projectDueDate, projectStatus);
         findProjClicked();
     });
 }
 
 
-
 // add project to the project list.
 function submitProjForm(projectName, projectDueDate, projectStatus) {
 
-    let project = new ProjectObj(projectName, projectDueDate, projectStatus, countProj);
+    let project = new ProjectObj(projectName, projectDueDate, projectStatus, []);
 
     // storing the newly created project to the project list;
     projectListArray.push(project);
     renderProject(project);
 }
+
 
 function updateProjects() {
     if (localStorage.getItem('projects') == null) {
@@ -87,6 +85,7 @@ function updateProjects() {
     let projects = localStorage.getItem('projects');
     projects = JSON.parse(projects);
 }
+
 
 // display the project on screen.
 function renderProject(project) {
@@ -154,6 +153,7 @@ function renderProject(project) {
     deleteProject();
 }
 
+
 function retrieveData() {
     let projectList = document.querySelectorAll('.projectCol');
     let ls = document.querySelector('.projectList');
@@ -213,6 +213,7 @@ function retrieveData() {
         }
     }
 }
+
 
 function findProjClicked() {
     templateHTML = document.querySelectorAll('.templateHTML');

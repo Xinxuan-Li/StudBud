@@ -94,19 +94,14 @@
             </div>
 
             <div class="stage">
-                <div class="stageContent">
-                    <div class="titleBar">
-                        <div class="stageInput">
-                            <label for="stagetitle"></label>
-                            <input name="stagetitle" id="stageTitle" placeholder="Untitled Stage">
-                        </div>
-
-                        <i class="fa fa-minus" aria-hidden="true"></i>
+                <!-- Expandable = toggle(titleBar) + content(stageContent) -->
+                <div class="titleBar">
+                    <div class="stageInput">
+                        <label for="stagetitle"></label>
+                        <input name="stagetitle" id="stageTitle" placeholder="Untitled Stage">
                     </div>
-
-                    <!-- <label for="stagegoal"></label>
-                    <textarea type="text" name="stagegoal" id="stageGoal"></textarea> -->
-
+                </div>
+                <div class="stageContent">
                     <!-- Implement add and drag task here -->
                     <div class="innerStageBoxes">
                         <div class="innerStageBox">
@@ -119,28 +114,38 @@
                     </div>
                 </div>
 
-                <div class="stageContent">
-                    <div class="titleBar">
-                        <div class="stageInput">
-                            <label for="stagetitle"></label>
-                            <input name="stagetitle" id="stageTitle" placeholder="Untitled Stage">
-                        </div>
-                        <i class="fa fa-minus" aria-hidden="true"></i>
+                <div class="titleBar">
+                    <div class="stageInput">
+                        <label for="stagetitle"></label>
+                        <input name="stagetitle" id="stageTitle" placeholder="Untitled Stage">
                     </div>
-
-                    <!-- <label for="stagegoal"></label>
-                    <textarea type="text" name="stagegoal" id="stageGoal"></textarea> -->
-
+                </div>
+                <div class="stageContent">
                     <!-- Implement add and drag task here TESTING -->
                     <div class="innerStageBoxes">
                         <div class="innerStageBox">
-                            <!-- draggable starts -->
-                            <!-- draggable ends -->
                         </div>
-
                         <div class="innerStageBox">
                         </div>
+                        <div class="innerStageBox">
+                        </div>
+                        <button class="newTaskBtn" type="submit">+ new task</button>
+                    </div>
+                </div>
 
+                <div class="titleBar">
+                    <div class="stageInput">
+                        <label for="stagetitle"></label>
+                        <input name="stagetitle" id="stageTitle" placeholder="Untitled Stage">
+                    </div>
+                </div>
+                <div class="stageContent">
+                    <!-- Implement add and drag task here TESTING -->
+                    <div class="innerStageBoxes">
+                        <div class="innerStageBox">
+                        </div>
+                        <div class="innerStageBox">
+                        </div>
                         <div class="innerStageBox">
                         </div>
                         <button class="newTaskBtn" type="submit">+ new task</button>

@@ -34,6 +34,9 @@ l = JSON.parse(l);
 //Mark as done variables;
 var markdone = document.getElementById('markDoneBtn');
 
+// content expandable variables;
+var expandContent = document.querySelectorAll(".titleBar");
+
 // Reading from LocalStorage;
 retrieveData();
 // Find the stage add task button clicked to add task to the corresponding row;
@@ -42,6 +45,9 @@ findBtnClicked();
 displayTaskPopUp();
 // Check project status and modify button display;
 checkProjectStatus();
+// Expandable rows;
+// toggleExpand();
+
 
 function checkProjectStatus() {
     let ls = localStorage.getItem('projects');
@@ -53,15 +59,18 @@ function checkProjectStatus() {
     }
 }
 
+
 function retrieveData() {
     c = localStorage.getItem('projEnteredNum') - 1;
     projTitle.textContent = l[c].title;
 }
 
+
 // Create new task;
 function hideTaskForm() {
     newTaskFormPopUp.style.display = 'none';
 }
+
 
 class Task {
     constructor(taskName, taskDueDate, priority, estCompTime) {
@@ -73,6 +82,7 @@ class Task {
     }
 }
 
+
 function displayTaskPopUp() {
     for (i = 0; i < newTaskBtns.length; i++) {
         newTaskBtns[i].addEventListener("click", function () {
@@ -80,6 +90,7 @@ function displayTaskPopUp() {
         });
     }
 }
+
 
 if (newTaskForm) {
     newTaskForm.addEventListener("submit", function (event) {
@@ -103,12 +114,14 @@ function findBtnClicked() {
     }
 }
 
+
 // submit the request to create a task;
 function submitTaskFrom(taskName, taskDueDate, priority, estCompTime, keyword) {
     let taskAppend = new Task(taskName, taskDueDate, priority, estCompTime, keyword);
 
     tasklist.push(taskAppend);
     renderTask(taskAppend);
+    console.log(tasklist);
 }
 
 // render the task entered/created in the corresponding stage;
@@ -135,7 +148,6 @@ function renderTask(taskAppend) {
     let taskDueDate = document.createElement('p');
     taskDueDate.innerHTML = taskAppend.taskDueDate;
 
-
     // append all newly created elements into the corresponding place;
     task.appendChild(menuEllipses);
     task.appendChild(taskTitle);
@@ -143,7 +155,6 @@ function renderTask(taskAppend) {
 
     //assign a task keyword(attribute);
     if (taskAppend.keyword != '') {
-        console.log(taskAppend.keyword.value);
         let keywordBtn = document.createElement('button');
         keywordBtn.setAttribute('id', 'keywordBtn');
         keywordBtn.innerHTML = taskAppend.keyword.value;
@@ -182,11 +193,6 @@ if (newStageBtn) {
         stageTitleInput.setAttribute('id', 'stageTitle');
         stageTitleInput.setAttribute('placeholder', 'Untitled Stage');
 
-        // menubar
-        let ellipsesBar = document.createElement('i');
-        ellipsesBar.setAttribute('class', 'fa fa-minus');
-        ellipsesBar.ariaHidden = "true";
-
         // all stages
         let stagecontent = document.createElement('div');
         stagecontent.setAttribute('class', 'stageContent');
@@ -214,16 +220,17 @@ if (newStageBtn) {
         stageInput.appendChild(stageLabel);
         stageInput.appendChild(stageTitleInput);
         titleBar.appendChild(stageInput);
-        titleBar.appendChild(ellipsesBar);
 
         innerStageBoxes.appendChild(first);
         innerStageBoxes.appendChild(sec);
         innerStageBoxes.appendChild(third);
         innerStageBoxes.appendChild(newTaskBtn);
 
-        stagecontent.appendChild(titleBar);
         stagecontent.appendChild(innerStageBoxes);
+        stages.appendChild(titleBar);
         stages.appendChild(stagecontent);
+
+        expandContent = document.querySelectorAll(".titleBar");
 
         // update all buttons;
         newTaskBtns = document.querySelectorAll('.newTaskBtn');
@@ -237,6 +244,7 @@ if (newStageBtn) {
         }
     });
 }
+
 
 // drag and drop
 function dragNdrop() {
@@ -279,10 +287,12 @@ function dragNdrop() {
     }
 }
 
+
 markdone.addEventListener('click', function (e) {
     e.preventDefault();
     markAsDone();
 });
+
 
 function markAsDone() {
     var projects = localStorage.getItem('projects');
@@ -297,6 +307,25 @@ function markAsDone() {
 
     localStorage.setItem('projects', JSON.stringify(projects));
 }
+
+
+// function toggleExpand() {
+//     expandContent = document.querySelectorAll(".titleBar");
+
+//     for (var i = 0; i < expandContent.length; i++) {
+//         expandContent[i].addEventListener("click", function () {
+//             this.classList.toggle("expand");
+
+//             var stageContent = this.nextElementSibling;
+//             if (stageContent.style.display === "block") {
+//                 stageContent.style.display = "none";
+
+//             } else {
+//                 stageContent.style.display = "block";
+//             }
+//         });
+//     }
+// }
 
 // == TESTING BLOCK STARTS == //
 

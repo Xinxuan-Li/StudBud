@@ -283,7 +283,7 @@
 }
 
 .timer {
-  width: 23%;
+  width: 25%;
   height: 55%;
   z-index: 1;
   background-color: #fffcf9;
@@ -660,6 +660,16 @@ textarea {
   padding: 5px 20px;
 }
 
+.expand {
+  background-color: none;
+}
+
+.projectBody h2, .projectRoadmap h2 {
+  border-left: 8px solid #6e703d;
+  padding-left: 20px;
+  transform: translateX(-25px);
+}
+
 @media (max-width: 1400px) {
   .statusBar > * {
     width: 31%;
@@ -680,9 +690,28 @@ textarea {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+  .statusBar > * {
+    width: 30%;
+    font-size: 13px;
+  }
+
+  .innerStageBox {
+    height: 100%;
+    min-height: 150px;
+    width: 30%;
+    font-size: 20px;
+  }
+
   .task {
-    font-size: 15px;
+    height: 200px;
+    font-size: 10px;
+  }
+
+  .newTaskFormPopUp {
+    width: 50%;
+    height: auto;
+    transform: translateX(-50px);
   }
 }
 
@@ -979,6 +1008,27 @@ header * {
   width: 40px;
   border: 1px solid #27271e;
   border-radius: 5px;
+}
+
+@media (max-width: 700px) {
+  #summaryField {
+    width: 100%;
+  }
+
+  .resource-content {
+    width: 220px;
+    height: auto;
+    padding-bottom: 10px;
+  }
+
+  .sub-headings h2 {
+    font-size: 20px;
+  }
+
+  .sub-headings {
+    width: 65%;
+    margin: 20px 3%;
+  }
 }
 
 /*# sourceMappingURL=resource.c74267d1.css.map */

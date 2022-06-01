@@ -43,6 +43,8 @@ function generatePreview(data) {
     summaryField.setAttribute('placeholder', 'Type your summary here...');
     summaryField.setAttribute('id', 'summaryField');
     summary.appendChild(summaryField);
+    let attributeBtn = document.createElement('button');
+    attributeBtn.setAttribute('id', 'attributeBtn');
     let img = document.createElement('img');
     img.setAttribute('src', data.image);
     let linkTitle = document.createElement('h2');

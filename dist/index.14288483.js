@@ -9,7 +9,6 @@ var statusInput = document.getElementById('status');
 var duedateInput = document.getElementById('dueDate');
 let templateHTML = document.querySelectorAll('.templateHTML');
 // local storage items;
-let countProj = 0;
 let projects = [];
 let projEnteredNum = 0;
 let allLocalProj = localStorage.getItem('projects');
@@ -32,10 +31,11 @@ deleteProject();
 // DEMO TESTING BLOCK HERE ENDS //
 // Create new project;
 class ProjectObj {
-    constructor(title, duedate, status){
+    constructor(title, duedate, status, listOfTasks){
         this.title = title;
         this.duedate = duedate;
         this.status = status;
+        this.listOfTasks = listOfTasks;
     }
 }
 // add an event listener first for the new project creation form;
@@ -44,13 +44,13 @@ if (newProjectForm) newProjectForm.addEventListener("submit", function(event) {
     let projectName = projectNameInput.value;
     let projectDueDate = duedateInput.value;
     let projectStatus = statusInput.options[statusInput.selectedIndex].value;
-    countProj++;
-    submitProjForm(projectName, projectDueDate, projectStatus, countProj);
+    let projectTasks = [];
+    submitProjForm(projectName, projectDueDate, projectStatus);
     findProjClicked();
 });
 // add project to the project list.
 function submitProjForm(projectName, projectDueDate, projectStatus) {
-    let project = new ProjectObj(projectName, projectDueDate, projectStatus, countProj);
+    let project = new ProjectObj(projectName, projectDueDate, projectStatus, []);
     // storing the newly created project to the project list;
     projectListArray.push(project);
     renderProject(project);

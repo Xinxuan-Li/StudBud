@@ -13,6 +13,11 @@ var sendTagBtn = document.querySelectorAll('#sendTagBtn');
 var alltags = document.querySelectorAll('.alltags');
 // storing in local storage variables;
 let resources = [];
+let tagColours = [
+    '#B7B893',
+    '#6E703D',
+    '#B2A496'
+];
 class ResourceObj {
     constructor(data, summary, tags){
         this.data = data;
@@ -101,8 +106,6 @@ function generatePreview(data) {
         ls.push(reObj);
         localStorage.setItem('resources', JSON.stringify(ls));
     }
-// let resourcesJSON = JSON.stringify(resources);
-// localStorage.setItem('resources', resourcesJSON);
 }
 // Retrieve resource data from local storage, through going through the list and check whether summary is inputed. 
 function retreiveLocalRes() {

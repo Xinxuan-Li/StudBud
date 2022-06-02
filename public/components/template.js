@@ -1,4 +1,4 @@
-// Add task script here
+// Add task variables;
 var newTaskBtn = document.querySelector('#newTaskBtn');
 var newTaskFormPopUp = document.querySelector('.newTaskFormPopUp');
 var newTaskForm = document.getElementById('newTaskForm');
@@ -7,12 +7,12 @@ var list = document.querySelectorAll('.innerStageBox');
 var stageBoxes = document.querySelector('.innerStageBoxes');
 var allStageBoxes = document.querySelectorAll('.innerStageBoxes');
 var stages = document.querySelector('.stage');
-
 var projTitle = document.getElementById('projTitle');
 
+// Drag and drop variablesl;
 var tasklist = [];
 let num = 0;
-let draggedItem = null;
+var draggedItem = null;
 
 // collect inputs entered by user;
 var taskNameInput = document.getElementById('taskName');
@@ -82,7 +82,7 @@ class Task {
     }
 }
 
-
+// Task pop up window correspond to the stage button clicked, and add the task to the stage.
 function displayTaskPopUp() {
     for (i = 0; i < newTaskBtns.length; i++) {
         newTaskBtns[i].addEventListener("click", function () {
@@ -104,12 +104,12 @@ if (newTaskForm) {
     });
 }
 
+// Find the add tasks button clicked location (index). 
 function findBtnClicked() {
     newTaskBtns = document.querySelectorAll('.newTaskBtn');
     for (var i = 0; i < newTaskBtns.length; i++) {
         newTaskBtns[i].addEventListener('click', function (i) {
             num = i;
-            console.log(num);
         }.bind(null, i));
     }
 }
@@ -163,7 +163,6 @@ function renderTask(taskAppend) {
 
     task.appendChild(taskDueDate);
 
-    // findBtnClicked();
     innerList = allStageBoxes[num].querySelector('.innerStageBox');
     innerList.appendChild(task);
 
@@ -235,7 +234,7 @@ if (newStageBtn) {
         // update all buttons;
         newTaskBtns = document.querySelectorAll('.newTaskBtn');
         allStageBoxes = document.querySelectorAll('.innerStageBoxes');
-        findBtnClicked();
+        // findBtnClicked();
 
         for (i = 0; i < newTaskBtns.length; i++) {
             newTaskBtns[i].addEventListener("click", function () {
@@ -264,6 +263,7 @@ function dragNdrop() {
 
         item.addEventListener('dragend', function () {
             setTimeout(function () {
+                // Something wrong here, needs to be fixed;
                 draggedItem.style.display = 'block';
                 draggedItem = null;
             }, 0);
@@ -293,7 +293,7 @@ markdone.addEventListener('click', function (e) {
     markAsDone();
 });
 
-
+// Mark project as done and change the project status in local storage.
 function markAsDone() {
     var projects = localStorage.getItem('projects');
     projects = JSON.parse(projects);
@@ -308,24 +308,24 @@ function markAsDone() {
     localStorage.setItem('projects', JSON.stringify(projects));
 }
 
+// Didn't implement this part because it only works for stages already exists, doesn't work for new stage added.
+function toggleExpand() {
+    var expandContent = document.querySelectorAll(".titleBar");
 
-// function toggleExpand() {
-//     expandContent = document.querySelectorAll(".titleBar");
+    for (var i = 0; i < expandContent.length; i++) {
+        expandContent[i].addEventListener("click", function () {
+            this.classList.toggle("expand");
 
-//     for (var i = 0; i < expandContent.length; i++) {
-//         expandContent[i].addEventListener("click", function () {
-//             this.classList.toggle("expand");
+            var stageContent = this.nextElementSibling;
+            if (stageContent.style.display === "block") {
+                stageContent.style.display = "none";
 
-//             var stageContent = this.nextElementSibling;
-//             if (stageContent.style.display === "block") {
-//                 stageContent.style.display = "none";
-
-//             } else {
-//                 stageContent.style.display = "block";
-//             }
-//         });
-//     }
-// }
+            } else {
+                stageContent.style.display = "block";
+            }
+        });
+    }
+}
 
 // == TESTING BLOCK STARTS == //
 

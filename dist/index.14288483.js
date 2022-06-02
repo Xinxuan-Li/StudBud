@@ -13,14 +13,6 @@ let projects = [];
 let projEnteredNum = 0;
 let allLocalProj = localStorage.getItem('projects');
 let deleteProjBtns = document.querySelectorAll('#deleteProjBtn');
-// -------------------------------------------- //
-function addNewProject() {
-    newPopUp.style.display = 'block';
-}
-function cancelCreateNew() {
-    newPopUp.style.display = 'none';
-}
-// -------------------------------------------- //
 // Retreive data from storage to display projects saved;
 retrieveData();
 // Find the project clicked to enter the project page with customised settings;
@@ -38,15 +30,31 @@ class ProjectObj {
         this.listOfTasks = listOfTasks;
     }
 }
+function addNewProject() {
+    newPopUp.style.display = 'block';
+}
+function cancelCreateNew() {
+    newPopUp.style.display = 'none';
+}
 // add an event listener first for the new project creation form;
 if (newProjectForm) newProjectForm.addEventListener("submit", function(event) {
     event.preventDefault();
+    // Check whether project name already exists. 
+    var nameIsValid = true;
+    allLocalProj = localStorage.getItem('projects');
+    allLocalProj = JSON.parse(allLocalProj);
     let projectName = projectNameInput.value;
+    for(let i = 0; i < allLocalProj.length; i++)if (projectName == allLocalProj[i].title) {
+        alert('Project name already exists, please enter another name');
+        nameIsValid = false;
+    }
     let projectDueDate = duedateInput.value;
     let projectStatus = statusInput.options[statusInput.selectedIndex].value;
     let projectTasks = [];
-    submitProjForm(projectName, projectDueDate, projectStatus);
-    findProjClicked();
+    if (nameIsValid) {
+        submitProjForm(projectName, projectDueDate, projectStatus);
+        findProjClicked();
+    }
 });
 // add project to the project list.
 function submitProjForm(projectName, projectDueDate, projectStatus) {
@@ -108,6 +116,7 @@ function renderProject(project) {
     deleteProjBtns = document.querySelectorAll('#deleteProjBtn');
     deleteProject();
 }
+// Retrieve data from local storage to display all the created projects.
 function retrieveData() {
     let projectList1 = document.querySelectorAll('.projectCol');
     let ls = document.querySelector('.projectList');
@@ -151,6 +160,7 @@ function retrieveData() {
         }
     }
 }
+// Finding the index of the project clicked to entered a customed project template page with the project name;
 function findProjClicked() {
     templateHTML = document.querySelectorAll('.templateHTML');
     for(var i1 = 0; i1 < templateHTML.length; i1++)templateHTML[i1].addEventListener('click', (function(i) {
@@ -158,6 +168,7 @@ function findProjClicked() {
         localStorage.setItem('projEnteredNum', projEnteredNum);
     }).bind(null, i1));
 }
+// Delete project when the bin button is clicked, through finding the index of bin button, remove the corresponding project, store new list to local storage, reload the site to retrieve data and display modified list. 
 function deleteProject() {
     let cursorLs = [];
     allLocalProj = localStorage.getItem('projects');
@@ -166,7 +177,6 @@ function deleteProject() {
     deleteProjBtns = document.querySelectorAll('#deleteProjBtn');
     for(var i2 = 0; i2 < deleteProjBtns.length; i2++)deleteProjBtns[i2].addEventListener('click', (function(i) {
         cursorLs.splice(i, 1);
-        console.log(cursorLs);
         localStorage.setItem('projects', JSON.stringify(cursorLs));
     }).bind(null, i2));
 }

@@ -44,7 +44,8 @@
 
 .resource-content {
     width: 280px;
-    height: 260px;
+    height: auto;
+    padding-bottom: 10px;
     border-radius: 10px;
     box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
     transform: translateY(-1px);
@@ -99,7 +100,7 @@
 }
 
 #urlBox {
-    width: 230px;
+    width: 260px;
     height: 40px;
     border-radius: 8px;
     text-align: left;
@@ -128,8 +129,51 @@
     width: 40px;
     border-radius: 5px;
     border: 1px solid #27271E;
+    display: none;
 }
 
+.leftCol {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.tagInputBar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#tagResInput {
+    margin: 15px 0px;
+    border: 1px solid #27271E;
+    width: 40%;
+    padding: 5px 14px;
+    border-radius: 100px;
+}
+
+#sendTagBtn {
+    height: 30px;
+    width: 30px;
+    margin-left: 15px;
+    border-radius: 100px;
+    border: 1px solid #27271E;
+}
+
+.alltags {
+    display: flex;
+    flex-flow: wrap;
+}
+
+#resTag {
+    border-radius: 100px;
+    background-color: #6E703D;
+    color: #FFFCF9;
+    border: none;
+    padding: 2px 10px;
+    margin: 20px 0px;
+    margin-right: 10px;
+}
 
 @media (max-width: 700px) {
     #summaryField {

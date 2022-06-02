@@ -1,4 +1,4 @@
-// Add task script here
+// Add task variables;
 var newTaskBtn = document.querySelector('#newTaskBtn');
 var newTaskFormPopUp = document.querySelector('.newTaskFormPopUp');
 var newTaskForm = document.getElementById('newTaskForm');
@@ -8,9 +8,10 @@ var stageBoxes = document.querySelector('.innerStageBoxes');
 var allStageBoxes = document.querySelectorAll('.innerStageBoxes');
 var stages = document.querySelector('.stage');
 var projTitle = document.getElementById('projTitle');
+// Drag and drop variablesl;
 var tasklist = [];
 let num = 0;
-let draggedItem = null;
+var draggedItem = null;
 // collect inputs entered by user;
 var taskNameInput = document.getElementById('taskName');
 var taskDueDateInput = document.getElementById('taskDueDate');
@@ -64,6 +65,7 @@ class Task {
         this.estCompTime = estCompTime;
     }
 }
+// Task pop up window correspond to the stage button clicked, and add the task to the stage.
 function displayTaskPopUp() {
     for(i = 0; i < newTaskBtns.length; i++)newTaskBtns[i].addEventListener("click", function() {
         newTaskFormPopUp.style.display = 'block';
@@ -78,11 +80,11 @@ if (newTaskForm) newTaskForm.addEventListener("submit", function(event) {
     let estCompTime = estCompTimeInput.value;
     submitTaskFrom(taskName, taskDueDate, priority, estCompTime, keyword);
 });
+// Find the add tasks button clicked location (index). 
 function findBtnClicked() {
     newTaskBtns = document.querySelectorAll('.newTaskBtn');
     for(var i1 = 0; i1 < newTaskBtns.length; i1++)newTaskBtns[i1].addEventListener('click', (function(i) {
         num = i;
-        console.log(num);
     }).bind(null, i1));
 }
 // submit the request to create a task;
@@ -122,7 +124,6 @@ function renderTask(taskAppend) {
         task.appendChild(keywordBtn);
     }
     task.appendChild(taskDueDate);
-    // findBtnClicked();
     innerList = allStageBoxes[num].querySelector('.innerStageBox');
     innerList.appendChild(task);
     newTaskFormPopUp.style.display = 'none';
@@ -175,7 +176,7 @@ if (newStageBtn) newStageBtn.addEventListener('click', function(event) {
     // update all buttons;
     newTaskBtns = document.querySelectorAll('.newTaskBtn');
     allStageBoxes = document.querySelectorAll('.innerStageBoxes');
-    findBtnClicked();
+    // findBtnClicked();
     for(i = 0; i < newTaskBtns.length; i++)newTaskBtns[i].addEventListener("click", function() {
         newTaskFormPopUp.style.display = 'block';
     });
@@ -196,6 +197,7 @@ function dragNdrop() {
         });
         item.addEventListener('dragend', function() {
             setTimeout(function() {
+                // Something wrong here, needs to be fixed;
                 draggedItem.style.display = 'block';
                 draggedItem = null;
             }, 0);
@@ -218,6 +220,7 @@ markdone.addEventListener('click', function(e) {
     e.preventDefault();
     markAsDone();
 });
+// Mark project as done and change the project status in local storage.
 function markAsDone() {
     var projects = localStorage.getItem('projects');
     projects = JSON.parse(projects);
@@ -226,21 +229,17 @@ function markAsDone() {
     var index = localStorage.getItem('projEnteredNum');
     projects[index - 1].status = "complete";
     localStorage.setItem('projects', JSON.stringify(projects));
-} // function toggleExpand() {
- //     expandContent = document.querySelectorAll(".titleBar");
- //     for (var i = 0; i < expandContent.length; i++) {
- //         expandContent[i].addEventListener("click", function () {
- //             this.classList.toggle("expand");
- //             var stageContent = this.nextElementSibling;
- //             if (stageContent.style.display === "block") {
- //                 stageContent.style.display = "none";
- //             } else {
- //                 stageContent.style.display = "block";
- //             }
- //         });
- //     }
- // }
- // == TESTING BLOCK STARTS == //
+}
+// Didn't implement this part because it only works for stages already exists, doesn't work for new stage added.
+function toggleExpand() {
+    var expandContent1 = document.querySelectorAll(".titleBar");
+    for(var i = 0; i < expandContent1.length; i++)expandContent1[i].addEventListener("click", function() {
+        this.classList.toggle("expand");
+        var stageContent = this.nextElementSibling;
+        if (stageContent.style.display === "block") stageContent.style.display = "none";
+        else stageContent.style.display = "block";
+    });
+} // == TESTING BLOCK STARTS == //
  // == TESTING BLOCK ENDS == //
 
 //# sourceMappingURL=untitled.6ddb0658.js.map

@@ -17,6 +17,7 @@ Pomodoro timer is inspired and modified from the youtube source https://www.yout
 
 The music player contains 100 lofi songs retrieved from Spotify to create a relaxing and chill learning atmosphere. The web app only provides lofi because it is less disturbing and more comforting to listen to while studying.
 
+StudBud only provides one type of music because it aims to cause minimal disruption to users while they are studying. And lofi was though to be the most relaxing type of music and suitable for studying. 
 
 **Resource List**
 
@@ -53,7 +54,7 @@ Drag and drop event lister is following the tutorial https://www.youtube.com/wat
 Code perspective
 1. Tasks in each stage should be added to local storage to make this web app actually function. 
 
-2. Pomodoro timer being able to run across the site.
+2. Pomodoro timer shoudld be able to run across the site.
 
 3. Enable auto save on the resource page.
 
@@ -63,6 +64,8 @@ Design perspective
 1. Be more customisable. Different types of students should be provided with a template to start with. For example, computer science students can use a pre-set template designed for coding projects, and design students should be provided with a design project template.
 
 2. Allow users to select from a list of existing project names, and assign it as tag to resource.
+
+3. Have a shuffle button that retrieves different lofi song lists from spotify.
 
 **References**
 

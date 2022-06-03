@@ -86,7 +86,7 @@
 
 .newProjectPopUp {
   width: 30%;
-  height: 65%;
+  height: 70%;
   background-color: #fff;
   border: 2px solid #27271e;
   border-radius: 8px;
@@ -113,7 +113,12 @@
   margin-top: 40px;
 }
 
-.newProjectPopUp h1, #newProjectForm {
+.newProjectPopUp h1 {
+  background-color: #0000;
+  margin: 0;
+}
+
+#newProjectForm {
   background-color: #0000;
 }
 
@@ -124,6 +129,7 @@
 
 #newProjectForm ul {
   background-color: #0000;
+  margin-top: 10px;
   padding: 0;
   font-size: 20px;
 }
@@ -690,13 +696,13 @@ textarea {
 
 .newTaskFormPopUp {
   width: 30%;
-  height: 60%;
+  height: 70%;
   border: 1px solid #27271e;
   border-radius: 10px;
-  padding: 30px 50px;
+  padding: 20px 50px;
   display: none;
   position: fixed;
-  top: 100px;
+  top: 70px;
   left: 30%;
 }
 

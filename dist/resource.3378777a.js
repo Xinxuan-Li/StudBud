@@ -13,11 +13,6 @@ var sendTagBtn = document.querySelectorAll('#sendTagBtn');
 var alltags = document.querySelectorAll('.alltags');
 // storing in local storage variables;
 let resources = [];
-let tagColours = [
-    '#B7B893',
-    '#6E703D',
-    '#B2A496'
-];
 class ResourceObj {
     constructor(data, summary, tags){
         this.data = data;
@@ -59,6 +54,7 @@ function generatePreview(data) {
     tagResInput1.setAttribute('placeholder', 'Assign me a tag');
     let sendTag = document.createElement('button');
     sendTag.setAttribute('id', 'sendTagBtn');
+    sendTag.setAttribute('type', "submit");
     let sendIcon = document.createElement('i');
     sendIcon.setAttribute('class', 'fa fa-paper-plane-o');
     let tagInputBar = document.createElement('div');
@@ -106,6 +102,7 @@ function generatePreview(data) {
         ls.push(reObj);
         localStorage.setItem('resources', JSON.stringify(ls));
     }
+    window.location.reload();
 }
 // Retrieve resource data from local storage, through going through the list and check whether summary is inputed. 
 function retreiveLocalRes() {
@@ -133,6 +130,7 @@ function retreiveLocalRes() {
                 alltags2.appendChild(resTag);
             }
             let sendTag = document.createElement('button');
+            sendTag.setAttribute('type', "submit");
             sendTag.setAttribute('id', 'sendTagBtn');
             let sendIcon = document.createElement('i');
             sendIcon.setAttribute('class', 'fa fa-paper-plane-o');
@@ -191,23 +189,30 @@ function assignTag() {
     leftCols = document.querySelectorAll('.leftCol');
     tagResInput = document.querySelectorAll('#tagResInput');
     sendTagBtn = document.querySelectorAll('#sendTagBtn');
-    console.log(leftCols);
     let list = localStorage.getItem('resources');
     list = JSON.parse(list);
     let cursorLs = [];
     for(let i1 = 0; i1 < leftCols.length; i1++)sendTagBtn[i1].addEventListener('click', (function(i) {
+        var exist = false;
         cursorLs = list[i].tags;
         alltags = leftCols[i].querySelector('.alltags');
         if (tagResInput[i].value != '') {
-            cursorLs.push(tagResInput[i].value);
-            let resTag = document.createElement('button');
-            resTag.setAttribute('id', 'resTag');
-            resTag.innerHTML = tagResInput[i].value;
-            alltags.appendChild(resTag);
-            tagResInput[i].value = '';
-            // Put updated tag ls into local storage;
-            list[i].tags = cursorLs;
-            localStorage.setItem('resources', JSON.stringify(list));
+            for(let j = 0; j < cursorLs.length; j++)if (tagResInput[i].value == cursorLs[j]) {
+                exist = true;
+                alert('Tag already exist, give it another name.');
+                break;
+            }
+            if (exist == false) {
+                cursorLs.push(tagResInput[i].value);
+                let resTag = document.createElement('button');
+                resTag.setAttribute('id', 'resTag');
+                resTag.innerHTML = tagResInput[i].value;
+                alltags.appendChild(resTag);
+                tagResInput[i].value = '';
+                // Put updated tag ls into local storage;
+                list[i].tags = cursorLs;
+                localStorage.setItem('resources', JSON.stringify(list));
+            }
         }
     }).bind(null, i1));
 }

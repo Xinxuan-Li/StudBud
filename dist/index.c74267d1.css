@@ -284,7 +284,7 @@ iframe {
   .music {
     width: 300px;
     height: 450px;
-    transform: translate(-200px, -40px);
+    transform: translate(-170px, -40px);
   }
 }
 
@@ -296,6 +296,7 @@ iframe {
   border: 2px solid #27271e;
   border-radius: 8px;
   margin-top: 20px;
+  padding-bottom: 25px;
   display: none;
   position: absolute;
   transform: translateX(-80%);
@@ -407,8 +408,9 @@ iframe {
 
 @media (max-width: 700px) {
   .timer {
-    width: 300px;
+    width: 280px;
     height: 450px;
+    transform: translateX(1px);
   }
 }
 
@@ -432,6 +434,7 @@ iframe {
 }
 
 #projTitle {
+  width: auto;
   border: none;
   font-size: 30px;
 }
@@ -441,7 +444,10 @@ iframe {
 }
 
 .stageInput {
+  flex-wrap: wrap;
+  align-items: center;
   margin: 15px 0;
+  display: flex;
 }
 
 #markDoneBtn {
@@ -451,6 +457,41 @@ iframe {
   border-radius: 100px;
   padding: 2px 20px;
   font-size: 20px;
+}
+
+#markDoneBtn:hover {
+  cursor: pointer;
+}
+
+.infoBar {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.fa-info-circle {
+  color: #504f4f;
+  font-size: 25px;
+}
+
+.fa-info-circle:hover {
+  cursor: pointer;
+}
+
+#guide {
+  z-index: 1;
+  width: 300px;
+  height: auto;
+  border: 1px solid #27271e;
+  border-radius: 6px;
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 22px;
+  display: none;
+  position: absolute;
+  transform: translateX(-300px);
 }
 
 .projectBody textarea {
@@ -474,8 +515,21 @@ textarea:focus {
   display: flex;
 }
 
+#stageCheck {
+  width: 30px;
+  height: 30px;
+  appearance: none;
+  color: #27271e;
+  border: 1px solid #9f9f9f;
+  border-radius: 100%;
+  margin: 0 15px;
+}
+
 #stageTitle {
+  width: 140px;
   border: none;
+  border-left: 5px solid #b3a496;
+  padding-left: 10px;
   font-size: 20px;
 }
 
@@ -571,7 +625,7 @@ textarea {
 
 .task {
   width: 100%;
-  height: 130px;
+  height: auto;
   background-color: #fff;
   border: 1px solid #9f9f9f;
   border-radius: 8px;
@@ -581,22 +635,23 @@ textarea {
 
 .task h4 {
   background-color: #0000;
+  margin-top: 15px;
   margin-left: 10px;
   font-size: 18px;
 }
 
 .task p {
   background-color: #0000;
-  margin-top: 10px;
+  margin-top: 13px;
   margin-left: 10px;
   font-size: 15px;
 }
 
 .fa-ellipsis-h {
+  display: blocks;
   text-align: right;
   background-color: #0000;
   margin: 10px 12px 0;
-  display: block;
 }
 
 .bottomContent {
@@ -671,10 +726,23 @@ textarea {
   background-color: none;
 }
 
-.projectBody h2, .projectRoadmap h2 {
+.fa-caret-up, .fa-caret-down {
+  font-size: 25px;
+}
+
+.projectBody h2, .projectRoadmap h2, .inspo-quote-block h2 {
   border-left: 8px solid #6e703d;
   padding-left: 20px;
   transform: translateX(-25px);
+}
+
+.inspo-quote-block p {
+  padding-left: 2px;
+}
+
+#author {
+  color: #9f9f9f;
+  font-size: 14px;
 }
 
 @media (max-width: 1400px) {
@@ -692,7 +760,7 @@ textarea {
 
   .task {
     width: 100%;
-    height: 140px;
+    height: auto;
     padding-bottom: 10px;
   }
 }
@@ -711,7 +779,7 @@ textarea {
   }
 
   .task {
-    height: 200px;
+    margin: 5px;
     font-size: 10px;
   }
 
@@ -853,7 +921,7 @@ header * {
     padding: 80px 30px;
     font-size: 20px;
     display: none;
-    position: absolute;
+    position: fixed;
     transform: translate(-265px, -70px);
   }
 
@@ -914,7 +982,7 @@ header * {
 }
 
 .sub-headings {
-  width: 40%;
+  width: 470px;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 20px 3%;
@@ -1047,6 +1115,7 @@ header * {
 }
 
 .alltags {
+  width: 270px;
   flex-flow: wrap;
   display: flex;
 }
@@ -1078,6 +1147,10 @@ header * {
   .sub-headings {
     width: 65%;
     margin: 20px 3%;
+  }
+
+  .alltags {
+    width: 220px;
   }
 }
 

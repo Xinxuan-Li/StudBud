@@ -41,18 +41,22 @@ if (newProjectForm) newProjectForm.addEventListener("submit", function(event) {
     event.preventDefault();
     // Check whether project name already exists. 
     var nameIsValid = true;
-    allLocalProj = localStorage.getItem('projects');
-    allLocalProj = JSON.parse(allLocalProj);
+    // let projectJSON = JSON.stringify(projects);
+    // localStorage.setItem('resources', projectJSON);
     let projectName = projectNameInput.value;
-    for(let i = 0; i < allLocalProj.length; i++)if (projectName == allLocalProj[i].title) {
-        alert('Project name already exists, please enter another name');
-        nameIsValid = false;
+    if (localStorage.getItem('projects') != null) {
+        allLocalProj = localStorage.getItem('projects');
+        allLocalProj = JSON.parse(allLocalProj);
+        for(let i = 0; i < allLocalProj.length; i++)if (projectName == allLocalProj[i].title) {
+            alert('Project name already exists, please enter another name');
+            nameIsValid = false;
+        }
     }
     let projectDueDate = duedateInput.value;
     let projectStatus = statusInput.options[statusInput.selectedIndex].value;
     let projectTasks = [];
     if (nameIsValid) {
-        submitProjForm(projectName, projectDueDate, projectStatus);
+        submitProjForm(projectName, projectDueDate, projectStatus, projectTasks);
         findProjClicked();
     }
 });

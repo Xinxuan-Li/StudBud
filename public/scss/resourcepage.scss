@@ -29,7 +29,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 40%;
+    width: 470px;
     margin: 20px 3%;
 }
 
@@ -162,7 +162,8 @@
 
 .alltags {
     display: flex;
-    flex-flow: wrap;
+    flex-flow: row wrap;
+    width: 270px;
 }
 
 #resTag {
@@ -193,5 +194,9 @@
     .sub-headings {
         width: 65%;
         margin: 20px 3%;
+    }
+
+    .alltags {
+        width: 220px;
     }
 }

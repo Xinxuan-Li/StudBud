@@ -68,6 +68,12 @@
             <button id="markDoneBtn">Mark as Done</button>
         </div>
 
+        <div class="inspo-quote-block">
+            <h2>Motivation Quote</h2>
+            <p id="quote"></p>
+            <p id="author"></p>
+        </div>
+
         <div class="projectBody">
             <h2>Project Deliverable</h2>
             <label for="pdeliverable"></label>
@@ -75,7 +81,23 @@
         </div>
 
         <div class="projectRoadmap">
-            <h2>Project Roadmap</h2>
+            <div class="infoBar">
+                <h2>Project Roadmap</h2>
+                <i class="fa fa-info-circle" onclick="infoPopUp()">
+                    <p id="guide">
+                        A project is usually consisted of 5 stages: planning, researching, executing, testing, and
+                        publishing.
+                        We devide up our big projects into different sections (or stages) to micro-manage and monitor
+                        the
+                        project progression and performance. By doing so, we can easily spot at which point an issue has
+                        occur, or
+                        which stage has been performing lower than average. It is also up to you to segment your own
+                        project
+                        according to your own needs.
+                    </p>
+                </i>
+            </div>
+
             <div class="statusBar">
                 <div id="notStart">
                     <p>To-Do</p>
@@ -96,7 +118,10 @@
                     <div class="stageInput">
                         <label for="stagetitle"></label>
                         <input name="stagetitle" id="stageTitle" placeholder="Untitled Stage">
+                        <label for="stagecheck"></label>
+                        <button id="stageCheck"></button>
                     </div>
+                    <i class="fa fa-caret-up" id="close"></i>
                 </div>
                 <div class="stageContent">
                     <!-- Implement add and drag task here -->
@@ -115,7 +140,9 @@
                     <div class="stageInput">
                         <label for="stagetitle"></label>
                         <input name="stagetitle" id="stageTitle" placeholder="Untitled Stage">
+                        <button id="stageCheck"></button>
                     </div>
+                    <i class="fa fa-caret-up" id="close"></i>
                 </div>
                 <div class="stageContent">
                     <!-- Implement add and drag task here -->
@@ -134,7 +161,9 @@
                     <div class="stageInput">
                         <label for="stagetitle"></label>
                         <input name="stagetitle" id="stageTitle" placeholder="Untitled Stage">
+                        <button id="stageCheck"></button>
                     </div>
+                    <i class="fa fa-caret-up" id="close"></i>
                 </div>
                 <div class="stageContent">
                     <!-- Implement add and drag task here -->

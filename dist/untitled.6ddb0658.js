@@ -11,7 +11,7 @@ var projTitle = document.getElementById('projTitle');
 // Drag and drop variablesl;
 var tasklist = [];
 let num = 0;
-var draggedItem = null;
+let draggedItem = null;
 // collect inputs entered by user;
 var taskNameInput = document.getElementById('taskName');
 var taskDueDateInput = document.getElementById('taskDueDate');
@@ -30,6 +30,8 @@ l = JSON.parse(l);
 var markdone = document.getElementById('markDoneBtn');
 // content expandable variables;
 var expandContent = document.querySelectorAll(".titleBar");
+var guide = document.getElementById('guide');
+var stageDoneBtn = document.querySelectorAll('#stageCheck');
 // Reading from LocalStorage;
 retrieveData();
 // Find the stage add task button clicked to add task to the corresponding row;
@@ -39,7 +41,13 @@ displayTaskPopUp();
 // Check project status and modify button display;
 checkProjectStatus();
 // Expandable rows;
-// toggleExpand();
+toggleExpand();
+// Check stage position, colour differentiate each row;
+colourStage();
+// Retrieve quote;
+getQuotes();
+// Mark project as done;
+markStageAsDone();
 function checkProjectStatus() {
     let ls = localStorage.getItem('projects');
     ls = JSON.parse(ls);
@@ -56,6 +64,10 @@ function retrieveData() {
 function hideTaskForm() {
     newTaskFormPopUp.style.display = 'none';
 }
+function infoPopUp() {
+    if (guide.style.display == 'none') guide.style.display = 'block';
+    else guide.style.display = 'none';
+}
 class Task {
     constructor(taskName, taskDueDate, priority, estCompTime){
         this.taskName = taskName;
@@ -64,6 +76,19 @@ class Task {
         this.keyword = keyword;
         this.estCompTime = estCompTime;
     }
+}
+var quote = document.getElementById('quote');
+var author = document.getElementById('author');
+function getQuotes() {
+    var request = new XMLHttpRequest();
+    request.open('GET', "https://type.fit/api/quotes");
+    request.onload = function() {
+        // The number of valid quotes is 200;
+        let data = JSON.parse(this.response);
+        quote.innerHTML = data[Math.floor(Math.random() * data.length)].text;
+        author.innerHTML = data[Math.floor(Math.random() * data.length)].author;
+    };
+    request.send();
 }
 // Task pop up window correspond to the stage button clicked, and add the task to the stage.
 function displayTaskPopUp() {
@@ -99,21 +124,24 @@ function renderTask(taskAppend) {
     let task = document.createElement('div');
     task.setAttribute('class', 'task');
     task.draggable = "true";
-    let menuEllipses = document.createElement('i');
-    menuEllipses.setAttribute('class', 'fa fa-ellipsis-h');
-    menuEllipses.ariaHidden = "true";
     //task title;
     let taskTitle = document.createElement('h4');
-    taskTitle.innerHTML = taskAppend.taskName;
+    if (taskAppend.taskName == '') taskTitle.innerHTML = 'Untitled task';
+    else taskTitle.innerHTML = taskAppend.taskName;
     //task priority tag;
     let tagBtn = document.createElement('button');
     tagBtn.setAttribute('id', 'tagBtn');
     tagBtn.innerHTML = taskAppend.priority;
+    if (taskAppend.priority == 'high') tagBtn.style.backgroundColor = '#C29F90';
+    else if (taskAppend.priority == 'medium') tagBtn.style.backgroundColor = '#BEB286';
+    else if (taskAppend.priority == 'low') tagBtn.style.backgroundColor = '#6E703D';
     //task due date;
     let taskDueDate = document.createElement('p');
-    taskDueDate.innerHTML = taskAppend.taskDueDate;
+    if (taskAppend.taskDueDate == '' && taskAppend.estCompTime != '') taskDueDate.innerHTML = taskAppend.estCompTime + ", " + 'No due date';
+    else if (taskAppend.estCompTime == '') taskDueDate.innerHTML = taskAppend.taskDueDate;
+    else if (taskAppend.taskDueDate == '' && taskAppend.estCompTime == '') taskDueDate.innerHTML = 'No date or time';
+    else taskDueDate.innerHTML = taskAppend.estCompTime + ", " + taskAppend.taskDueDate;
     // append all newly created elements into the corresponding place;
-    task.appendChild(menuEllipses);
     task.appendChild(taskTitle);
     task.appendChild(tagBtn);
     //assign a task keyword(attribute);
@@ -121,8 +149,11 @@ function renderTask(taskAppend) {
         let keywordBtn = document.createElement('button');
         keywordBtn.setAttribute('id', 'keywordBtn');
         keywordBtn.innerHTML = taskAppend.keyword.value;
-        task.appendChild(keywordBtn);
     }
+    let keywordBtn = document.createElement('button');
+    keywordBtn.setAttribute('id', 'keywordBtn');
+    keywordBtn.innerHTML = 'No keyword';
+    task.appendChild(keywordBtn);
     task.appendChild(taskDueDate);
     innerList = allStageBoxes[num].querySelector('.innerStageBox');
     innerList.appendChild(task);
@@ -136,6 +167,8 @@ if (newStageBtn) newStageBtn.addEventListener('click', function(event) {
     // titleBar
     let titleBar = document.createElement('div');
     titleBar.setAttribute('class', 'titleBar');
+    let stageDoneBtn1 = document.createElement('button');
+    stageDoneBtn1.setAttribute('id', 'stageCheck');
     // label and input
     let stageInput = document.createElement('div');
     stageInput.setAttribute('class', 'stageInput');
@@ -144,6 +177,9 @@ if (newStageBtn) newStageBtn.addEventListener('click', function(event) {
     let stageTitleInput = document.createElement('input');
     stageTitleInput.setAttribute('id', 'stageTitle');
     stageTitleInput.setAttribute('placeholder', 'Untitled Stage');
+    let toggleIcon = document.createElement('i');
+    toggleIcon.setAttribute('class', 'fa fa-caret-up');
+    toggleIcon.setAttribute('id', 'close');
     // all stages
     let stagecontent = document.createElement('div');
     stagecontent.setAttribute('class', 'stageContent');
@@ -164,7 +200,9 @@ if (newStageBtn) newStageBtn.addEventListener('click', function(event) {
     newTaskBtn1.setAttribute('type', 'submit');
     stageInput.appendChild(stageLabel);
     stageInput.appendChild(stageTitleInput);
+    stageInput.appendChild(stageDoneBtn1);
     titleBar.appendChild(stageInput);
+    titleBar.appendChild(toggleIcon);
     innerStageBoxes.appendChild(first);
     innerStageBoxes.appendChild(sec);
     innerStageBoxes.appendChild(third);
@@ -176,7 +214,10 @@ if (newStageBtn) newStageBtn.addEventListener('click', function(event) {
     // update all buttons;
     newTaskBtns = document.querySelectorAll('.newTaskBtn');
     allStageBoxes = document.querySelectorAll('.innerStageBoxes');
-    // findBtnClicked();
+    findBtnClicked();
+    colourStage();
+    toggleExpand();
+    markStageAsDone();
     for(i = 0; i < newTaskBtns.length; i++)newTaskBtns[i].addEventListener("click", function() {
         newTaskFormPopUp.style.display = 'block';
     });
@@ -197,7 +238,6 @@ function dragNdrop() {
         });
         item.addEventListener('dragend', function() {
             setTimeout(function() {
-                // Something wrong here, needs to be fixed;
                 draggedItem.style.display = 'block';
                 draggedItem = null;
             }, 0);
@@ -230,15 +270,41 @@ function markAsDone() {
     projects[index - 1].status = "complete";
     localStorage.setItem('projects', JSON.stringify(projects));
 }
-// Didn't implement this part because it only works for stages already exists, doesn't work for new stage added.
+// Doesn't work properly;
+var c = 0;
 function toggleExpand() {
-    var expandContent1 = document.querySelectorAll(".titleBar");
-    for(var i = 0; i < expandContent1.length; i++)expandContent1[i].addEventListener("click", function() {
+    expandContent = document.querySelectorAll('.titleBar');
+    for(var i = 0; i < expandContent.length; i++)// var toggleIcon = expandContent[i].querySelector('#close');
+    // console.log(expandContent[i]);
+    // console.log(toggleIcon);
+    expandContent[i].addEventListener("click", function() {
+        if (c == 0) {
+            alert('For marker: This part (toggle expand) doesn\'t work properly, as in when you add new stage, toggle expand is messed up, please leave some hints in the marking comments of how to get it fixed if that is possible. Thank you! Location: template.js line 346.');
+            c++;
+        }
+        // var toggleIcon = document.querySelectorAll('#close');
+        // var cursor = document.querySelector('#close');
         this.classList.toggle("expand");
         var stageContent = this.nextElementSibling;
-        if (stageContent.style.display === "block") stageContent.style.display = "none";
+        if (stageContent.style.display == "block") stageContent.style.display = "none";
         else stageContent.style.display = "block";
     });
+}
+function colourStage() {
+    allStageBoxes = document.querySelectorAll('.innerStageBoxes');
+    for(let i = 0; i < allStageBoxes.length; i++){
+        var boxes = allStageBoxes[i].querySelectorAll('.innerStageBox');
+        if (i % 2 == 1) for(let j = 0; j < 3; j++)boxes[j].style.backgroundColor = '#EEEEE7';
+    }
+}
+function markStageAsDone() {
+    expandContent = document.querySelectorAll('.titleBar');
+    stageDoneBtn = document.querySelectorAll('#stageCheck');
+    for(var i2 = 0; i2 < stageDoneBtn.length; i2++)stageDoneBtn[i2].addEventListener('click', (function(i) {
+        var btn = expandContent[i].querySelector('#stageCheck');
+        if (btn.innerHTML == '') btn.innerHTML = '&#x2713';
+        else btn.innerHTML = '';
+    }).bind(null, i2));
 } // == TESTING BLOCK STARTS == //
  // == TESTING BLOCK ENDS == //
 

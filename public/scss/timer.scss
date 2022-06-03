@@ -5,6 +5,7 @@
     height: 50%;
     transform: translateX(-80%);
     margin-top: 20px;
+    padding-bottom: 25px;
     position: absolute;
     background-color: #FFFCF9;
     border: 2px solid #27271E;
@@ -124,7 +125,9 @@
 
 @media (max-width: 700px) {
     .timer {
-        width: 300px;
+        width: 280px;
         height: 450px;
+        transform: translateX(1px);
     }
+
 }

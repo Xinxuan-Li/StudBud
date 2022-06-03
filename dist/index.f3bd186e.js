@@ -34,17 +34,28 @@ const countDisplay = document.getElementById('countDisplay');
 let setTimeForm = document.getElementById('setTime');
 let minInput = document.getElementById('mins');
 let breakMinInput = document.getElementById('breakTime');
-window.onload = function() {
-    if (startBtn) startBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        inputChecker();
-        startBtn.innerHTML = 'Pause';
-    });
-};
-if (resetBtn) resetBtn.addEventListener('click', function(e) {
+var mintxt = document.querySelector('.mintxt');
+if (startBtn) startBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    countDisplay.style.display = 'none';
-    timeInputSector.style.visibility = 'visible';
+    inputChecker();
+    startBtn.innerHTML = 'Pause';
+});
+if (resetBtn) resetBtn.addEventListener('click', function() {
+    window.location.reload();
+    timer.style.display = 'block';
+// countDisplay.style.display = 'none';
+// var timeInput = document.querySelector('.timeInput');
+// // var count = document.querySelector('.countDisplay');
+// var pomo = document.querySelector('.pomoInput');
+// var breakInput = document.querySelector('.breakInput');
+// var control = document.querySelector('.controlTimer');
+// timeInput.appendChild(minInput);
+// timeInput.appendChild(mintxt);
+// setTimeForm.appendChild(timeInput);
+// // setTimeForm.appendChild(count);
+// setTimeForm.appendChild(pomo);
+// setTimeForm.appendChild(breakInput);
+// setTimeForm.appendChild(control);
 });
 function myDefaultTimer() {
     // default time;

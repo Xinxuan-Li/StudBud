@@ -23,11 +23,12 @@ deleteProject();
 // DEMO TESTING BLOCK HERE ENDS //
 // Create new project;
 class ProjectObj {
-    constructor(title, duedate, status, listOfTasks){
+    constructor(title, duedate, status){
         this.title = title;
         this.duedate = duedate;
         this.status = status;
-        this.listOfTasks = listOfTasks;
+    // this.listOfTasks = listOfTasks;
+    // this.deliverable = deliverable;
     }
 }
 function addNewProject() {
@@ -41,9 +42,11 @@ if (newProjectForm) newProjectForm.addEventListener("submit", function(event) {
     event.preventDefault();
     // Check whether project name already exists. 
     var nameIsValid = true;
-    // let projectJSON = JSON.stringify(projects);
-    // localStorage.setItem('resources', projectJSON);
     let projectName = projectNameInput.value;
+    if (projectName == '') {
+        nameIsValid = false;
+        alert('Please input a name for the project.');
+    }
     if (localStorage.getItem('projects') != null) {
         allLocalProj = localStorage.getItem('projects');
         allLocalProj = JSON.parse(allLocalProj);
@@ -54,15 +57,14 @@ if (newProjectForm) newProjectForm.addEventListener("submit", function(event) {
     }
     let projectDueDate = duedateInput.value;
     let projectStatus = statusInput.options[statusInput.selectedIndex].value;
-    let projectTasks = [];
     if (nameIsValid) {
-        submitProjForm(projectName, projectDueDate, projectStatus, projectTasks);
+        submitProjForm(projectName, projectDueDate, projectStatus);
         findProjClicked();
     }
 });
 // add project to the project list.
-function submitProjForm(projectName, projectDueDate, projectStatus) {
-    let project = new ProjectObj(projectName, projectDueDate, projectStatus, []);
+function submitProjForm(projectName, projectDueDate, projectStatus, projectTasks, pdeliverable) {
+    let project = new ProjectObj(projectName, projectDueDate, projectStatus);
     // storing the newly created project to the project list;
     projectListArray.push(project);
     renderProject(project);

@@ -119,7 +119,7 @@ function getQuotes() {
         // The number of valid quotes is 200, although in the console it printed more than 200 items. Any thing more then 200 is empty;
         let data = JSON.parse(this.response);
         quote.innerHTML = data[Math.floor(Math.random() * data.length)].text
-        author.innerHTML = data[Math.floor(Math.random() * data.length)].author;
+        author.innerHTML = data[Math.floor(Math.random() * data.length) - 1].author;
     }
 
     request.send();

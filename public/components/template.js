@@ -300,10 +300,11 @@ if (newStageBtn) {
         newTaskBtns = document.querySelectorAll('.newTaskBtn');
         allStageBoxes = document.querySelectorAll('.innerStageBoxes');
         list = document.querySelectorAll('.innerStageBox');
+        expandContent = document.querySelectorAll('.titleBar');
+        stageDoneBtn = document.querySelectorAll('#stageCheck');
         // Enable these methods in the newly created stage;
         findBtnClicked();
         colourStage();
-        // toggleExpand();
         markStageAsDone();
         dragNdrop()
 
@@ -318,6 +319,8 @@ if (newStageBtn) {
     newTaskBtns = document.querySelectorAll('.newTaskBtn');
     allStageBoxes = document.querySelectorAll('.innerStageBoxes');
     list = document.querySelectorAll('.innerStageBox');
+    expandContent = document.querySelectorAll('.titleBar');
+    stageDoneBtn = document.querySelectorAll('#stageCheck');
 }
 
 

@@ -528,7 +528,6 @@ textarea:focus {
   color: #27271e;
   border: 1px solid #9f9f9f;
   border-radius: 100%;
-  margin: 0 15px;
 }
 
 #stageTitle {
@@ -631,7 +630,7 @@ textarea {
 
 .task {
   width: 100%;
-  height: auto;
+  height: 150px;
   background-color: #fff;
   border: 1px solid #9f9f9f;
   border-radius: 8px;
@@ -758,8 +757,6 @@ textarea {
   }
 
   .innerStageBox {
-    height: 100%;
-    min-height: 150px;
     width: 31%;
     font-size: 20px;
   }
@@ -778,8 +775,6 @@ textarea {
   }
 
   .innerStageBox {
-    height: 100%;
-    min-height: 150px;
     width: 30%;
     font-size: 20px;
   }
@@ -1137,22 +1132,26 @@ header * {
 
 @media (max-width: 700px) {
   #summaryField {
-    width: 100%;
+    width: 160%;
+    margin-left: -60px;
+    padding-left: 5px;
+    font-size: 14px;
   }
 
   .resource-content {
-    width: 220px;
+    width: 150px;
     height: auto;
     padding-bottom: 10px;
   }
 
   .sub-headings h2 {
-    font-size: 20px;
+    margin-right: 10px;
+    font-size: 18px;
   }
 
   .sub-headings {
-    width: 65%;
-    margin: 20px 3%;
+    width: 70%;
+    margin: 20px 7%;
   }
 
   .alltags {

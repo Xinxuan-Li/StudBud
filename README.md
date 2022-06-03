@@ -39,9 +39,8 @@ Drag and drop event lister is following the tutorial https://www.youtube.com/wat
 2. Priority tags are colour coded to be better and more easily differentiated. People can spot the priority difference by colour perception, without looking through a large task list to find the ones that are high priority. 
 ![This is an image](././img/priority-tags.png)
 
-3. To provide a clear roadmap method, users can now mark stages as done according to their progression. Seeing which stages were completed can visualise the progression and know where they are at. Combining this function with expandable stages, users can just focus on one stage and feel less stressed as the other stages are not visible at that moment. 
+3. To provide a clear roadmap method, users can now mark stages as done according to their progression. Seeing which stages were completed can visualise the progression and know where they are at and focus on their current stage. 
 ![This is an image](././img/stage-done.png)
-![This is an image](././img/expandable.png)
 
 4. A motivational quote section is added to each project page so they feel more inspired. 
 
@@ -61,6 +60,8 @@ Code perspective
 4. Link between resource tag creation to project lists in local storage, assign resources to specific subject from the list provided, instead of putting the project name in manually if users want to assign it to the project name.
 
 5. try and catch errors in link preview api. The current version does not contain anything to check whether the URL entered is valid. And there should be more condition checks in passing the send request to valid the URL.
+
+6. Mark stage as done will automatically put all tasks to complete status.
 
 Design perspective
 1. Be more customisable. Different types of students should be provided with a template to start with. For example, computer science students can use a pre-set template designed for coding projects, and design students should be provided with a design project template.

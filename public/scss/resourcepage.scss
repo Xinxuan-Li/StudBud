@@ -178,22 +178,26 @@
 
 @media (max-width: 700px) {
     #summaryField {
-        width: 100%;
+        width: 160%;
+        font-size: 14px;
+        padding-left: 5px;
+        margin-left: -60px;
     }
 
     .resource-content {
-        width: 220px;
+        width: 150px;
         height: auto;
         padding-bottom: 10px;
     }
 
     .sub-headings h2 {
-        font-size: 20px;
+        font-size: 18px;
+        margin-right: 10px;
     }
 
     .sub-headings {
-        width: 65%;
-        margin: 20px 3%;
+        width: 70%;
+        margin: 20px 7%;
     }
 
     .alltags {

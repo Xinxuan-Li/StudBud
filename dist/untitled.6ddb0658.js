@@ -28,8 +28,6 @@ let l = localStorage.getItem('projects');
 l = JSON.parse(l);
 //Mark as done variables;
 var markdone = document.getElementById('markDoneBtn');
-// content expandable variables;
-var expandContent = document.querySelectorAll(".titleBar");
 // Info icon pop up window varibale;
 var guide = document.getElementById('guide');
 // Make stage as complete variable;
@@ -38,7 +36,7 @@ var stageDoneBtn = document.querySelectorAll('#stageCheck');
 var quote = document.getElementById('quote');
 var author = document.getElementById('author');
 /* 
-SIDE NOTE: none of the tasks will be saved in local storage, and most of the interactions and contents would not be saved in local storage;
+SIDE NOTE: none of the tasks will be saved in local storage, and most of the interactions and contents would not be saved;
 */ // Methods to be run everytime window loads;
 // Reading from LocalStorage;
 retrieveData();
@@ -48,8 +46,6 @@ findBtnClicked();
 displayTaskPopUp();
 // Check project status and modify button display;
 checkProjectStatus();
-// Expandable rows;
-toggleExpand();
 // Check stage position, colour differentiate each row;
 colourStage();
 // Retrieve quote;
@@ -96,7 +92,7 @@ function getQuotes() {
     var request = new XMLHttpRequest();
     request.open('GET', "https://type.fit/api/quotes");
     request.onload = function() {
-        // The number of valid quotes is 200;
+        // The number of valid quotes is 200, although in the console it printed more than 200 items. Any thing more then 200 is empty;
         let data = JSON.parse(this.response);
         quote.innerHTML = data[Math.floor(Math.random() * data.length)].text;
         author.innerHTML = data[Math.floor(Math.random() * data.length)].author;
@@ -133,23 +129,24 @@ function submitTaskFrom(taskName, taskDueDate, priority, estCompTime, keyword) {
     renderTask(taskAppend);
     console.log(tasklist);
 }
-// render the task entered/created in the corresponding stage;
+// Render the task entered/created in the corresponding stage;
 function renderTask(taskAppend) {
     let task = document.createElement('div');
     task.setAttribute('class', 'task');
     task.draggable = "true";
-    //task title;
+    // task title;
     let taskTitle = document.createElement('h4');
     if (taskAppend.taskName == '') taskTitle.innerHTML = 'Untitled task';
     else taskTitle.innerHTML = taskAppend.taskName;
-    //task priority tag;
+    // task priority tag;
     let tagBtn = document.createElement('button');
     tagBtn.setAttribute('id', 'tagBtn');
     tagBtn.innerHTML = taskAppend.priority;
     if (taskAppend.priority == 'high') tagBtn.style.backgroundColor = '#C29F90';
     else if (taskAppend.priority == 'medium') tagBtn.style.backgroundColor = '#BEB286';
     else if (taskAppend.priority == 'low') tagBtn.style.backgroundColor = '#6E703D';
-    //task due date;
+    // task due date;
+    // Checks tasks due date and estimate completion time, and display according to different situations of inputs;
     let taskDueDate = document.createElement('p');
     if (taskAppend.taskDueDate == '' && taskAppend.estCompTime != '') taskDueDate.innerHTML = taskAppend.estCompTime + ", " + 'No due date';
     else if (taskAppend.estCompTime == '') taskDueDate.innerHTML = taskAppend.taskDueDate;
@@ -176,66 +173,72 @@ function renderTask(taskAppend) {
 }
 // create new stage;
 var newStageBtn = document.getElementById('newStageBtn');
-if (newStageBtn) newStageBtn.addEventListener('click', function(event) {
-    event.preventDefault();
-    // titleBar
-    let titleBar = document.createElement('div');
-    titleBar.setAttribute('class', 'titleBar');
-    let stageDoneBtn1 = document.createElement('button');
-    stageDoneBtn1.setAttribute('id', 'stageCheck');
-    // label and input
-    let stageInput = document.createElement('div');
-    stageInput.setAttribute('class', 'stageInput');
-    let stageLabel = document.createElement('label');
-    stageLabel.setAttribute('for', 'stagetitle');
-    let stageTitleInput = document.createElement('input');
-    stageTitleInput.setAttribute('id', 'stageTitle');
-    stageTitleInput.setAttribute('placeholder', 'Untitled Stage');
-    let toggleIcon = document.createElement('i');
-    toggleIcon.setAttribute('class', 'fa fa-caret-up');
-    toggleIcon.setAttribute('id', 'close');
-    // all stages
-    let stagecontent = document.createElement('div');
-    stagecontent.setAttribute('class', 'stageContent');
-    // one stage
-    let innerStageBoxes = document.createElement('div');
-    innerStageBoxes.setAttribute('class', 'innerStageBoxes');
-    // 3 cols inside a stage
-    let first = document.createElement('div');
-    first.setAttribute('class', 'innerStageBox');
-    let sec = document.createElement('div');
-    sec.setAttribute('class', 'innerStageBox');
-    let third = document.createElement('div');
-    third.setAttribute('class', 'innerStageBox');
-    // add new task button
-    let newTaskBtn1 = document.createElement('button');
-    newTaskBtn1.textContent = "+ new task";
-    newTaskBtn1.setAttribute('class', 'newTaskBtn');
-    newTaskBtn1.setAttribute('type', 'submit');
-    stageInput.appendChild(stageLabel);
-    stageInput.appendChild(stageTitleInput);
-    stageInput.appendChild(stageDoneBtn1);
-    titleBar.appendChild(stageInput);
-    titleBar.appendChild(toggleIcon);
-    innerStageBoxes.appendChild(first);
-    innerStageBoxes.appendChild(sec);
-    innerStageBoxes.appendChild(third);
-    innerStageBoxes.appendChild(newTaskBtn1);
-    stagecontent.appendChild(innerStageBoxes);
-    stages.appendChild(titleBar);
-    stages.appendChild(stagecontent);
-    expandContent = document.querySelectorAll(".titleBar");
+if (newStageBtn) {
+    newStageBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        // titleBar
+        let titleBar = document.createElement('div');
+        titleBar.setAttribute('class', 'titleBar');
+        let stageDoneBtn1 = document.createElement('button');
+        stageDoneBtn1.setAttribute('id', 'stageCheck');
+        // label and input
+        let stageInput = document.createElement('div');
+        stageInput.setAttribute('class', 'stageInput');
+        let stageLabel = document.createElement('label');
+        stageLabel.setAttribute('for', 'stagetitle');
+        let stageTitleInput = document.createElement('input');
+        stageTitleInput.setAttribute('id', 'stageTitle');
+        stageTitleInput.setAttribute('placeholder', 'Untitled Stage');
+        // all stages
+        let stagecontent = document.createElement('div');
+        stagecontent.setAttribute('class', 'stageContent');
+        // one stage
+        let innerStageBoxes = document.createElement('div');
+        innerStageBoxes.setAttribute('class', 'innerStageBoxes');
+        // 3 cols inside a stage
+        let first = document.createElement('div');
+        first.setAttribute('class', 'innerStageBox');
+        let sec = document.createElement('div');
+        sec.setAttribute('class', 'innerStageBox');
+        let third = document.createElement('div');
+        third.setAttribute('class', 'innerStageBox');
+        // add new task button
+        let newTaskBtn1 = document.createElement('button');
+        newTaskBtn1.textContent = "+ new task";
+        newTaskBtn1.setAttribute('class', 'newTaskBtn');
+        newTaskBtn1.setAttribute('type', 'submit');
+        stageInput.appendChild(stageLabel);
+        stageInput.appendChild(stageTitleInput);
+        titleBar.appendChild(stageInput);
+        titleBar.appendChild(stageDoneBtn1);
+        innerStageBoxes.appendChild(first);
+        innerStageBoxes.appendChild(sec);
+        innerStageBoxes.appendChild(third);
+        innerStageBoxes.appendChild(newTaskBtn1);
+        stagecontent.appendChild(innerStageBoxes);
+        stages.appendChild(titleBar);
+        stages.appendChild(stagecontent);
+        expandContent = document.querySelectorAll(".titleBar");
+        // update all buttons;
+        newTaskBtns = document.querySelectorAll('.newTaskBtn');
+        allStageBoxes = document.querySelectorAll('.innerStageBoxes');
+        list = document.querySelectorAll('.innerStageBox');
+        // Enable these methods in the newly created stage;
+        findBtnClicked();
+        colourStage();
+        // toggleExpand();
+        markStageAsDone();
+        dragNdrop();
+        // The loop will enable tasks to be created in the correspongind stage;
+        for(i = 0; i < newTaskBtns.length; i++)newTaskBtns[i].addEventListener("click", function() {
+            newTaskFormPopUp.style.display = 'block';
+        });
+    });
     // update all buttons;
     newTaskBtns = document.querySelectorAll('.newTaskBtn');
     allStageBoxes = document.querySelectorAll('.innerStageBoxes');
-    findBtnClicked();
-    colourStage();
-    toggleExpand();
-    markStageAsDone();
-    for(i = 0; i < newTaskBtns.length; i++)newTaskBtns[i].addEventListener("click", function() {
-        newTaskFormPopUp.style.display = 'block';
-    });
-});
+    list = document.querySelectorAll('.innerStageBox');
+}
 // drag and drop
 function dragNdrop() {
     // update all tasks and stages in the page;
@@ -284,26 +287,6 @@ function markAsDone() {
     var index = localStorage.getItem('projEnteredNum');
     projects[index - 1].status = "complete";
     localStorage.setItem('projects', JSON.stringify(projects));
-}
-// This part doesn't work properly;
-var c = 0;
-function toggleExpand() {
-    expandContent = document.querySelectorAll('.titleBar');
-    for(var i = 0; i < expandContent.length; i++)// var toggleIcon = expandContent[i].querySelector('#close');
-    // console.log(expandContent[i]);
-    // console.log(toggleIcon);
-    expandContent[i].addEventListener("click", function() {
-        if (c == 0) {
-            alert('For marker: This part (toggle expand) doesn\'t work properly, as in when you add new stage, toggle expand is messed up, please leave some hints in the marking comments of how to get it fixed if that is possible. Thank you! Location: template.js line 346.');
-            c++;
-        }
-        // var toggleIcon = document.querySelectorAll('#close');
-        // var cursor = document.querySelector('#close');
-        this.classList.toggle("expand");
-        var stageContent = this.nextElementSibling;
-        if (stageContent.style.display == "block") stageContent.style.display = "none";
-        else stageContent.style.display = "block";
-    });
 }
 // Assign a colour to the stage rows with even index; It will help users better differentiate the stages;
 function colourStage() {

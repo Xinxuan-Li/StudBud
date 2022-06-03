@@ -105,7 +105,6 @@ textarea:focus {
     height: 30px;
     border: 1px solid #9F9F9F;
     border-radius: 100%;
-    margin: 0px 15px;
     appearance: none;
     color: #27271E;
 }
@@ -210,7 +209,7 @@ textarea {
 
 .task {
     width: 100%;
-    height: auto;
+    height: 150px;
     padding-bottom: 15px;
     border-radius: 8px;
     background-color: #FFF;
@@ -343,8 +342,6 @@ select {
     }
 
     .innerStageBox {
-        height: 100%;
-        min-height: 150px;
         width: 31%;
         font-size: 20px;
     }
@@ -363,8 +360,6 @@ select {
     }
 
     .innerStageBox {
-        height: 100%;
-        min-height: 150px;
         width: 30%;
         font-size: 20px;
     }

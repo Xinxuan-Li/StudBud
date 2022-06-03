@@ -34,9 +34,6 @@ l = JSON.parse(l);
 //Mark as done variables;
 var markdone = document.getElementById('markDoneBtn');
 
-// content expandable variables;
-var expandContent = document.querySelectorAll(".titleBar");
-
 // Info icon pop up window varibale;
 var guide = document.getElementById('guide');
 
@@ -60,8 +57,6 @@ findBtnClicked();
 displayTaskPopUp();
 // Check project status and modify button display;
 checkProjectStatus();
-// Expandable rows;
-toggleExpand();
 // Check stage position, colour differentiate each row;
 colourStage();
 // Retrieve quote;
@@ -261,10 +256,6 @@ if (newStageBtn) {
         stageTitleInput.setAttribute('id', 'stageTitle');
         stageTitleInput.setAttribute('placeholder', 'Untitled Stage');
 
-        let toggleIcon = document.createElement('i');
-        toggleIcon.setAttribute('class', 'fa fa-caret-up');
-        toggleIcon.setAttribute('id', 'close');
-
         // all stages
         let stagecontent = document.createElement('div');
         stagecontent.setAttribute('class', 'stageContent');
@@ -291,9 +282,8 @@ if (newStageBtn) {
 
         stageInput.appendChild(stageLabel);
         stageInput.appendChild(stageTitleInput);
-        stageInput.appendChild(stageDoneBtn);
         titleBar.appendChild(stageInput);
-        titleBar.appendChild(toggleIcon);
+        titleBar.appendChild(stageDoneBtn);
 
         innerStageBoxes.appendChild(first);
         innerStageBoxes.appendChild(sec);
@@ -309,11 +299,13 @@ if (newStageBtn) {
         // update all buttons;
         newTaskBtns = document.querySelectorAll('.newTaskBtn');
         allStageBoxes = document.querySelectorAll('.innerStageBoxes');
+        list = document.querySelectorAll('.innerStageBox');
         // Enable these methods in the newly created stage;
         findBtnClicked();
         colourStage();
-        toggleExpand();
+        // toggleExpand();
         markStageAsDone();
+        dragNdrop()
 
         // The loop will enable tasks to be created in the correspongind stage;
         for (i = 0; i < newTaskBtns.length; i++) {
@@ -322,6 +314,10 @@ if (newStageBtn) {
             });
         }
     });
+    // update all buttons;
+    newTaskBtns = document.querySelectorAll('.newTaskBtn');
+    allStageBoxes = document.querySelectorAll('.innerStageBoxes');
+    list = document.querySelectorAll('.innerStageBox');
 }
 
 
@@ -387,40 +383,6 @@ function markAsDone() {
     projects[index - 1].status = "complete";
 
     localStorage.setItem('projects', JSON.stringify(projects));
-}
-
-// This part doesn't work properly;
-var c = 0;
-function toggleExpand() {
-    expandContent = document.querySelectorAll('.titleBar');
-    for (var i = 0; i < expandContent.length; i++) {
-        // var toggleIcon = expandContent[i].querySelector('#close');
-        // console.log(expandContent[i]);
-        // console.log(toggleIcon);
-
-        expandContent[i].addEventListener("click", function () {
-            if (c == 0) {
-                alert('For marker: This part (toggle expand) doesn\'t work properly, as in when you add new stage, toggle expand is messed up, please leave some hints in the marking comments of how to get it fixed if that is possible. Location: template.js line 346. Thank you!');
-                c++;
-            }
-
-            // var toggleIcon = document.querySelectorAll('#close');
-            // var cursor = document.querySelector('#close');
-
-            this.classList.toggle("expand");
-
-            var stageContent = this.nextElementSibling;
-            if (stageContent.style.display == "block") {
-                stageContent.style.display = "none";
-                // document.getElementById('close').classList.add('fa-caret-down');
-                // cursor.setAttribute('class', 'fa fa-caret-down');
-            } else {
-                stageContent.style.display = "block";
-                // cursor = toggleIcon[i];
-                // cursor.setAttribute('class', 'fa fa-caret-up');
-            }
-        });
-    }
 }
 
 // Assign a colour to the stage rows with even index; It will help users better differentiate the stages;

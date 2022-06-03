@@ -37,10 +37,21 @@ var markdone = document.getElementById('markDoneBtn');
 // content expandable variables;
 var expandContent = document.querySelectorAll(".titleBar");
 
+// Info icon pop up window varibale;
 var guide = document.getElementById('guide');
 
+// Make stage as complete variable;
 var stageDoneBtn = document.querySelectorAll('#stageCheck');
 
+// Get quote request variables;
+var quote = document.getElementById('quote');
+var author = document.getElementById('author');
+
+/* 
+SIDE NOTE: none of the tasks will be saved in local storage, and most of the interactions and contents would not be saved;
+*/
+
+// Methods to be run everytime window loads;
 // Reading from LocalStorage;
 retrieveData();
 // Find the stage add task button clicked to add task to the corresponding row;
@@ -58,17 +69,20 @@ getQuotes();
 // Mark project as done;
 markStageAsDone();
 
+// This method checks whether the project is mark as completed, if the mark as done button was clicked, it changes the status of the project to complete on both screen, and within local storage, and project homepage.
 function checkProjectStatus() {
     let ls = localStorage.getItem('projects');
     ls = JSON.parse(ls);
 
+    // Find the projectEnteredNum (project entered index in the projects list in local storage);
+    // After finding the index, changes the status to complete as users requestion by pressing the mark as done button;
     if (ls[localStorage.getItem('projEnteredNum') - 1].status == "complete") {
         markdone.innerHTML = 'Completed';
         markdone.style.backgroundColor = '#6E703D';
     }
 }
 
-
+// Retrieve the projectEnteredNum (project entered index) every time users entered a projec.
 function retrieveData() {
     c = localStorage.getItem('projEnteredNum') - 1;
     projTitle.textContent = l[c].title;
@@ -80,6 +94,7 @@ function hideTaskForm() {
     newTaskFormPopUp.style.display = 'none';
 }
 
+// Info window pops up to intro users to how the roadmap works;
 function infoPopUp() {
     if (guide.style.display == 'none') {
         guide.style.display = 'block';
@@ -88,7 +103,7 @@ function infoPopUp() {
     }
 }
 
-
+// Create a class of Task, later can create objects from the class;
 class Task {
     constructor(taskName, taskDueDate, priority, estCompTime) {
         this.taskName = taskName;
@@ -99,16 +114,14 @@ class Task {
     }
 }
 
-
-var quote = document.getElementById('quote');
-var author = document.getElementById('author');
+// Send get quotes request everything the window reloads, to display and new quote for users; 
 function getQuotes() {
     var request = new XMLHttpRequest();
 
     request.open('GET', "https://type.fit/api/quotes");
 
     request.onload = function () {
-        // The number of valid quotes is 200;
+        // The number of valid quotes is 200, although in the console it printed more than 200 items. Any thing more then 200 is empty;
         let data = JSON.parse(this.response);
         quote.innerHTML = data[Math.floor(Math.random() * data.length)].text
         author.innerHTML = data[Math.floor(Math.random() * data.length)].author;
@@ -127,7 +140,7 @@ function displayTaskPopUp() {
     }
 }
 
-
+// Create new task;
 if (newTaskForm) {
     newTaskForm.addEventListener("submit", function (event) {
         event.preventDefault();
@@ -160,14 +173,14 @@ function submitTaskFrom(taskName, taskDueDate, priority, estCompTime, keyword) {
     console.log(tasklist);
 }
 
-// render the task entered/created in the corresponding stage;
+// Render the task entered/created in the corresponding stage;
 function renderTask(taskAppend) {
 
     let task = document.createElement('div');
     task.setAttribute('class', 'task');
     task.draggable = "true";
 
-    //task title;
+    // task title;
     let taskTitle = document.createElement('h4');
     if (taskAppend.taskName == '') {
         taskTitle.innerHTML = 'Untitled task';
@@ -175,7 +188,7 @@ function renderTask(taskAppend) {
         taskTitle.innerHTML = taskAppend.taskName;
     }
 
-    //task priority tag;
+    // task priority tag;
     let tagBtn = document.createElement('button');
     tagBtn.setAttribute('id', 'tagBtn');
     tagBtn.innerHTML = taskAppend.priority;
@@ -187,7 +200,8 @@ function renderTask(taskAppend) {
         tagBtn.style.backgroundColor = '#6E703D';
     }
 
-    //task due date;
+    // task due date;
+    // Checks tasks due date and estimate completion time, and display according to different situations of inputs;
     let taskDueDate = document.createElement('p');
     if (taskAppend.taskDueDate == '' && taskAppend.estCompTime != '') {
         taskDueDate.innerHTML = taskAppend.estCompTime + ", " + 'No due date';
@@ -212,7 +226,6 @@ function renderTask(taskAppend) {
     let keywordBtn = document.createElement('button');
     keywordBtn.setAttribute('id', 'keywordBtn');
     keywordBtn.innerHTML = 'No keyword';
-
 
     task.appendChild(keywordBtn);
     task.appendChild(taskDueDate);
@@ -296,11 +309,13 @@ if (newStageBtn) {
         // update all buttons;
         newTaskBtns = document.querySelectorAll('.newTaskBtn');
         allStageBoxes = document.querySelectorAll('.innerStageBoxes');
+        // Enable these methods in the newly created stage;
         findBtnClicked();
         colourStage();
         toggleExpand();
         markStageAsDone();
 
+        // The loop will enable tasks to be created in the correspongind stage;
         for (i = 0; i < newTaskBtns.length; i++) {
             newTaskBtns[i].addEventListener("click", function () {
                 newTaskFormPopUp.style.display = 'block';
@@ -366,6 +381,7 @@ function markAsDone() {
     markdone.innerHTML = 'Completed';
     markdone.style.backgroundColor = '#6E703D';
 
+    // Find the projectEnteredNum in local storage to change the status of the corresponding item in the project list;
     var index = localStorage.getItem('projEnteredNum');
 
     projects[index - 1].status = "complete";
@@ -373,7 +389,7 @@ function markAsDone() {
     localStorage.setItem('projects', JSON.stringify(projects));
 }
 
-// Doesn't work properly;
+// This part doesn't work properly;
 var c = 0;
 function toggleExpand() {
     expandContent = document.querySelectorAll('.titleBar');
@@ -384,7 +400,7 @@ function toggleExpand() {
 
         expandContent[i].addEventListener("click", function () {
             if (c == 0) {
-                alert('For marker: This part (toggle expand) doesn\'t work properly, as in when you add new stage, toggle expand is messed up, please leave some hints in the marking comments of how to get it fixed if that is possible. Thank you! Location: template.js line 346.');
+                alert('For marker: This part (toggle expand) doesn\'t work properly, as in when you add new stage, toggle expand is messed up, please leave some hints in the marking comments of how to get it fixed if that is possible. Location: template.js line 346. Thank you!');
                 c++;
             }
 
@@ -407,6 +423,7 @@ function toggleExpand() {
     }
 }
 
+// Assign a colour to the stage rows with even index; It will help users better differentiate the stages;
 function colourStage() {
     allStageBoxes = document.querySelectorAll('.innerStageBoxes');
     for (let i = 0; i < allStageBoxes.length; i++) {
@@ -420,6 +437,8 @@ function colourStage() {
 }
 
 
+// Mark the stage as done;
+// This methods loops through the list, find the stage mark as done button clicked, and mark it as dont;
 function markStageAsDone() {
     expandContent = document.querySelectorAll('.titleBar');
     stageDoneBtn = document.querySelectorAll('#stageCheck');
@@ -435,7 +454,6 @@ function markStageAsDone() {
 
         }.bind(null, i));
     }
-
 }
 
 // == TESTING BLOCK STARTS == //

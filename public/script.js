@@ -70,23 +70,12 @@ if (resetBtn) {
     resetBtn.addEventListener('click', function () {
         window.location.reload();
         timer.style.display = 'block';
-        // countDisplay.style.display = 'none';
-        // var timeInput = document.querySelector('.timeInput');
-        // // var count = document.querySelector('.countDisplay');
-        // var pomo = document.querySelector('.pomoInput');
-        // var breakInput = document.querySelector('.breakInput');
-        // var control = document.querySelector('.controlTimer');
-        // timeInput.appendChild(minInput);
-        // timeInput.appendChild(mintxt);
-        // setTimeForm.appendChild(timeInput);
-        // // setTimeForm.appendChild(count);
-        // setTimeForm.appendChild(pomo);
-        // setTimeForm.appendChild(breakInput);
-        // setTimeForm.appendChild(control);
     });
 }
 
 
+// Variable name valid acted as switch to check whether the timer round has ended. If the cycles of timer is set to be 3, the timer will end after 3 rounds after running work and break time, and the number of rounds is monitored by a variable count;
+// The same logic applies to myDefaultTimer(), defaultBreakTimer(), customTimer(), and breakTimer();
 function myDefaultTimer() {
     // default time;
     const defaultTime = 25;
@@ -203,6 +192,7 @@ function customTimer() {
             totalTime--;
 
         } else {
+            // Runs the break time the first time as pomodoro timer ends; breakValid is a switch to check whether break time has ends;
             if (breakValid == true) {
                 breakTimer();
                 breakValid = false;
@@ -254,6 +244,8 @@ function breakTimer() {
 }
 
 
+// This method checks the input values in the timer, with all types of customed inputs;
+// It reads the timer to check whether it is the default one or customied, and the timer will be triggered according the input content;
 function inputChecker() {
     if (minInput.value == '') {
         myDefaultTimer();

@@ -1,3 +1,4 @@
+// generating a preview of the URL inputted vairables, used with API linkPreview to create one resource box with title, image(if accessible), short description, and URL itself;
 var linkInput = document.getElementById('urlBox');
 var urlGetterForm = document.querySelector('.generate-pop-up');
 var resourceList = document.querySelector('.resource-list');
@@ -6,7 +7,7 @@ var summaries = document.querySelector('#summaryField');
 var allSum = document.querySelectorAll('#summaryField');
 var saveSum = document.querySelector('.fa-save');
 var myLink = null;
-// Assign tags variables;
+// Assign tags to specific resource variables;
 var leftCols = document.querySelectorAll('.leftCol');
 var tagResInput = document.querySelectorAll('#tagResInput');
 var sendTagBtn = document.querySelectorAll('#sendTagBtn');
@@ -20,6 +21,7 @@ class ResourceObj {
         this.tags = tags;
     }
 }
+// Methods to run everytime the window loads;
 // Retrieve data of resources list;
 retreiveLocalRes();
 // Add tags to the resource
@@ -28,6 +30,7 @@ assignTag();
 var request = new XMLHttpRequest();
 if (urlGetterForm) urlGetterForm.addEventListener('submit', function(e) {
     e.preventDefault();
+    // Check whether there are content within the input box. If content is valid, users can send the request by hitting enter;
     if (linkInput.value != '') {
         myLink = linkInput.value;
         request.open('GET', "http://api.linkpreview.net/?key=cb651c5031e16f0a587326b66a8c8e20&q=" + myLink);
@@ -43,15 +46,19 @@ if (urlGetterForm) urlGetterForm.addEventListener('submit', function(e) {
 function generatePreview(data) {
     let row = document.createElement('div');
     row.setAttribute('class', 'resource-list-row');
+    // leftCol represents the left column of each row: preview box, tags and tags creation box;
     let leftCol = document.createElement('div');
     leftCol.setAttribute('class', 'leftCol');
     let container = document.createElement('div');
     container.setAttribute('class', 'resource-content');
+    // All tags created will be stored here, and display on the screen;
     let alltags1 = document.createElement('div');
     alltags1.setAttribute('class', 'alltags');
+    // Input tag content within;
     let tagResInput1 = document.createElement('input');
     tagResInput1.setAttribute('id', 'tagResInput');
     tagResInput1.setAttribute('placeholder', 'Assign me a tag');
+    // Send tag creation button;
     let sendTag = document.createElement('button');
     sendTag.setAttribute('id', 'sendTagBtn');
     sendTag.setAttribute('type', "submit");
@@ -59,6 +66,7 @@ function generatePreview(data) {
     sendIcon.setAttribute('class', 'fa fa-paper-plane-o');
     let tagInputBar = document.createElement('div');
     tagInputBar.setAttribute('class', 'tagInputBar');
+    // Create input summary here;
     let summary = document.createElement('div');
     summary.setAttribute('class', 'summary');
     let summaryField = document.createElement('textarea');
@@ -171,6 +179,7 @@ function retreiveLocalRes() {
         localStorage.setItem('resources', resourcesJSON);
     }
 }
+// When the save button clicked, all summaries typed will be saved into the local storage, and display again next time users come back to the page. 
 saveSum.addEventListener('click', function(e) {
     e.preventDefault();
     saveSummary();
@@ -185,6 +194,7 @@ function saveSummary() {
     for(let i = 0; i < list.length; i++)resourceListArray[i].summary = allSum[i].value;
     localStorage.setItem('resources', JSON.stringify(resourceListArray));
 }
+// Assign a tag to each resource, and store it inside local storage for later display;
 function assignTag() {
     leftCols = document.querySelectorAll('.leftCol');
     tagResInput = document.querySelectorAll('#tagResInput');
@@ -196,12 +206,14 @@ function assignTag() {
         var exist = false;
         cursorLs = list[i].tags;
         alltags = leftCols[i].querySelector('.alltags');
+        // Check whether the tag exists already, if not, they can create one, if it is exists, alert window pops up to ask people to rename it;
         if (tagResInput[i].value != '') {
             for(let j = 0; j < cursorLs.length; j++)if (tagResInput[i].value == cursorLs[j]) {
                 exist = true;
                 alert('Tag already exist, give it another name.');
                 break;
             }
+            // If it doesn't exists, continue sending the tag creation request;
             if (exist == false) {
                 cursorLs.push(tagResInput[i].value);
                 let resTag = document.createElement('button');

@@ -30,8 +30,16 @@ l = JSON.parse(l);
 var markdone = document.getElementById('markDoneBtn');
 // content expandable variables;
 var expandContent = document.querySelectorAll(".titleBar");
+// Info icon pop up window varibale;
 var guide = document.getElementById('guide');
+// Make stage as complete variable;
 var stageDoneBtn = document.querySelectorAll('#stageCheck');
+// Get quote request variables;
+var quote = document.getElementById('quote');
+var author = document.getElementById('author');
+/* 
+SIDE NOTE: none of the tasks will be saved in local storage, and most of the interactions and contents would not be saved in local storage;
+*/ // Methods to be run everytime window loads;
 // Reading from LocalStorage;
 retrieveData();
 // Find the stage add task button clicked to add task to the corresponding row;
@@ -48,14 +56,18 @@ colourStage();
 getQuotes();
 // Mark project as done;
 markStageAsDone();
+// This method checks whether the project is mark as completed, if the mark as done button was clicked, it changes the status of the project to complete on both screen, and within local storage, and project homepage.
 function checkProjectStatus() {
     let ls = localStorage.getItem('projects');
     ls = JSON.parse(ls);
+    // Find the projectEnteredNum (project entered index in the projects list in local storage);
+    // After finding the index, changes the status to complete as users requestion by pressing the mark as done button;
     if (ls[localStorage.getItem('projEnteredNum') - 1].status == "complete") {
         markdone.innerHTML = 'Completed';
         markdone.style.backgroundColor = '#6E703D';
     }
 }
+// Retrieve the projectEnteredNum (project entered index) every time users entered a projec.
 function retrieveData() {
     c = localStorage.getItem('projEnteredNum') - 1;
     projTitle.textContent = l[c].title;
@@ -64,10 +76,12 @@ function retrieveData() {
 function hideTaskForm() {
     newTaskFormPopUp.style.display = 'none';
 }
+// Info window pops up to intro users to how the roadmap works;
 function infoPopUp() {
     if (guide.style.display == 'none') guide.style.display = 'block';
     else guide.style.display = 'none';
 }
+// Create a class of Task, later can create objects from the class;
 class Task {
     constructor(taskName, taskDueDate, priority, estCompTime){
         this.taskName = taskName;
@@ -77,8 +91,7 @@ class Task {
         this.estCompTime = estCompTime;
     }
 }
-var quote = document.getElementById('quote');
-var author = document.getElementById('author');
+// Send get quotes request everything the window reloads, to display and new quote for users; 
 function getQuotes() {
     var request = new XMLHttpRequest();
     request.open('GET', "https://type.fit/api/quotes");
@@ -96,6 +109,7 @@ function displayTaskPopUp() {
         newTaskFormPopUp.style.display = 'block';
     });
 }
+// Create new task;
 if (newTaskForm) newTaskForm.addEventListener("submit", function(event) {
     event.preventDefault();
     let taskName = taskNameInput.value;
@@ -266,11 +280,12 @@ function markAsDone() {
     projects = JSON.parse(projects);
     markdone.innerHTML = 'Completed';
     markdone.style.backgroundColor = '#6E703D';
+    // Find the projectEnteredNum in local storage to change the status of the corresponding item in the project list;
     var index = localStorage.getItem('projEnteredNum');
     projects[index - 1].status = "complete";
     localStorage.setItem('projects', JSON.stringify(projects));
 }
-// Doesn't work properly;
+// This part doesn't work properly;
 var c = 0;
 function toggleExpand() {
     expandContent = document.querySelectorAll('.titleBar');
@@ -290,6 +305,7 @@ function toggleExpand() {
         else stageContent.style.display = "block";
     });
 }
+// Assign a colour to the stage rows with even index; It will help users better differentiate the stages;
 function colourStage() {
     allStageBoxes = document.querySelectorAll('.innerStageBoxes');
     for(let i = 0; i < allStageBoxes.length; i++){
@@ -297,6 +313,8 @@ function colourStage() {
         if (i % 2 == 1) for(let j = 0; j < 3; j++)boxes[j].style.backgroundColor = '#EEEEE7';
     }
 }
+// Mark the stage as done;
+// This methods loops through the list, find the stage mark as done button clicked, and mark it as dont;
 function markStageAsDone() {
     expandContent = document.querySelectorAll('.titleBar');
     stageDoneBtn = document.querySelectorAll('#stageCheck');

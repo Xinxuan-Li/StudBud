@@ -37,6 +37,7 @@ if (urlGetterForm) urlGetterForm.addEventListener('submit', function(e) {
         // Load data retrieved;
         request.onload = function() {
             let data = JSON.parse(this.response);
+            // console.log(data);
             generatePreview(data);
         };
         request.send();

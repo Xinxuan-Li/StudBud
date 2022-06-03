@@ -60,6 +60,8 @@ Code perspective
 
 4. Link between resource tag creation to project lists in local storage, assign resources to specific subject from the list provided, instead of putting the project name in manually if users want to assign it to the project name.
 
+5. try and catch errors in link preview api. The current version does not contain anything to check whether the URL entered is valid. And there should be more condition checks in passing the send request to valid the URL.
+
 Design perspective
 1. Be more customisable. Different types of students should be provided with a template to start with. For example, computer science students can use a pre-set template designed for coding projects, and design students should be provided with a design project template.
 

@@ -40,13 +40,16 @@ if (urlGetterForm) {
         // Check whether there are content within the input box. If content is valid, users can send the request by hitting enter;
         if (linkInput.value != '') {
             myLink = linkInput.value;
+
             request.open('GET', 'http://api.linkpreview.net/' + '?key=' + 'cb651c5031e16f0a587326b66a8c8e20' + '&q=' + myLink);
             // Load data retrieved;
             request.onload = function () {
                 let data = JSON.parse(this.response);
+                // console.log(data);
                 generatePreview(data);
             };
             request.send();
+
         }
     });
 }

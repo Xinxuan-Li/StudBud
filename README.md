@@ -27,7 +27,7 @@ A resource list allows users to add valid links to the page, and tags can be cre
 
 On this web app, users can create projects, assignment objectives and tasks for each project. The project page is templated to guide users to segment their big project into smaller chunks, which are categorised by stages. Within each stage of the project, users can create tasks with attributes: due date, estimated completion time, priority, tasks name, and keyword. Users can drag tasks to the corresponding completion status according to their own pace.
 ![This is an image](././img/stages-overview.png)
-Drag and drop event lister is following tutorial the https://www.youtube.com/watch?v=tZ45HZAkbLc&t=1218s (See more in reference).
+Drag and drop event lister is following the tutorial https://www.youtube.com/watch?v=tZ45HZAkbLc&t=1218s (See in reference).
 
 
 **Comparison between proposed and final design**
@@ -57,8 +57,12 @@ Code perspective
 
 3. Enable auto save on the resource page.
 
+4. Link between resource tag creation to project lists in local storage, assign resources to specific subject from the list provided, instead of putting the project name in manually if users want to assign it to the project name.
+
 Design perspective
 1. Be more customisable. Different types of students should be provided with a template to start with. For example, computer science students can use a pre-set template designed for coding projects, and design students should be provided with a design project template.
+
+2. Allow users to select from a list of existing project names, and assign it as tag to resource.
 
 **References**
 
